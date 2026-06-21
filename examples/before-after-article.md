@@ -1,4 +1,4 @@
-# Example: Before/After — Full Article Rewrite
+# Example: Before/After - Full Article Rewrite
 
 **Mode:** REWRITE
 **Language:** en
@@ -6,7 +6,7 @@
 
 ---
 
-## BEFORE (Original — 340 words, Score: 17/49)
+## BEFORE (Original - 340 words, Score: 17/49)
 
 ### Meta
 - Title: "Email Marketing Tips and Tricks for Your Business"
@@ -35,7 +35,7 @@
 
 ---
 
-## AFTER (RankWise Rewrite — 980 words, Score: 45/49)
+## AFTER (RankWise Rewrite - 980 words, Score: 45/49)
 
 ### SEO Title (56 chars)
 "7 Proven Email Marketing Strategies That Increased Our Revenue by 34%"
@@ -63,14 +63,14 @@
 ### Image Alt Texts
 1. "Revenue chart showing 34% increase after implementing email marketing strategy changes over 6 months"
 2. "Email marketing strategy planning template with 7 campaign types mapped to customer lifecycle stages"
-3. "Split test results comparing generic vs personalized email subject lines — personalized variant with 28% higher open rate"
+3. "Split test results comparing generic vs personalized email subject lines - personalized variant with 28% higher open rate"
 
 ### Changelog
-- Title: "Email Marketing Tips..." → "7 Proven Email Marketing Strategies That Increased Our Revenue by 34%" — added number, power words, keyword, specific result
-- Meta description: Complete rewrite — keyword in first 3 words, specific value, CTA
+- Title: "Email Marketing Tips..." → "7 Proven Email Marketing Strategies That Increased Our Revenue by 34%" - added number, power words, keyword, specific result
+- Meta description: Complete rewrite - keyword in first 3 words, specific value, CTA
 - URL: Removed stop words, shortened
-- Word count: 340 → 980 (+640 words) — expanded thin sections with data, examples, step-by-step
-- Keywords: Density from 2.8% → 1.1% — removed stuffing, added natural distribution
+- Word count: 340 → 980 (+640 words) - expanded thin sections with data, examples, step-by-step
+- Keywords: Density from 2.8% → 1.1% - removed stuffing, added natural distribution
 - AI cleanup: Removed "In today's...", "Moreover...", "It is important to note...", burned words
 - Structure: Added proper H2/H3 hierarchy, keyword in H2
 - Internal links: 1 → 6 (added contextual links to related guides)
@@ -81,11 +81,11 @@
 - Readability: Grade 11 → Grade 8
 
 ### Remaining 2 factors not passing
-- ⚠️ T1: URL could be slightly shorter (still under 75 — acceptable)
-- ⊘ A6: Breadcrumb structure — depends on site implementation
+- ⚠️ T1: URL could be slightly shorter (still under 75 - acceptable)
+- ⊘ A6: Breadcrumb structure - depends on site implementation
 
 ---
 
 ## KEY TAKEAWAY
 
-The original article wasn't "bad writing" — it was SEO-invisible. No keyword in the right places. No data. No internal links. The rewrite preserved the core topic while transforming the SEO signal from 17/49 to 45/49. That's the difference between page 3 and page 1.
+The original article wasn't "bad writing" - it was SEO-invisible. No keyword in the right places. No data. No internal links. The rewrite preserved the core topic while transforming the SEO signal from 17/49 to 45/49. That's the difference between page 3 and page 1.

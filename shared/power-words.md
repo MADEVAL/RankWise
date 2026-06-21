@@ -1,4 +1,4 @@
-# Power Words — Emotional Triggers for SEO Titles & Headings
+# Power Words - Emotional Triggers for SEO Titles & Headings
 
 > Power words increase CTR, engagement, and emotional connection.
 > Use 2+ power words in every SEO title.
@@ -7,42 +7,42 @@
 
 ## UNIVERSAL POWER WORDS (English)
 
-### Specificity / Numbers (all languages — translate per target language)
-*Trigger System 2 — credibility, concreteness*
+### Specificity / Numbers (all languages - translate per target language)
+*Trigger System 2 - credibility, concreteness*
 
 exact, specific, precise, detailed, comprehensive, complete, ultimate, definitive, step-by-step, case study, real example, actual data, real results, before and after, comparison, versus, vs, tested, benchmarked, ranked, reviewed, compared
 
 **Translations:** RU: точный, конкретный, подробный, пошаговый, реальный пример, реальные данные, до и после, сравнение, протестировано | UK: точний, конкретний, детальний, покроковий, реальний приклад, реальні дані, до і після, порівняння, протестовано | DE: genau, spezifisch, detailliert, schrittweise, echtes Beispiel, echte Daten, vorher und nachher, Vergleich, getestet | FR: exact, spécifique, détaillé, étape par étape, exemple réel, données réelles, avant et après, comparaison, testé | ES: exacto, específico, detallado, paso a paso, ejemplo real, datos reales, antes y después, comparación, probado | PT: exato, específico, detalhado, passo a passo, exemplo real, dados reais, antes e depois, comparação, testado | IT: esatto, specifico, dettagliato, passo dopo passo, esempio reale, dati reali, prima e dopo, confronto, testato | PL: dokładny, konkretny, szczegółowy, krok po kroku, prawdziwy przykład, prawdziwe dane, przed i po, porównanie, przetestowany
 
-### Emotional / Human (all languages — translate per target language)
-*Trigger empathy — connection, relatability*
+### Emotional / Human (all languages - translate per target language)
+*Trigger empathy - connection, relatability*
 
 love, hate, amazing, incredible, beautiful, ugly, heartbreaking, inspiring, emotional, honest, raw, vulnerable, personal, my story, how I, what happened to me, I can't believe, I was wrong, I finally, it changed my life, this saved me
 
 **Translations:** RU: люблю, ненавижу, невероятно, красиво, уродливо, душераздирающе, вдохновляюще, честно, откровенно, уязвимо, лично, моя история, как я, я ошибался, это изменило мою жизнь | UK: люблю, ненавиджу, неймовірно, красиво, потворно, несамовито, надихаюче, чесно, відверто, вразливо, особисто, моя історія, я помилявся, це змінило моє життя | DE: liebe, hasse, erstaunlich, unglaublich, schön, hässlich, herzzerreißend, inspirierend, ehrlich, roh, verletzlich, persönlich, meine Geschichte, wie ich, ich lag falsch, es hat mein Leben verändert | FR: j'aime, je déteste, incroyable, beau, laid, déchirant, inspirant, honnête, brut, vulnérable, personnel, mon histoire, comment j'ai, j'avais tort, ça a changé ma vie | ES: amo, odio, increíble, hermoso, feo, desgarrador, inspirador, honesto, crudo, vulnerable, personal, mi historia, cómo yo, estaba equivocado, cambió mi vida | PT: amo, odeio, incrível, lindo, feio, de partir o coração, inspirador, honesto, cru, vulnerável, pessoal, minha história, como eu, eu estava errado, mudou minha vida | IT: amo, odio, incredibile, bello, brutto, straziante, stimolante, onesto, crudo, vulnerabile, personale, la mia storia, come ho, mi sbagliavo, mi ha cambiato la vita | PL: kocham, nienawidzę, niesamowite, piękne, brzydkie, rozdzierające serce, inspirujące, szczerze, surowo, bezbronnie, osobiście, moja historia, jak ja, myliłem się, to zmieniło moje życie
 
 ### Fear / Loss / Urgency
-*Trigger amygdala — attention, action, loss prevention*
+*Trigger amygdala - attention, action, loss prevention*
 
 stop, avoid, never, don't, warning, mistake, hidden, dangerous, deadly, lose, losing, risk, risky, crisis, urgent, deadline, last chance, limited, before it's too late, what nobody tells you, things you should never, are you making this, killing your, destroying your, sabotaging
 
 ### Curiosity / Knowledge Gap
-*Trigger dopamine — click-through, exploration*
+*Trigger dopamine - click-through, exploration*
 
 secret, little-known, unknown, hidden, surprising, shocking, unexpected, unconventional, unusual, strange, weird, behind the scenes, insider, exclusive, revealed, exposed, what really, the truth about, they don't want you to know, you won't believe, this is why, here's what happens when, what I discovered, what I learned, the real reason
 
 ### Authority / Trust
-*Trigger credibility — confidence, safety*
+*Trigger credibility - confidence, safety*
 
 proven, research-backed, science-based, data-driven, expert, certified, tested, guaranteed, official, approved, recommended, evidence-based, according to research, what studies show, the data confirms, in a study of, after testing, we analyzed
 
 ### Ease / Convenience / Pain Removal
-*Trigger desire — relief, simplicity*
+*Trigger desire - relief, simplicity*
 
 simple, easy, fast, quick, instantly, immediately, automatically, effortless, painless, without, no [pain point], in minutes, in seconds, step-by-step, all-in-one, done for you, hands-free, one-click, finally, at last, now you can, anyone can, even if you're not
 
 ### Exclusivity / Status
-*Trigger identity — belonging, prestige*
+*Trigger identity - belonging, prestige*
 
 exclusive, limited, only, select, premium, elite, VIP, insider, members-only, private, invitation-only, behind closed doors, never before, first access, early bird, beta, by application only, curated, hand-picked, limited edition
 
@@ -198,7 +198,7 @@ best, great, amazing, incredible, perfect, ultimate, love, proven, guaranteed, s
 worst, avoid, stop, never, don't, mistake, fail, failure, wrong, bad, terrible, awful, dangerous, risk, warning, scam, lie, myth, truth about, hidden, what they don't tell you
 
 ### Sentiment rule for RankWise
-- Every SEO title must lean positive OR negative — never neutral
+- Every SEO title must lean positive OR negative - never neutral
 - Negative titles: higher CTR on social media, controversy, fear-based
 - Positive titles: better in SERP for informational/commercial queries
 - Test both variants if possible

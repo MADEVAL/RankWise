@@ -1,4 +1,4 @@
-# Schema Templates — JSON-LD Structured Data
+# Schema Templates - JSON-LD Structured Data
 
 > Copy-paste-ready templates for every content type.
 > Add to `<head>` or inject via RankWise when generating.
@@ -134,7 +134,7 @@
 **Rules for FAQ schema:**
 - Only use if the page has a genuine FAQ section
 - Questions must be actual user questions (not fabricated)
-- Answers must be on the page as visible text — not hidden
+- Answers must be on the page as visible text - not hidden
 - Min 1 question, max unlimited (but 3–8 is ideal)
 - Search engines show max 2 FAQ items in rich results (can expand)
 

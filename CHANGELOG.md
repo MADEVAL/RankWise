@@ -1,58 +1,58 @@
 # Changelog
 
-## [1.2.1] — 2026-06-21
+## [1.2.1] - 2026-06-21
 
 ### Fixed
-- **B1:** Duplicate rule numbering in MODULE ACTIVATION LOGIC — rules now correctly numbered 1–9 (was: two rules #6, two rules #2)
-- **B3:** T8 factor sync between `shared/checklist.md` and `scenarios/audit-report.md` — both now consistently require OG title+description OR twitter:card (audit-report no longer incorrectly requires OG image)
-- **B5:** Removed duplicate Specificity/Numbers and Emotional/Human categories from `shared/power-words.md` (were listed twice — once with translations, once without)
+- **B1:** Duplicate rule numbering in MODULE ACTIVATION LOGIC - rules now correctly numbered 1–9 (was: two rules #6, two rules #2)
+- **B3:** T8 factor sync between `shared/checklist.md` and `scenarios/audit-report.md` - both now consistently require OG title+description OR twitter:card (audit-report no longer incorrectly requires OG image)
+- **B5:** Removed duplicate Specificity/Numbers and Emotional/Human categories from `shared/power-words.md` (were listed twice - once with translations, once without)
 - **B6:** Quick Readability Checklist in `shared/readability-params.md` now reflects per-language max sentence lengths (was: generic "30 (25 for EN)", now: language-specific)
-- **B4:** Added explicit exception note in `scenarios/alt-texts.md` — "Bar chart of...", "Infographic of...", "Diagram of..." are acceptable as content-type labels
+- **B4:** Added explicit exception note in `scenarios/alt-texts.md` - "Bar chart of...", "Infographic of...", "Diagram of..." are acceptable as content-type labels
 - **B7:** Added "audit this meta + rewrite it" routing rule to MODULE ACTIVATION LOGIC (Scoped audit now covers meta-audit-then-rewrite scenario)
 
 ### Improved
 - **C14 (Content-to-ad ratio):** Hardened from vague "main content visible" to measurable heuristic: >20% ad/nav in first 300 words = ❌ Fail
 - **L5 (Outbound link quality):** Replaced arbitrary "DA 40+" threshold with domain reputation check (.edu, .gov, known brands). Unknown domains score ⚠️ Warning, not ❌ Fail.
 - **A2 (E-E-A-T signals):** Tightened from "any 2 of 4" to "≥3 of 5 specific signals" with explicit pass/warning/fail thresholds
-- **Editor role:** Added explicit "ruthless editor" persona to ROLE section — default stance is DELETE, keep only what earns its place
-- **Incomplete input handling:** Added structured fallback table — what to ask when keyword/language/content/mode/modules are missing
-- **Image generation disclaimer:** Explicitly stated RankWise does NOT generate images — scope is text, meta, alt texts, URLs only
+- **Editor role:** Added explicit "ruthless editor" persona to ROLE section - default stance is DELETE, keep only what earns its place
+- **Incomplete input handling:** Added structured fallback table - what to ask when keyword/language/content/mode/modules are missing
+- **Image generation disclaimer:** Explicitly stated RankWise does NOT generate images - scope is text, meta, alt texts, URLs only
 - **README EN:** Replaced incomplete 13-factor table with compact category summary covering all 49 factors
-- **OUTPUT FORMATS section:** Condensed from 55 lines to 15 lines — merged legacy formats into a quick-reference table, removed redundant code blocks
+- **OUTPUT FORMATS section:** Condensed from 55 lines to 15 lines - merged legacy formats into a quick-reference table, removed redundant code blocks
 
 ### Added
-- `INTEGRATION-GUIDE.md` — integration specification for HumanAI and MindFluence maintainers: what rules to add, joint prompt recognition, density caps per tone, bias-SEO compatibility matrix, triple pipeline protocol
+- `INTEGRATION-GUIDE.md` - integration specification for HumanAI and MindFluence maintainers: what rules to add, joint prompt recognition, density caps per tone, bias-SEO compatibility matrix, triple pipeline protocol
 
 
 
 ### Added
-- `scenarios/home-page.md` — dedicated home page / brand page optimization with multi-keyword strategy
-- `scenarios/product-page.md` — product / e-commerce page optimization with feature-benefit mapping and e-commerce signals
-- Quick-fix coverage expanded to all 49 factors — each factor now has explicit fix instructions
+- `scenarios/home-page.md` - dedicated home page / brand page optimization with multi-keyword strategy
+- `scenarios/product-page.md` - product / e-commerce page optimization with feature-benefit mapping and e-commerce signals
+- Quick-fix coverage expanded to all 49 factors - each factor now has explicit fix instructions
 - Universal power-word translations for Specificity/Numbers and Emotional/Human in all 9 languages
-- Content-type routing table in SKILL.md — auto-routes blog/product/home/landing pages to correct scenario
+- Content-type routing table in SKILL.md - auto-routes blog/product/home/landing pages to correct scenario
 - Multi-keyword page handling for home pages and pillar pages
-- JS/SPA content notes — flag for client-rendered content
+- JS/SPA content notes - flag for client-rendered content
 - Auto-translated content detection notes
 - Code-heavy technical content readability adaptations
-- Granular module sub-selection — "just the H2s", "only the intro", "just internal links"
+- Granular module sub-selection - "just the H2s", "only the intro", "just internal links"
 - Audit + Brief composition rule
-- Delivery validation rule — verifies all 49 factors are accounted for before output
+- Delivery validation rule - verifies all 49 factors are accounted for before output
 
 ### Changed
 - MODULE ACTIVATION LOGIC: expanded from 7 to 9 rules (added Sub-selection, Audit+Brief)
 - Output Composition: expanded from 10 to 12 rules
 - Scenarios count: 8 → 10
 
-## [1.1] — 2026-06-21
+## [1.1] - 2026-06-21
 
 ### Added
-- **Ukrainian (uk) language support** — burned words, power words, stop words, keyword rules
-- Output Composition system — 4 modular delivery units (TEXT, META, ALTS, AUDIT) with flexible combinations
-- 4 new scored factors: K11 (cannibalization check), K12 (keyword length), L9 (link title attributes), T8 (OG/Twitter Card tags) — total now 49 factors
-- `shared/burned-words.md` — AI detection patterns for all 8 supported languages
-- `README.ru.md` — Russian documentation
-- `examples/integration-pipeline.md` — end-to-end triple integration example (RankWise → MindFluence → HumanAI → Audit)
+- **Ukrainian (uk) language support** - burned words, power words, stop words, keyword rules
+- Output Composition system - 4 modular delivery units (TEXT, META, ALTS, AUDIT) with flexible combinations
+- 4 new scored factors: K11 (cannibalization check), K12 (keyword length), L9 (link title attributes), T8 (OG/Twitter Card tags) - total now 49 factors
+- `shared/burned-words.md` - AI detection patterns for all 8 supported languages
+- `README.ru.md` - Russian documentation
+- `examples/integration-pipeline.md` - end-to-end triple integration example (RankWise → MindFluence → HumanAI → Audit)
 - Power words for Portuguese, Italian, Polish in `shared/power-words.md`
 - Meta Length Parameters table in `shared/readability-params.md` with per-language title/description limits
 - Triple integration section in `SKILL.md` with conflict matrix
@@ -74,7 +74,7 @@
 - Grade constraints: A requires 0 CRITICAL failures, B requires ≤1, C requires ≤3
 - Total factors: 45 → 49
 
-## [1.0] — 2026-06-21
+## [1.0] - 2026-06-21
 
 ### Initial Release
 - 5 operating modes: Generate, Rewrite, Audit, Meta-Only, Brief

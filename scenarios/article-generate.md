@@ -23,7 +23,7 @@ Before writing, determine the search intent.
 |------------|---------------|---------------|
 | **Informational** | Guide, explainer, tutorial, listicle | "How to...", "What is...", "X Ways...", "Complete Guide to..." |
 | **Commercial** | Comparison, review, best-of list | "Best X for Y", "X vs Y", "Top X [Product] in 2026" |
-| **Transactional** | Product page, service page, landing | "[Product]: [Benefit]", "Buy [Product] — [Value Prop]" |
+| **Transactional** | Product page, service page, landing | "[Product]: [Benefit]", "Buy [Product] - [Value Prop]" |
 | **Navigational** | Brand page, about page | "[Brand]: [One-liner]" |
 
 **How to determine intent:**
@@ -55,7 +55,7 @@ Before writing, determine the search intent.
 - At least 1 number (odd preferred)
 - At least 2 power words from `shared/power-words.md`
 - Clear sentiment polarity (not neutral)
-- No clickbait — promise must be deliverable
+- No clickbait - promise must be deliverable
 - Unique (search to verify no duplicate on same site)
 
 ---
@@ -72,15 +72,15 @@ Before writing, determine the search intent.
 ### H2 section blueprint
 Generate 5–9 H2s covering:
 
-1. **Problem/Pain** — Why this matters, what goes wrong without it
-2. **Definition/Context** — What is [keyword], why it exists
-3. **Core Method/Approach** — The main how-to or explanation
-4. **Evidence/Data** — Statistics, studies, results
-5. **Practical Steps** — Step-by-step implementation
-6. **Common Mistakes** — What people get wrong
-7. **Tools/Resources** — What helps
-8. **Advanced/Evolved** — Next-level applications
-9. **Conclusion/Next Steps** — What to do now
+1. **Problem/Pain** - Why this matters, what goes wrong without it
+2. **Definition/Context** - What is [keyword], why it exists
+3. **Core Method/Approach** - The main how-to or explanation
+4. **Evidence/Data** - Statistics, studies, results
+5. **Practical Steps** - Step-by-step implementation
+6. **Common Mistakes** - What people get wrong
+7. **Tools/Resources** - What helps
+8. **Advanced/Evolved** - Next-level applications
+9. **Conclusion/Next Steps** - What to do now
 
 Each H2 gets 2–4 H3 sub-sections as needed.
 
@@ -95,24 +95,24 @@ Each H2 gets 2–4 H3 sub-sections as needed.
 ## STEP 3: CONTENT WRITING
 
 ### Introduction (first 100–150 words)
-1. **Hook** — Pattern interrupt. Statistic, question, bold claim, or story.
-2. **Pain point** — Why the reader should care RIGHT NOW.
-3. **Promise** — What they'll get from reading.
-4. **Keyword** — Naturally within first 100–150 words.
-5. **Transition** — Bridge to first H2.
+1. **Hook** - Pattern interrupt. Statistic, question, bold claim, or story.
+2. **Pain point** - Why the reader should care RIGHT NOW.
+3. **Promise** - What they'll get from reading.
+4. **Keyword** - Naturally within first 100–150 words.
+5. **Transition** - Bridge to first H2.
 
 **DO NOT use:**
 - "In today's digital landscape..."
 - "Welcome to our comprehensive guide..."
 - "In this article, we will explore..."
-- Throat-clearing preamble — go straight to value.
+- Throat-clearing preamble - go straight to value.
 
 ### Body sections
 Each H2 section:
-1. **Opening sentence** — Clear, direct. States what this section covers.
-2. **Core content** — Mix of explanation, data, examples.
-3. **Visual relief** — List, table, or image reference.
-4. **Transition** — Bridge to next H2 (or let heading do the work).
+1. **Opening sentence** - Clear, direct. States what this section covers.
+2. **Core content** - Mix of explanation, data, examples.
+3. **Visual relief** - List, table, or image reference.
+4. **Transition** - Bridge to next H2 (or let heading do the work).
 
 ### Content rules
 - 1 data point/statistic per 500 words
@@ -121,12 +121,12 @@ Each H2 section:
 - Keyword density: 0.8%–1.5% (see `shared/keyword-rules.md`)
 - Passive voice: ≤10% of sentences (`shared/readability-params.md`)
 - Transition words: ≥30% of sentences
-- Sentence length: varied — no 3 consecutive same-length
+- Sentence length: varied - no 3 consecutive same-length
 
 ### Conclusion
-1. **Summary** — 1-2 sentences, no regurgitation.
-2. **Key takeaway** — The ONE thing reader should remember.
-3. **CTA** — Specific next action. "Try [tool]", "Download [template]", "Read [related article]".
+1. **Summary** - 1-2 sentences, no regurgitation.
+2. **Key takeaway** - The ONE thing reader should remember.
+3. **CTA** - Specific next action. "Try [tool]", "Download [template]", "Read [related article]".
 4. **No** "In conclusion..." / "To summarize..." / "We hope you enjoyed..."
 
 ---
@@ -176,7 +176,7 @@ Each H2 section:
 
 ---
 
-## STEP 6: QA — THE 8-FACTOR QUICK SCAN
+## STEP 6: QA - THE 8-FACTOR QUICK SCAN
 
 Before delivering, verify these 8 critical factors:
 1. ☐ K1: Focus keyword set

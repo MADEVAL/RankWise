@@ -1,6 +1,6 @@
 # Scenario: Meta Optimize
 
-**Use when:** User asks for meta tags only — title, meta description, OG tags. Mode: META-ONLY.
+**Use when:** User asks for meta tags only - title, meta description, OG tags. Mode: META-ONLY.
 
 **Pipeline:** extract context → keyword placement → length check → power words → sentiment → deliver
 
@@ -42,10 +42,10 @@ Target audience: [who]. Key value: [what they get].
 - **Power words:** ≥2 from `shared/power-words.md`
 - **Number:** At least 1 (odd preferred)
 - **Sentiment:** Clear polarity (not neutral)
-- **Brand:** Append " | Brand" or " — Brand" at end if space allows
+- **Brand:** Append " | Brand" or " - Brand" at end if space allows
 - **No period at end**
 - **No ALL CAPS words** (unless brand convention)
-- **No duplicates:** Check word repetition within title — avoid
+- **No duplicates:** Check word repetition within title - avoid
 
 ### Title formulas by page type
 
@@ -53,15 +53,15 @@ Target audience: [who]. Key value: [what they get].
 |-----------|---------|---------|
 | Blog/Article | [Number] [Power Word] [Keyword]: [Promise] | "7 Proven SEO Checklist Templates That Actually Work" |
 | How-to/Tutorial | How to [Outcome] Using [Keyword] [Time/Result] | "How to Audit Your Website Using This SEO Checklist in 30 Min" |
-| Product | [Keyword] — [Primary Benefit] [Proof/Edge] | "SEO Audit Tool — Find & Fix 45+ Ranking Issues in One Click" |
+| Product | [Keyword] - [Primary Benefit] [Proof/Edge] | "SEO Audit Tool - Find & Fix 45+ Ranking Issues in One Click" |
 | Landing | [Outcome] with [Keyword]: No [Pain Point] Required | "Rank #1 with SEO Checklists: No Agency Required" |
-| Category/Ecom | [Keyword] — [Selection/Range] [Year] | "SEO Tools Compared — Top 12 Picks for 2026" |
+| Category/Ecom | [Keyword] - [Selection/Range] [Year] | "SEO Tools Compared - Top 12 Picks for 2026" |
 | Comparison | [X] vs [Y]: Which [Keyword] Is Best for [Audience]? | "Cloud vs On-Premise: Which SEO Tool Is Best for Enterprise Teams?" |
 
 ### Generate 3 variants (when user asks for variants)
-1. **Direct/Informational** — "What is [Keyword]? [Definition] + [Benefit]"
-2. **Curiosity/Emotional** — "[Power Word]: [Keyword] [Surprising Insight]"
-3. **Actionable/Listicle** — "[Number] [Keyword] [Action] for [Audience]"
+1. **Direct/Informational** - "What is [Keyword]? [Definition] + [Benefit]"
+2. **Curiosity/Emotional** - "[Power Word]: [Keyword] [Surprising Insight]"
+3. **Actionable/Listicle** - "[Number] [Keyword] [Action] for [Audience]"
 
 ---
 
@@ -71,9 +71,9 @@ Target audience: [who]. Key value: [what they get].
 - **Length:** 145–158 characters (EN)
 - **Keyword:** In first 20 words
 - **Active voice:** Concrete verbs, not passive
-- **Value proposition:** Specific — what reader gets
+- **Value proposition:** Specific - what reader gets
 - **No fluff:** "Welcome to", "In this article", "We will discuss", "Learn more about"
-- **CTA when space:** Specific action verb — "Download the checklist", "Compare tools", "Read the case study"
+- **CTA when space:** Specific action verb - "Download the checklist", "Compare tools", "Read the case study"
 - **Unique:** Must not duplicate meta title wording
 
 ### Description template
@@ -89,15 +89,15 @@ Target audience: [who]. Key value: [what they get].
 
 | Page Type | Pattern |
 |-----------|---------|
-| Blog/Article | [Keyword]: [what reader learns]. [Supporting detail — data/source]. [Specific element in article]. |
+| Blog/Article | [Keyword]: [what reader learns]. [Supporting detail - data/source]. [Specific element in article]. |
 | Product | [Keyword] that [primary benefit]. [Key feature]. [Key feature]. [Risk reversal or proof]. |
-| Landing | Get [outcome] with [keyword]. [How it's different]. [Proof — numbers/testimonial]. [Start/try CTA]. |
+| Landing | Get [outcome] with [keyword]. [How it's different]. [Proof - numbers/testimonial]. [Start/try CTA]. |
 | Category | Browse [number]+ [keyword] for [audience]. [Selection criteria]. Updated [timeframe]. |
 
 ### Generate 3 variants (when user asks)
-1. **Benefit-focused** — emphasizes what reader gains
-2. **Trust-focused** — emphasizes credibility, data, authority
-3. **Action-focused** — emphasizes next step, CTA
+1. **Benefit-focused** - emphasizes what reader gains
+2. **Trust-focused** - emphasizes credibility, data, authority
+3. **Action-focused** - emphasizes next step, CTA
 
 ---
 
@@ -192,7 +192,7 @@ URL Slug:
 
 ### Audit existing tags
 ```
-[MODE: meta-only — audit]
+[MODE: meta-only - audit]
 [KEYWORD: xxx]
 
 --- CURRENT TAGS ---

@@ -64,7 +64,7 @@
 
 ### Step 5: Shorten to ≤75 characters
 - `best-seo-checklist-wordpress-beginners` = 43 chars ✓
-- If >75: condense further — remove least essential words
+- If >75: condense further - remove least essential words
 - Priority hierarchy: keyword > key modifier > context word > descriptor
 
 ### Step 6: Validate
@@ -94,19 +94,19 @@
 ## DELIVERY FORMAT
 
 ```
-[MODE: meta-only — URL]
+[MODE: meta-only - URL]
 [LANG: xx]
 [KEYWORD: xxx]
 
 Current URL (if provided):
-[current-url] — [length] chars
+[current-url] - [length] chars
 
 Issues found:
 - [issue 1]
 - [issue 2]
 
 Optimized URL:
-/suggested-slug — [length] chars
+/suggested-slug - [length] chars
 
 Changes made:
 - Removed stop words: [list]
@@ -119,12 +119,12 @@ Note: Changing live URLs requires 301 redirect from old URL to new URL.
 ### If generating from scratch (no current URL):
 
 ```
-[MODE: meta-only — URL]
+[MODE: meta-only - URL]
 [LANG: xx]
 [KEYWORD: xxx]
 
 Generated URL:
-/suggested-slug — [length] chars
+/suggested-slug - [length] chars
 
 Complies with:
 ✅ Keyword present

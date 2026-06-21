@@ -1,16 +1,16 @@
-# RankWise — Professional SEO Content Engine
+# RankWise - Professional SEO Content Engine
 
 \[ **English** | [Русский](#) \]
 
 > **Rank higher by writing for humans first, search engines second.**
 
-An AI skill system that generates, rewrites, and audits content against 49 SEO ranking factors — covering everything from keyword placement to schema markup, E-E-A-T signals, and featured snippet optimization.
+An AI skill system that generates, rewrites, and audits content against 49 SEO ranking factors - covering everything from keyword placement to schema markup, E-E-A-T signals, and featured snippet optimization.
 
 ---
 
 ## What is this?
 
-**RankWise** is a system prompt (skill) for any LLM — GPT, Claude, Gemini, DeepSeek, or any capable model. It transforms the AI into a world-class SEO strategist and content engineer who:
+**RankWise** is a system prompt (skill) for any LLM - GPT, Claude, Gemini, DeepSeek, or any capable model. It transforms the AI into a world-class SEO strategist and content engineer who:
 
 - Writes content that scores 46+/49 on the ranking factors checklist
 - Rewrites existing content to fix SEO gaps (from URL or pasted text)
@@ -26,16 +26,16 @@ It covers every critical SEO signal: readability scoring, schema markup, E-E-A-T
 
 1. **Load `SKILL.md`** as a system prompt into any LLM.
 2. **Give a task:** "SEO article. Keyword: email marketing." / "Write about email strategy + meta. Keyword: email." / "Audit this content." / "Full package for my landing page."
-3. **Get output** — only what you asked for. No extra modules. No fluff.
+3. **Get output** - only what you asked for. No extra modules. No fluff.
 
 **Six modes with modular output:**
 
-- **Generate** — Create SEO-optimized content from scratch (keyword → article, topic + keyword → article + meta)
-- **Rewrite** — Transform existing content (URL or text) with full SEO optimization + AI-marker removal
-- **Audit** — Score any content against 49 factors with weighted scoring, grade, prioritized fixes
-- **Meta-Only** — Generate/optimize meta titles, descriptions, OG tags, alt texts, URL slugs
-- **Brief** — Create a complete content brief — keywords, structure, linking plan, media plan
-- **Quick-Fix** — Fix individual factors: «fix my title length», «add keyword to H2», «reduce passive voice»
+- **Generate** - Create SEO-optimized content from scratch (keyword → article, topic + keyword → article + meta)
+- **Rewrite** - Transform existing content (URL or text) with full SEO optimization + AI-marker removal
+- **Audit** - Score any content against 49 factors with weighted scoring, grade, prioritized fixes
+- **Meta-Only** - Generate/optimize meta titles, descriptions, OG tags, alt texts, URL slugs
+- **Brief** - Create a complete content brief - keywords, structure, linking plan, media plan
+- **Quick-Fix** - Fix individual factors: «fix my title length», «add keyword to H2», «reduce passive voice»
 
 **Context-aware defaults:**
 - Keyword only → article body (no meta, no alts)
@@ -47,7 +47,7 @@ It covers every critical SEO signal: readability scoring, schema markup, E-E-A-T
 
 ## The 49-Factor SEO Scorecard
 
-Every piece of content is scored against 49 factors across 5 categories with weighted multipliers (CRITICAL=×3, HIGH=×2, MEDIUM=×1, LOW=×0.5). Below are the highlights — full checklist in `shared/checklist.md`.
+Every piece of content is scored against 49 factors across 5 categories with weighted multipliers (CRITICAL=×3, HIGH=×2, MEDIUM=×1, LOW=×0.5). Below are the highlights - full checklist in `shared/checklist.md`.
 
 | Category | Factors | Highlights |
 |----------|---------|------------|
@@ -135,8 +135,8 @@ rankwise/
 
 RankWise is designed to work with, not against, these skills:
 
-- **[HumanAI](https://github.com/MADEVAL/HumanAI)** — Text Humanization Engine. RankWise handles SEO structure → HumanAI humanizes the voice. Monitor keyword density and heading keywords after humanization.
-- **[MindFluence](https://github.com/MADEVAL/MindFluence)** — Cognitive Bias Marketing Engine. RankWise provides SEO structure → MindFluence applies cognitive bias persuasion. Monitor for keyword over-stuffing in `bold-sell` tone.
+- **[HumanAI](https://github.com/MADEVAL/HumanAI)** - Text Humanization Engine. RankWise handles SEO structure → HumanAI humanizes the voice. Monitor keyword density and heading keywords after humanization.
+- **[MindFluence](https://github.com/MADEVAL/MindFluence)** - Cognitive Bias Marketing Engine. RankWise provides SEO structure → MindFluence applies cognitive bias persuasion. Monitor for keyword over-stuffing in `bold-sell` tone.
 - **Triple pipeline:** RankWise (structure) → MindFluence (persuasion) → HumanAI (voice) → RankWise Audit (final check).
 
 See `SKILL.md` → INTEGRATION WITH OTHER SKILLS for full compatibility guide.
@@ -147,8 +147,8 @@ See `SKILL.md` → INTEGRATION WITH OTHER SKILLS for full compatibility guide.
 
 - Any capable LLM with a system prompt / custom instructions field
 - For full skill functionality: a skill system that loads files from a folder (OpenCode, Claude Code)
-- **SKILL.md is self-sufficient** — contains all core rules for standalone use. `shared/` and `scenarios/` files add professional depth (scoring formulas, AI-marker lists, per-language readability, schema templates, content-type blueprints)
-- No API keys, no tools, no dependencies — pure prompt engineering
+- **SKILL.md is self-sufficient** - contains all core rules for standalone use. `shared/` and `scenarios/` files add professional depth (scoring formulas, AI-marker lists, per-language readability, schema templates, content-type blueprints)
+- No API keys, no tools, no dependencies - pure prompt engineering
 - Works in any language; per-language parameters for 9 languages (EN, RU, UK, DE, FR, ES, PT, IT, PL)
 
 ---

@@ -92,11 +92,11 @@ H1: [Title]
   ├── Introduction (~150 words)
   │   [Hook idea], [Pain point], [Keyword placement]
   │
-  ├── H2: [Section 1] (~250 words) — Keyword: [secondary kw]
+  ├── H2: [Section 1] (~250 words) - Keyword: [secondary kw]
   │   ├── H3: [Sub-point]
   │   └── H3: [Sub-point]
   │
-  ├── H2: [Section 2] (~300 words) — Keyword: [primary kw]
+  ├── H2: [Section 2] (~300 words) - Keyword: [primary kw]
   │   ├── H3: [Sub-point]
   │   └── H3: [Sub-point]
   │
@@ -162,7 +162,7 @@ source.com | DA 65    | Data cite | H2 Section 4
 Count: [X] images
 Types: [infographic / screenshot / chart / photo / illustration / diagram]
 Suggestions:
-1. [Image idea] — placement: [section] — possible alt text: "[draft]"
+1. [Image idea] - placement: [section] - possible alt text: "[draft]"
 2. ...
 ```
 
@@ -217,10 +217,10 @@ H1 Options:
 3. [title variant 3]
 
 H2 Sections:
-1. [H2 title] (~X words) — Keyword: [kw]
+1. [H2 title] (~X words) - Keyword: [kw]
    - [key point]
    - [key point]
-2. [H2 title] (~X words) — Keyword: [kw]
+2. [H2 title] (~X words) - Keyword: [kw]
    ...
 
 ====================================

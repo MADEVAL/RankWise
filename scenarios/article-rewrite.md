@@ -140,7 +140,7 @@ Document the baseline score. This becomes the "before" in your deliverable.
 ### URL slug (flag, don't change in rewrite)
 - If current URL >75 characters: suggest shortened version
 - If URL doesn't contain keyword: suggest new slug
-- Note: changing live URLs requires 301 redirects — flag as recommendation
+- Note: changing live URLs requires 301 redirects - flag as recommendation
 
 ### OG tags
 - Generate OG title + description if not provided
@@ -158,7 +158,7 @@ Document the baseline score. This becomes the "before" in your deliverable.
 - Audit existing internal links
 - Add contextual internal links if <3 present
 - Vary anchor text if >2 exact-match anchors exist
-- **Review `shared/checklist.md` → FACTOR INTERDEPENDENCIES** — ensure new links/anchors don't inadvertently change keyword density or break other factors
+- **Review `shared/checklist.md` → FACTOR INTERDEPENDENCIES** - ensure new links/anchors don't inadvertently change keyword density or break other factors
 
 ### External links
 - Audit existing external links
@@ -168,7 +168,7 @@ Document the baseline score. This becomes the "before" in your deliverable.
 
 ---
 
-## STEP 7: QA — DELIVER
+## STEP 7: QA - DELIVER
 
 ### Deliver format
 ```
@@ -185,7 +185,7 @@ Document the baseline score. This becomes the "before" in your deliverable.
 [META DESCRIPTION]
 ...
 ---
-[URL SUGGESTION — if changed]
+[URL SUGGESTION - if changed]
 ...
 ---
 [REWRITTEN CONTENT]
@@ -201,7 +201,7 @@ Document the baseline score. This becomes the "before" in your deliverable.
 - Meta tags rewritten (before/after)
 - Word count: old → new
 
-[RECOMMENDATIONS — items not changed in content but recommended]
+[RECOMMENDATIONS - items not changed in content but recommended]
 - URL slug suggestion (if applicable)
 - Image additions (if needed)
 - Schema markup to add

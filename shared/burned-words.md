@@ -1,4 +1,4 @@
-# Burned Words — AI Marker Lists Per Language
+# Burned Words - AI Marker Lists Per Language
 
 > Words and patterns that signal AI origin in SEO content.
 > Used by RankWise in Rewrite Mode (article-rewrite.md) and Quick-Fix.
@@ -42,11 +42,11 @@ What does this mean for you?, Sounds good right?, Want to know the best part?, B
 Max 2 adjectives before a noun. 3+ → keep strongest, show rest through description.
 
 ### SEO-specific AI tells
-- "A comprehensive guide to..." — delete, start with the actual content
-- "In this article, we will explore..." — delete, just explore it
-- "Whether you're a beginner or an expert..." — delete, pick one audience
-- "Read on to learn more..." — delete, the content should speak for itself
-- "Without further ado..." — delete, the ado was the problem
+- "A comprehensive guide to..." - delete, start with the actual content
+- "In this article, we will explore..." - delete, just explore it
+- "Whether you're a beginner or an expert..." - delete, pick one audience
+- "Read on to learn more..." - delete, the content should speak for itself
+- "Without further ado..." - delete, the ado was the problem
 
 ### Replacement Examples
 | Bad | Good |
@@ -123,8 +123,8 @@ Max 2 adjectives before a noun. 3+ → keep strongest, show rest through descrip
 - Russianisms: «із-за» → «через», «так як» → «бо» / «тому що», «приймати участь» → «брати участь»
 - Surzhyk-like constructions from Russian templates
 - «Даний» / «являтися» / «здійснювати» → replace with natural Ukrainian
-- Missing conversational rhythm — too formal, too «written»
-- Natural warmth: Ukrainian baseline is warmer than Russian — use conversational connectors
+- Missing conversational rhythm - too formal, too «written»
+- Natural warmth: Ukrainian baseline is warmer than Russian - use conversational connectors
 
 ### Replacement Examples
 | Bad | Good |
@@ -281,6 +281,6 @@ Ponadto, Co więcej, Dodatkowo, Warto zauważyć, Należy podkreślić, Trzeba w
 Można powiedzieć że, Niektórzy sugerują, Jest możliwe że, Ogólnie rzecz biorąc, W większości przypadków, Przypuszczalnie, Podobno
 
 ### AI-specific
-- English calques: «dedykowany» (dedicated), «serwis» (service) — replace with native
-- Over-formal: «Należy zauważyć», «Warto podkreślić», «Nie sposób nie wspomnieć» — kill
+- English calques: «dedykowany» (dedicated), «serwis» (service) - replace with native
+- Over-formal: «Należy zauważyć», «Warto podkreślić», «Nie sposób nie wspomnieć» - kill
 - Bureaucratic nominalization → active verbs

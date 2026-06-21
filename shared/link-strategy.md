@@ -1,4 +1,4 @@
-# Link Strategy — Internal & External Linking Rules
+# Link Strategy - Internal & External Linking Rules
 
 > Every link should have a purpose. Internal for structure. External for credibility.
 
@@ -23,18 +23,18 @@
 | **Exact match** | ≤2 total | "SEO checklist" (limit: 2 max per article) |
 
 ### Link placement rules
-1. **First link within 300 words** — signals relevance early
-2. **Distributed throughout** — not clustered at start or end
-3. **Contextual (in-body)** — inside paragraphs, not just navigation or sidebar
-4. **Natural flow** — link text reads naturally in the sentence
-5. **No link farms** — each internal page linked only once (unless different context)
+1. **First link within 300 words** - signals relevance early
+2. **Distributed throughout** - not clustered at start or end
+3. **Contextual (in-body)** - inside paragraphs, not just navigation or sidebar
+4. **Natural flow** - link text reads naturally in the sentence
+5. **No link farms** - each internal page linked only once (unless different context)
 
 ### What to link to
-1. **Cornerstone content** — your most comprehensive pages on the topic
-2. **Money pages** — product, service, pricing pages
-3. **Related articles** — topic cluster pages
-4. **Category/archive pages** — topic hubs
-5. **About/author pages** — for E-E-A-T signals
+1. **Cornerstone content** - your most comprehensive pages on the topic
+2. **Money pages** - product, service, pricing pages
+3. **Related articles** - topic cluster pages
+4. **Category/archive pages** - topic hubs
+5. **About/author pages** - for E-E-A-T signals
 
 ### Link placement pattern
 ```
@@ -66,9 +66,9 @@ Conclusion → link to next-step content (funnel)
 ### Authority criteria
 Link to sources that are:
 - **Domain Authority 40+** (or recognized authority in niche)
-- **Original source** — not a blog that reposted a study
-- **Recent** — studies from last 2–3 years (unless citing seminal work)
-- **Non-competitor** — informational sources, tools, data, not direct business competitors
+- **Original source** - not a blog that reposted a study
+- **Recent** - studies from last 2–3 years (unless citing seminal work)
+- **Non-competitor** - informational sources, tools, data, not direct business competitors
 
 ### External link types
 
@@ -82,18 +82,18 @@ Link to sources that are:
 | **Expert Opinions** | Recognized expert blog posts (not self-promotion) | Authority |
 
 ### DoFollow vs NoFollow
-- **At least 1 DoFollow external link** — signal of confidence
-- **NoFollow** — for sponsored, affiliate, user-generated, or untrusted links
+- **At least 1 DoFollow external link** - signal of confidence
+- **NoFollow** - for sponsored, affiliate, user-generated, or untrusted links
 - **Default:** DoFollow unless there's a reason to NoFollow
-- Never NoFollow ALL external links — looks unnatural
+- Never NoFollow ALL external links - looks unnatural
 
 ### External link attributes
 ```html
 <a href="https://example.com" target="_blank" rel="noopener noreferrer">Anchor Text</a>
 ```
-- `target="_blank"` — opens in new tab (standard for external links)
-- `rel="noopener noreferrer"` — security best practice
-- `rel="nofollow"` — only when intentionally distancing (paid, UGC, untrusted)
+- `target="_blank"` - opens in new tab (standard for external links)
+- `rel="noopener noreferrer"` - security best practice
+- `rel="nofollow"` - only when intentionally distancing (paid, UGC, untrusted)
 
 ---
 

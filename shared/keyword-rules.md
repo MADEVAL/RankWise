@@ -1,4 +1,4 @@
-# Keyword Rules — Placement, Density, LSI, Cannibalization
+# Keyword Rules - Placement, Density, LSI, Cannibalization
 
 > Full keyword strategy: from selection to distribution.
 
@@ -21,8 +21,8 @@
 ### LSI / Semantic Keywords (5–15 per page)
 - Terms search engines associate with the primary topic
 - Source: SERP "Searches related to", "People also ask", Wikipedia sub-topics, competitor content
-- Appear: naturally throughout body — not forced
-- No density target — presence is the signal
+- Appear: naturally throughout body - not forced
+- No density target - presence is the signal
 
 ---
 
@@ -36,7 +36,7 @@ Keyword Density (%) = (Keyword Occurrences × 100) / Total Word Count
 - "SEO checklist" appearing exactly as-is
 
 ### Partial match
-- "SEO ranking checklist", "the checklist for SEO" — contains the keyword but not in exact order
+- "SEO ranking checklist", "the checklist for SEO" - contains the keyword but not in exact order
 
 ### Stem variations
 - "checklists", "checklist-driven", "checklist-based"
@@ -66,7 +66,7 @@ Keyword Density (%) = (Keyword Occurrences × 100) / Total Word Count
 ### Rule 2: Meta Description
 - Keyword in first 20 words of description
 - Acts as bold trigger in SERP
-- Natural — must read like a human sentence
+- Natural - must read like a human sentence
 
 ### Rule 3: URL
 - Keyword in URL slug
@@ -76,7 +76,7 @@ Keyword Density (%) = (Keyword Occurrences × 100) / Total Word Count
 ### Rule 4: First 100–150 Words
 - Keyword appears once in the opening paragraph
 - Establishes topic relevance immediately
-- Must read naturally — not "Today we will discuss [keyword]"
+- Must read naturally - not "Today we will discuss [keyword]"
 
 ### Rule 5: Headings
 - At least one H2 contains the primary keyword
@@ -90,7 +90,7 @@ Keyword Density (%) = (Keyword Occurrences × 100) / Total Word Count
 ### Rule 7: Body Distribution
 - Keyword appears every 150–300 words throughout
 - NOT clustered at start only
-- NOT "keyword stuffing" — every instance must read naturally
+- NOT "keyword stuffing" - every instance must read naturally
 
 ---
 
@@ -111,19 +111,19 @@ Use these patterns to generate LSI keywords for any primary keyword:
 | Questions | "what is email marketing", "how to build email list", "best time to send emails" |
 
 ### LSI source methods
-1. SERP "Searches related to [keyword]" — bottom of search results
-2. SERP "People also ask" — mid-SERP feature
-3. Search autocomplete — type keyword, note suggestions
-4. Wikipedia — sub-topics in article structure
-5. Competitor content — terms they target in headings
-6. Keyword research tools — "Also rank for" feature
+1. SERP "Searches related to [keyword]" - bottom of search results
+2. SERP "People also ask" - mid-SERP feature
+3. Search autocomplete - type keyword, note suggestions
+4. Wikipedia - sub-topics in article structure
+5. Competitor content - terms they target in headings
+6. Keyword research tools - "Also rank for" feature
 
 ---
 
 ## KEYWORD CANNIBALIZATION CHECK
 
 ### What it is
-Two or more pages on the same site targeting the same primary keyword. Search engines don't know which to rank — both suffer.
+Two or more pages on the same site targeting the same primary keyword. Search engines don't know which to rank - both suffer.
 
 ### Detection
 1. Search `site:yoursite.com "primary keyword"`
@@ -131,10 +131,10 @@ Two or more pages on the same site targeting the same primary keyword. Search en
 3. Check if those pages target the exact same keyword in titles
 
 ### Fix options (ranked by recommendation)
-1. **Merge** — Combine pages into one comprehensive resource. 301 redirect the weaker page.
-2. **Differentiate** — Change keyword target on one page to a related but distinct term
-3. **Canonicalize** — Set canonical on the weaker page pointing to the stronger page
-4. **De-optimize** — Remove keyword from title/headings on the weaker page, target a different angle
+1. **Merge** - Combine pages into one comprehensive resource. 301 redirect the weaker page.
+2. **Differentiate** - Change keyword target on one page to a related but distinct term
+3. **Canonicalize** - Set canonical on the weaker page pointing to the stronger page
+4. **De-optimize** - Remove keyword from title/headings on the weaker page, target a different angle
 
 ### Prevention
 - Maintain a keyword map: each primary keyword → exactly one URL
@@ -153,13 +153,13 @@ Two or more pages on the same site targeting the same primary keyword. Search en
 ### Russian / Русский
 - Yandex: morphological analysis is strong. Different word forms (падежи) are recognized.
 - Yandex penalizes over-optimization harder. Density closer to 0.5%–1%.
-- Word order is flexible — keyword can appear anywhere and still match.
+- Word order is flexible - keyword can appear anywhere and still match.
 - Question keywords: 40%+ of queries in Yandex are questions.
 
 ### Ukrainian / Українська
 - Google dominates (~95% market share). Ukrainian queries are longer and more conversational.
 - Avoid Russian SEO patterns leaking into Ukrainian content.
-- Morphological analysis works — different cases (відмінки) are recognized as related.
+- Morphological analysis works - different cases (відмінки) are recognized as related.
 - Natural conversational density: 0.8%–1.2%. Do not over-optimize.
 - Question-form keywords are very common (voice search and conversational queries).
 - Watch for Russianisms in keyword lists: use Ukrainian equivalents, not calques.
@@ -170,11 +170,11 @@ Two or more pages on the same site targeting the same primary keyword. Search en
 - Case matters less (search engines understand declensions).
 
 ### French / Español / Português / Italiano
-- Accented characters: é vs e may or may not be treated as equivalent — check.
+- Accented characters: é vs e may or may not be treated as equivalent - check.
 - Gendered variations: search engines understand masculine/feminine as related.
 - Plural/singular: typically treated as related.
 
 ### Multi-language sites
 - Use hreflang tags to specify language/region targeting
 - Each language version targets keywords in that language
-- Don't translate keywords directly — research local search behavior
+- Don't translate keywords directly - research local search behavior

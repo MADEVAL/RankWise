@@ -48,7 +48,7 @@ Images: ["chart showing ranking factors", "screenshot of audit tool", "person wr
 - Length: ≤125 characters
 - Descriptive: what is IN the image, not just what it represents
 - No keyword stuffing: "SEO checklist SEO audit SEO ranking factors checklist" ❌
-- No "image of...", "picture of...", "photo of..." (redundant — screen readers already announce it's an image). Exception: descriptive type labels like "Bar chart of...", "Infographic of...", "Diagram of..." ARE acceptable — they describe content type, not the medium.
+- No "image of...", "picture of...", "photo of..." (redundant - screen readers already announce it's an image). Exception: descriptive type labels like "Bar chart of...", "Infographic of...", "Diagram of..." ARE acceptable - they describe content type, not the medium.
 - Empty alt (`alt=""`) only for purely decorative images
 
 ### Accessibility requirements
@@ -78,9 +78,9 @@ Images: ["chart showing ranking factors", "screenshot of audit tool", "person wr
 
 When adding focus keyword to alt text:
 
-1. **Choose the most relevant image** — not random
-2. **Weave keyword naturally** — it must describe what's actually in the image
-3. **One keyword instance per alt text max** — don't stuff
+1. **Choose the most relevant image** - not random
+2. **Weave keyword naturally** - it must describe what's actually in the image
+3. **One keyword instance per alt text max** - don't stuff
 4. **Mix approaches:**
    - Direct: "SEO checklist template with all 45 factors filled in"
    - Contextual: "Completed ranking factors audit using SEO checklist methodology"
@@ -99,18 +99,18 @@ When adding focus keyword to alt text:
 
 ## GENERATION PROCEDURE
 
-1. **Parse input format** — determine array, markdown, HTML, or JSON
+1. **Parse input format** - determine array, markdown, HTML, or JSON
 2. **For each image, note:**
    - Current alt text (if any)
    - Image description/context (from user or inferred from filename/context)
    - Is this image a candidate for keyword placement?
-3. **Select keyword image** — choose the image most topically relevant to the focus keyword
-4. **Generate all alt texts** — following rules above
+3. **Select keyword image** - choose the image most topically relevant to the focus keyword
+4. **Generate all alt texts** - following rules above
 5. **Verify:**
    - At least 1 image has keyword (unless none are keyword-relevant)
    - All alt texts ≤125 characters
    - No alt text starts with "Image of..." or "Picture of..."
-   - Read each aloud — would it help a blind user?
+   - Read each aloud - would it help a blind user?
 
 ---
 
@@ -147,7 +147,7 @@ When adding focus keyword to alt text:
 
 ### Add keyword annotation
 ```
-[MODE: meta-only — alt texts]
+[MODE: meta-only - alt texts]
 [LANG: xx]
 [KEYWORD: xxx]
 

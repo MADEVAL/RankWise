@@ -1,4 +1,4 @@
-# SEO Checklist — 49 Ranking Factors
+# SEO Checklist - 49 Ranking Factors
 
 > Complete scoring matrix with thresholds, severity levels, and fix instructions.
 > Used by RankWise in Generate, Rewrite, and Audit modes.
@@ -16,8 +16,8 @@
 | K5 | Keyword in URL slug | Present, near front | HIGH | Edit slug: remove stop words, place keyword at or near the beginning. |
 | K6 | Keyword at content start | First 100–150 words | HIGH | Rewrite opening paragraph to naturally include keyword. |
 | K7 | Keyword in content body | Naturally distributed (4-8 times per 1000 words) | CRITICAL | Add keyword instances where they fit naturally. Vary with synonyms. |
-| K8 | Keyword in subheadings | At least 1 H2 or H3 | HIGH | Find the most relevant H2 — add keyword if it fits the section topic. |
-| K9 | Keyword as image alt text | At least 1 image | MEDIUM | Choose the most relevant image — add keyword to its alt text naturally. |
+| K8 | Keyword in subheadings | At least 1 H2 or H3 | HIGH | Find the most relevant H2 - add keyword if it fits the section topic. |
+| K9 | Keyword as image alt text | At least 1 image | MEDIUM | Choose the most relevant image - add keyword to its alt text naturally. |
 | K10 | Keyword density | 0.8%–1.5%, not 0%, not >3% | HIGH | Below 0.8%: add keyword instances. Above 3%: replace some with synonyms/pronouns. |
 | K11 | Keyword cannibalization | No other page targets same primary keyword | HIGH | Check `site:yoursite.com "keyword"`. If multiple pages: merge, differentiate, or canonicalize. See `shared/keyword-rules.md` Cannibalization section. |
 | K12 | Keyword length | 3+ characters, ≤7 words | MEDIUM | Too short (<3 chars): too generic. Too long (>7 words): unnatural. Pick a 2–5 word keyword phrase. |
@@ -37,7 +37,7 @@
 | C7 | Sentiment signal | Clear positive or negative polarity | LOW | Ensure title conveys emotion. Neutral = missed CTR opportunity. |
 | C8 | Readability score | Grade 7–9 (EN) / equivalent per language | HIGH | Shorten long sentences. Replace complex words. Break dense paragraphs. |
 | C9 | Passive voice ratio | ≤10% of sentences | MEDIUM | Convert passive to active: "was written by" → "wrote". |
-| C10 | Transition words | ≥30% of sentences (EN); ≥25% other languages — see `shared/readability-params.md` | LOW | Add: "however", "because", "therefore", "for example", "specifically", "in contrast". |
+| C10 | Transition words | ≥30% of sentences (EN); ≥25% other languages - see `shared/readability-params.md` | LOW | Add: "however", "because", "therefore", "for example", "specifically", "in contrast". |
 | C11 | Sentence length variety | No 3 consecutive same-length (±2 words) | MEDIUM | Vary sentence length. Mix: short (2-5 words), medium (10-15), long (18-25). |
 | C12 | Consecutive sentence starts | No 3 consecutive same first word | MEDIUM | Rewrite to vary openers: "The", "It", "This", "You", "When", "If", "Because", etc. |
 | C13 | Heading hierarchy | H1→H2→H3 proper, no H2→H4 skip | HIGH | Fix hierarchy: insert missing H3 between H2 and H4. Ensure single H1. |
@@ -53,7 +53,7 @@
 | L2 | External links | 2–5 links to authoritative sources | HIGH | Link to sources: studies, data, tools, recognized publications. Cite specific pages. |
 | L3 | DoFollow external links | At least 1 of external links | MEDIUM | Ensure at least one external link has no `rel="nofollow"`. |
 | L4 | Link anchor text variety | ≤2 exact-match anchors | MEDIUM | Vary anchor text. Mix: branded, partial match, generic ("read more"), naked URL. |
-| L5 | Outbound link quality | Recognized authority: .edu, .gov, Wikipedia, HBR, major industry publications, or known trusted brands. If domain is unknown → score ⚠️ Warning (not ❌ Fail) unless it's a known spam/low-quality domain. Do not use arbitrary DA scores — verify by domain reputation instead. | MEDIUM | Check domain for .edu/.gov or known authority brands. If unknown → ⚠️ flag for manual verification. |
+| L5 | Outbound link quality | Recognized authority: .edu, .gov, Wikipedia, HBR, major industry publications, or known trusted brands. If domain is unknown → score ⚠️ Warning (not ❌ Fail) unless it's a known spam/low-quality domain. Do not use arbitrary DA scores - verify by domain reputation instead. | MEDIUM | Check domain for .edu/.gov or known authority brands. If unknown → ⚠️ flag for manual verification. |
 | L6 | No broken links | 0 broken outbound or internal links | HIGH | Check all links. Remove or replace broken ones. |
 | L7 | Internal link relevance | Linked pages are topically related | MEDIUM | Ensure internal links point to context-relevant content. Heuristic: linked page title/H1 shares topic words with linking paragraph. |
 | L8 | Orphan prevention | Page has ≥1 incoming internal link | LOW | Add a link from at least one other page on the site to this page. |
@@ -67,8 +67,8 @@
 |---|--------|--------|----------|----------------|
 | T1 | URL length | ≤75 characters | MEDIUM | Shorten slug: remove stop words, unnecessary path segments. |
 | T2 | URL structure | Keyword, hyphens, no underscores, no stop words | MEDIUM | Edit slug: replace underscores with hyphens, remove "the/a/an/in/on/at/for/of". |
-| T3 | SEO title length | Per-language limits — see `shared/readability-params.md` Meta Length table | HIGH | Trim or expand title to fit. Cut filler words. Add brand at end if space. |
-| T4 | Meta description length | Per-language limits — see `shared/readability-params.md` Meta Length table | HIGH | Trim to fit. Remove fluff. Ensure keyword + value proposition fit the window. |
+| T3 | SEO title length | Per-language limits - see `shared/readability-params.md` Meta Length table | HIGH | Trim or expand title to fit. Cut filler words. Add brand at end if space. |
+| T4 | Meta description length | Per-language limits - see `shared/readability-params.md` Meta Length table | HIGH | Trim to fit. Remove fluff. Ensure keyword + value proposition fit the window. |
 | T5 | Image file names | Descriptive, keyword-rich, hyphens | LOW | Rename: "IMG_4521.jpg" → "seo-checklist-ranking-factors.jpg". |
 | T6 | Schema markup | Appropriate type present | MEDIUM | Add JSON-LD schema. See `shared/schema-templates.md` for templates. Validate with search engine rich results testing tools if web access available. |
 | T7 | Canonical URL | Correct canonical set | MEDIUM | Set canonical to preferred URL version. Resolve www/non-www, http/https, trailing slash. |
@@ -81,7 +81,7 @@
 | # | Factor | Target | Severity | Fix If Failing |
 |---|--------|--------|----------|----------------|
 | A1 | Featured snippet potential | 40–60 word concise answer to target query | MEDIUM | Add a clear, direct answer paragraph. Use definition format or list format. |
-| A2 | E-E-A-T signals | Experience, Expertise, Authoritativeness, Trustworthiness: ≥3 of 5 must be present — (1) author name + bio with credentials, (2) publication/modified date visible, (3) at least 1 credible external citation/source, (4) about/site-info page reference, (5) contact info or privacy policy link. 3+ = ✅ Pass, 2 = ⚠️ Warning, 0–1 = ❌ Fail. | HIGH | Add: author bio with credentials, publication date, citations, about page link, privacy policy. |
+| A2 | E-E-A-T signals | Experience, Expertise, Authoritativeness, Trustworthiness: ≥3 of 5 must be present - (1) author name + bio with credentials, (2) publication/modified date visible, (3) at least 1 credible external citation/source, (4) about/site-info page reference, (5) contact info or privacy policy link. 3+ = ✅ Pass, 2 = ⚠️ Warning, 0–1 = ❌ Fail. | HIGH | Add: author bio with credentials, publication date, citations, about page link, privacy policy. |
 | A3 | LSI / semantic keywords | 5–15 related terms naturally present | MEDIUM | Add: related terms, synonyms, category words. Use SERP "Searches related to" for ideas. |
 | A4 | Content freshness | Date visible, updated within reasonable period | LOW | Add "Last updated" date. Update annually for evergreen, within weeks for news-sensitive. |
 | A5 | Mobile readability | Short paragraphs, clear headings, adequate font size equivalent | MEDIUM | Test: can you scan the page on a phone? Break long sections. Ensure heading contrast. |
@@ -92,10 +92,10 @@
 ## SCORING METHODOLOGY
 
 Each factor receives one of:
-- ✅ **Pass** — meets or exceeds target
-- ❌ **Fail** — below target, fix required
-- ⚠️ **Warning** — borderline or partially met
-- ⊘ **N/A** — not applicable to this content type
+- ✅ **Pass** - meets or exceeds target
+- ❌ **Fail** - below target, fix required
+- ⚠️ **Warning** - borderline or partially met
+- ⊘ **N/A** - not applicable to this content type
 
 ### Weighted scoring
 Not all factors carry equal weight. Score is calculated with multipliers:
@@ -115,29 +115,29 @@ Where PASS_WEIGHTS sums the multipliers of all ✅ factors, and ALL_WEIGHTS sums
 | A | 90%+ | Excellent. Minor tweaks only. | 0 CRITICAL failures |
 | B | 75–89% | Good. Several improvements available. | ≤1 CRITICAL failure |
 | C | 60–74% | Average. Significant gaps to fix. | ≤3 CRITICAL failures |
-| D | 40–59% | Poor. Major overhaul needed. | — |
-| F | <40% | Failing. Start over or fully restructure. | — |
+| D | 40–59% | Poor. Major overhaul needed. | - |
+| F | <40% | Failing. Start over or fully restructure. | - |
 
 **Constraint enforcement:** A page with 95% raw score but 1 CRITICAL failure → capped at B. A page with 80% and 4 CRITICAL failures → capped at C. ⚠️ Warning on a CRITICAL factor counts as 0.5 CRITICAL failures for cap purposes (e.g., K1⚠️ = probably defined but not explicit → 0.5 toward the cap).
 
 ### Priority levels
-- **CRITICAL** — Fix immediately. These factors alone can prevent ranking.
-- **HIGH** — Fix this week. Major ranking impact.
-- **MEDIUM** — Improve. Noticeable ranking impact over time.
-- **LOW** — Optional. Marginal improvements, competitive differentiators.
+- **CRITICAL** - Fix immediately. These factors alone can prevent ranking.
+- **HIGH** - Fix this week. Major ranking impact.
+- **MEDIUM** - Improve. Noticeable ranking impact over time.
+- **LOW** - Optional. Marginal improvements, competitive differentiators.
 
 ### Delivery validation rule
-Before delivering any scored output, verify: N/A + CRITICAL + HIGH + MEDIUM + LOW + PASSED = 49. If sum ≠ 49, re-scan the content — a factor was missed. This guarantees 100% coverage on every audit.
+Before delivering any scored output, verify: N/A + CRITICAL + HIGH + MEDIUM + LOW + PASSED = 49. If sum ≠ 49, re-scan the content - a factor was missed. This guarantees 100% coverage on every audit.
 
 ---
 
 ## MODE-SPECIFIC FACTOR WEIGHTS
 
 ### Audit Mode: Score all applicable factors. Exclude N/A from denominator.
-### Generate Mode: Pass all factors by design (target score 46+/49 weighted). Mark image factors N/A if no images available — note in output.
+### Generate Mode: Pass all factors by design (target score 46+/49 weighted). Mark image factors N/A if no images available - note in output.
 ### Rewrite Mode: Score existing content, then score rewritten content. Report delta. Mark image factors N/A if original had no images.
 ### Meta-Only Mode: Score K1, K2, K3, K4, K5, T1, T2, T3, T4, T8, C5, C6, C7 (13 factors relevant to meta/URL/alt layer). Body-level factors are N/A.
-### Brief Mode: Recommend targets for all factors (no scoring — planning phase)
+### Brief Mode: Recommend targets for all factors (no scoring - planning phase)
 
 ---
 
@@ -145,11 +145,11 @@ Before delivering any scored output, verify: N/A + CRITICAL + HIGH + MEDIUM + LO
 
 Some factors interact. Fixing one may affect another:
 
-- **C1 (word count) ↑** may **K10 (density) ↓** — longer content needs more keyword instances
+- **C1 (word count) ↑** may **K10 (density) ↓** - longer content needs more keyword instances
 - **C11 (sentence variety) ↑** may **C8 (readability) ↓** if long sentences are too complex
 - **L1 (internal links) ↑** may **K10 (density) ↓** if anchors use exact-match keywords excessively
 - **T3/T4 (title/desc length) ↑** may **K2/K4 (keyword placement) ↓** if keyword gets pushed out by length
-- **C13 (heading hierarchy) ↑** may **K8 (keyword in H2) ↑** — restructuring provides natural keyword placement
+- **C13 (heading hierarchy) ↑** may **K8 (keyword in H2) ↑** - restructuring provides natural keyword placement
 
 When delivering fixes, account for these dependencies. Group related fixes together.
 
@@ -159,13 +159,13 @@ When delivering fixes, account for these dependencies. Group related fixes toget
 
 Before delivering ANY output, scan these 8 highest-impact factors:
 
-1. ☐ K1 — Focus keyword defined?
-2. ☐ K2 — Keyword in SEO title?
-3. ☐ K4 — Keyword in meta description?
-4. ☐ K7 — Keyword in content body?
-5. ☐ K10 — Density 0.8–1.5%?
-6. ☐ C1 — Word count 600+?
-7. ☐ C13 — Heading hierarchy correct?
-8. ☐ L1 — At least 3 internal links?
+1. ☐ K1 - Focus keyword defined?
+2. ☐ K2 - Keyword in SEO title?
+3. ☐ K4 - Keyword in meta description?
+4. ☐ K7 - Keyword in content body?
+5. ☐ K10 - Density 0.8–1.5%?
+6. ☐ C1 - Word count 600+?
+7. ☐ C13 - Heading hierarchy correct?
+8. ☐ L1 - At least 3 internal links?
 
 If any of these 8 fail, fix before delivery.

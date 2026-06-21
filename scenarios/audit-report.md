@@ -28,10 +28,10 @@ If keyword not provided, flag K1 as FAIL and note: "No focus keyword specified. 
 
 Score all 49 factors from `shared/checklist.md`:
 
-- ✅ **Pass** — meets or exceeds target
-- ❌ **Fail** — below target, needs fix
-- ⚠️ **Warning** — borderline or partially met
-- ⊘ **N/A** — not applicable to this content type
+- ✅ **Pass** - meets or exceeds target
+- ❌ **Fail** - below target, needs fix
+- ⚠️ **Warning** - borderline or partially met
+- ⊘ **N/A** - not applicable to this content type
 
 **N/A handling:** Exclude N/A factors from denominator. Example: content with no images → K9, C3 → N/A → denominator is 47, not 49. Product pages → C4 (TOC) → N/A. Always explain why a factor was marked N/A in the report.
 
@@ -76,7 +76,7 @@ Where PASS_WEIGHTS sum the multipliers (CRITICAL=×3, HIGH=×2, MEDIUM=×1, LOW=
 | C11 | Sentence variety | Check 3-consecutive rule violation |
 | C12 | Sentence starts | Check 3-consecutive same first word |
 | C13 | Heading hierarchy | H1→H2→H3 proper, no skips |
-| C14 | Content-to-ad ratio | Proxy: first ~300 words of content — count sentences that are ads, nav, sidebar, or boilerplate vs. main content. >20% ad/nav = ❌ Fail. Text-only view unavailable → ⚠️ "Verify on rendered page." |
+| C14 | Content-to-ad ratio | Proxy: first ~300 words of content - count sentences that are ads, nav, sidebar, or boilerplate vs. main content. >20% ad/nav = ❌ Fail. Text-only view unavailable → ⚠️ "Verify on rendered page." |
 | L1 | Internal links | Count ≥3 |
 | L2 | External links | Count ≥2 |
 | L3 | DoFollow external | Count DoFollow ≥1 |
@@ -107,35 +107,35 @@ Where PASS_WEIGHTS sum the multipliers (CRITICAL=×3, HIGH=×2, MEDIUM=×1, LOW=
 
 Group all ❌ and ⚠️ by severity:
 
-### CRITICAL — Fix Now (blocks ranking)
+### CRITICAL - Fix Now (blocks ranking)
 - K1: No keyword
 - K2: Keyword missing from title
 - K4: Keyword missing from meta description
 - K7: Keyword missing from body
 
-### HIGH — Fix This Week (major ranking impact)
-- K3, K5, K6, K8, K10, K11, K12 — remaining keyword factors
-- C1 — word count below 600
-- C8 — poor readability
-- C13 — broken heading hierarchy
-- L1 — too few internal links
-- L2 — too few external links
-- L6 — broken links
-- T3, T4 — title/description length off
-- A2 — missing E-E-A-T signals
+### HIGH - Fix This Week (major ranking impact)
+- K3, K5, K6, K8, K10, K11, K12 - remaining keyword factors
+- C1 - word count below 600
+- C8 - poor readability
+- C13 - broken heading hierarchy
+- L1 - too few internal links
+- L2 - too few external links
+- L6 - broken links
+- T3, T4 - title/description length off
+- A2 - missing E-E-A-T signals
 
-### MEDIUM — Improve (noticeable impact over time)
-- K9 — keyword in alt text
-- C2, C3, C5, C6, C9, C11, C12, C14 — content quality
-- L3, L4, L5, L7 — linking quality
-- T1, T2, T6 — technical
-- A1, A3, A5 — advanced signals
+### MEDIUM - Improve (noticeable impact over time)
+- K9 - keyword in alt text
+- C2, C3, C5, C6, C9, C11, C12, C14 - content quality
+- L3, L4, L5, L7 - linking quality
+- T1, T2, T6 - technical
+- A1, A3, A5 - advanced signals
 
-### LOW — Optional (marginal)
-- C4, C7, C10 — content polish
-- L8, L9 — link polish
-- T5, T7, T8 — minor technical
-- A4, A6 — minor signals
+### LOW - Optional (marginal)
+- C4, C7, C10 - content polish
+- L8, L9 - link polish
+- T5, T7, T8 - minor technical
+- A4, A6 - minor signals
 
 ---
 
@@ -151,7 +151,7 @@ Per fix category:
 
 ## STEP 4: REPORT FORMAT
 
-**Pre-delivery validation:** Before outputting the final report, verify: N/A_COUNT + CRITICAL_COUNT + HIGH_COUNT + MEDIUM_COUNT + LOW_COUNT + PASSED_COUNT = 49. If the sum is not 49, a factor was missed — re-scan until all 49 are accounted for.
+**Pre-delivery validation:** Before outputting the final report, verify: N/A_COUNT + CRITICAL_COUNT + HIGH_COUNT + MEDIUM_COUNT + LOW_COUNT + PASSED_COUNT = 49. If the sum is not 49, a factor was missed - re-scan until all 49 are accounted for.
 
 ```
 [MODE: audit]
@@ -168,28 +168,28 @@ NOT APPLICABLE (excluded from score)
 ...
 
 ====================================
-CRITICAL FAILURES — Fix Now (×3 weight)
+CRITICAL FAILURES - Fix Now (×3 weight)
 ====================================
-❌ [Factor ID]: [Factor name] — [Current state] → [Target]
+❌ [Factor ID]: [Factor name] - [Current state] → [Target]
    Fix: [1-2 sentence instruction]
 ...
 
 ====================================
-HIGH PRIORITY — Fix This Week (×2 weight)
+HIGH PRIORITY - Fix This Week (×2 weight)
 ====================================
 ❌ [Factor ID]: ...
 ⚠️ [Factor ID]: ...
 ...
 
 ====================================
-MEDIUM PRIORITY — Improve (×1 weight)
+MEDIUM PRIORITY - Improve (×1 weight)
 ====================================
 ❌ [Factor ID]: ...
 ⚠️ [Factor ID]: ...
 ...
 
 ====================================
-LOW PRIORITY — Optional (×0.5 weight)
+LOW PRIORITY - Optional (×0.5 weight)
 ====================================
 ⚠️ [Factor ID]: ...
 ...
@@ -209,6 +209,6 @@ Fixing all:               +XX% ranking potential
 ====================================
 TOP 5 ACTIONS (Do These First)
 ====================================
-1. [Action] — [Impact: Critical/High/Medium] — [Effort: Low/Med/High]
+1. [Action] - [Impact: Critical/High/Medium] - [Effort: Low/Med/High]
 2. ...
 ```

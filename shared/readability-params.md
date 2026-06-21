@@ -1,10 +1,10 @@
-# Readability Parameters — Per Language
+# Readability Parameters - Per Language
 
 > Readability scoring, passive voice rules, sentence/paragraph length targets.
 
 ---
 
-## META LENGTH PARAMETERS — All Languages
+## META LENGTH PARAMETERS - All Languages
 
 | Language | Title (chars) | Description (chars) | Notes |
 |----------|--------------|---------------------|-------|
@@ -14,9 +14,9 @@
 | FR | 50–63 | 145–158 | Accented characters count as 1 char in SERP rendering |
 | ES | 50–63 | 145–158 | Similar to EN; slightly more tolerance for longer words |
 | PT | 50–63 | 145–158 | Brazilian vs European Portuguese: same SERP limits |
-| IT | 50–63 | 145–158 | Relatively compact — stick to lower end of range |
+| IT | 50–63 | 145–158 | Relatively compact - stick to lower end of range |
 | PL | 50–65 | 145–158 | Polish declensions can create longer words; count carefully |
-| UK | 55–70 | 140–160 | Same as RU — Cyrillic width considerations |
+| UK | 55–70 | 140–160 | Same as RU - Cyrillic width considerations |
 | **All others** | 50–60 | 145–158 | Default to EN limits when language not listed |
 
 ### OG tag character limits (all languages)
@@ -47,7 +47,7 @@
 
 ### Sentence Length
 - **Short:** 2–8 words (use for emphasis, hooks, transitions)
-- **Medium:** 9–17 words (workhorse — most sentences)
+- **Medium:** 9–17 words (workhorse - most sentences)
 - **Long:** 18–25 words (explanation, context, reasoning)
 - **Max:** 25 words (split at 26+)
 - **Exception:** 1 sentence of 30+ per 500 words allowed for complex explanation
@@ -99,7 +99,7 @@
 - ✓ Писать живо, без канцеляризмов
 - ✗ Избегать: «осуществлять», «являться», «данный», «посредством», «в рамках», «в целях»
 - ✓ Использовать конкретные глаголы: «сделали», «запустили», «посчитали»
-- ✓ Естественный порядок слов — не копировать английский
+- ✓ Естественный порядок слов - не копировать английский
 
 ---
 
@@ -108,7 +108,7 @@
 ### Адаптована читабельність
 - **Ціль:** Рівень 7–9 класу (широка аудиторія)
 - **Орієнтир:** середня довжина речення 10–18 слів
-- Українські тексти природно довші за англійські — допускається довжина до 32 слів
+- Українські тексти природно довші за англійські - допускається довжина до 32 слів
 
 ### Пасивний стан
 - **Ціль:** ≤8% речень
@@ -133,14 +133,14 @@
 - ✗ Уникати: «являтися», «даний», «здійснювати», «посередництвом»
 - ✓ Використовувати конкретні дієслова: «зробили», «запустили», «порахували»
 - ✓ Природний порядок слів
-- ✓ Українська базова теплота — використовуйте розмовні зв'язки: «А», «І», «Тобто», «Ну», «До речі», «Чесно кажучи»
+- ✓ Українська базова теплота - використовуйте розмовні зв'язки: «А», «І», «Тобто», «Ну», «До речі», «Чесно кажучи»
 
 ---
 
 ## GERMAN / DEUTSCH
 
 ### Lesbarkeitsindex (LIX)
-- **Ziel:** 40–50 (mittelschwer — Zeitungstext)
+- **Ziel:** 40–50 (mittelschwer - Zeitungstext)
 - **Formel:** (Wörter/Sätze) + (lange Wörter × 100 / Wörter)
 - **Lange Wörter:** >6 Buchstaben
 
@@ -195,7 +195,7 @@ cependant, donc, parce que, bien que, par exemple, en particulier, de plus, par 
 ## SPANISH / ESPAÑOL
 
 ### Legibilidad (Fernández Huerta)
-- **Objetivo:** 60–70 (normal — prensa general)
+- **Objetivo:** 60–70 (normal - prensa general)
 
 ### Voz pasiva
 - **Objetivo:** ≤10%
@@ -227,7 +227,7 @@ no entanto, portanto, porque, embora, por exemplo, em particular, além disso, c
 ## ITALIAN / ITALIANO
 
 ### Leggibilità (Indice Gulpease)
-- **Obiettivo:** 50–60 (leggibilità media — giornali)
+- **Obiettivo:** 50–60 (leggibilità media - giornali)
 
 ### Voce passiva
 - **Obiettivo:** ≤10%
@@ -260,7 +260,7 @@ jednak, dlatego, ponieważ, chociaż, na przykład, w szczególności, ponadto, 
 ## QUICK READABILITY CHECKLIST (ALL LANGUAGES)
 
 1. ☐ Average sentence ≤ 20 words
-2. ☐ Maximum sentence ≤ 25 words (EN), ≤ 28 (FR, PL), ≤ 30 (RU, DE, ES, PT, IT), ≤ 32 (UK) — see per-language sections above
+2. ☐ Maximum sentence ≤ 25 words (EN), ≤ 28 (FR, PL), ≤ 30 (RU, DE, ES, PT, IT), ≤ 32 (UK) - see per-language sections above
 3. ☐ Passive voice ≤ 10% of sentences
 4. ☐ Paragraphs ≤ 150 words (120 for non-EN)
 5. ☐ Transition words ≥ 25% of sentences (30% for EN)
