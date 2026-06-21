@@ -1,6 +1,6 @@
 ---
 name: rankwise
-description: Professional SEO content engine for generating, rewriting, and auditing content against 49 ranking factors. Covers articles, meta tags (title, description, OG), image alt texts (array or inline), URL slugs, and content briefs. Use for SEO content creation, rewriting from URL or text, meta tag optimization, alt text generation, full SEO audits, or content brief planning. Integrates with HumanAI (humanization) and MindFluence (cognitive persuasion) — does not interfere with them.
+description: Professional SEO content engine for generating, rewriting, and auditing content against 49 ranking factors. Covers articles, meta tags (title, description, OG), image alt texts (array or inline), URL slugs, and content briefs. Use for SEO content creation, rewriting from URL or text, meta tag optimization, alt text generation, full SEO audits, or content brief planning.
 license: MIT | Copyright Yevhen Leonidov
 compatibility: any-llm
 metadata:
@@ -127,7 +127,7 @@ When generating/rewriting, detect content type and route to the correct scenario
 | Blog article, guide, tutorial | `scenarios/article-generate.md` | 600+ words, H2-heavy, external links |
 | Product page, e-commerce | `scenarios/product-page.md` | 600–1200 words, features/specs, Product schema |
 | Home page, brand page | `scenarios/home-page.md` | 300–500 words, brand=primary keyword, Organization schema |
-| Landing page, sales page | `scenarios/article-generate.md` + MindFluence bias layer | Persuasion-heavy, single CTA |
+| Landing page, sales page | `scenarios/article-generate.md` + persuasion psychology layer | Persuasion-heavy, single CTA |
 | Category/archive page | `scenarios/product-page.md` (adapted) | Multiple products, filtering, short descriptions |
 
 ### Multi-Keyword Pages
@@ -518,57 +518,45 @@ When source content language differs from requested output language:
 
 ## INTEGRATION WITH OTHER SKILLS
 
-### With HumanAI (Text Humanization)
-**Do NOT conflict.** RankWise handles SEO structure and signals. HumanAI handles the human voice.
+RankWise is designed as a **modular SEO engine** — it can work alongside any other AI skill without conflict. RankWise handles SEO structure, keywords, linking, and meta signals. Other skills handle their domain. The goal: compose, don't compete.
 
-**Recommended pipeline:**
-1. **Generate/Rewrite with RankWise** → SEO-optimized structure, keywords, links, meta
-2. **Humanize with HumanAI** → Apply 5-stage pipeline (cleanup → specificity → tone → rhythm → proofread)
-3. **Quick re-scan with RankWise Audit** → Verify SEO signals survived humanization
+### General Integration Protocol
 
-**Conflict areas to monitor:**
-- HumanAI Stage 1 (cleanup) may remove keyword instances → re-check keyword density after humanization
-- HumanAI may break H2/H3 keywords in pursuit of natural flow → flag to HumanAI: SKIP keyword-containing headings
-- HumanAI may shorten content below 600-word threshold → set minimum word count in HumanAI request
+**Recommended pipeline for multi-skill workflows:**
+1. **RankWise Brief or Generate** → establish SEO structure, keyword placement, heading hierarchy, meta drafts
+2. **Other skill(s)** → apply their domain expertise (tone, persuasion, formatting, translation, etc.) within the SEO framework
+3. **RankWise Audit** → verify that SEO signals survived all downstream transformations
 
-**Joint prompt example:**
-> "Rewrite this article for SEO using RankWise, then humanize the output using HumanAI. Language: en."
+### Integration Rules for Other Skills
 
-### With MindFluence (Cognitive Bias Marketing)
-**Do NOT conflict.** RankWise handles SEO ranking factors. MindFluence handles persuasion psychology.
+When combining RankWise with any other skill, communicate these guardrails:
 
-**Recommended pipeline:**
-1. **Brief with RankWise** → SEO structure, keywords, headings map
-2. **Generate with MindFluence** → Apply cognitive biases to copy within the SEO structure
-3. **Re-scan with RankWise Audit** → Verify all 49 SEO factors survived bias engineering
+1. **Keyword placement is load-bearing.** Other skills may rewrite sentences but must preserve keyword positions in: title, first 150 words, at least one H2, meta description. If a skill automatically cleans up or paraphrases, instruct it: "Preserve all keyword placements from the RankWise output."
+2. **Heading hierarchy is structural.** H1→H2→H3 nesting must survive any rewrite. If another skill restructures content, instruct it: "Keep heading hierarchy intact — only rewrite content under headings."
+3. **Density stays in range.** Text expansions or contractions by other skills can drift keyword density below 0.8% or above 3%. Re-check density after any downstream pass.
+4. **Link integrity.** Other skills may remove inline links during rewriting. Instruct them to preserve all hyperlinks, or re-add them after the pass.
+5. **Meta tags are separate.** If another skill generates its own meta tags, instruct it to skip the SEO meta layer and leave it to RankWise.
+6. **Language consistency.** If another skill translates or localizes content, re-apply `shared/readability-params.md` targets and `shared/power-words.md` lists for the target language.
 
-**Conflict areas to monitor:**
-- MindFluence's `bold-sell` tone may introduce keyword over-stuffing → cap at 1.5% density
-- MindFluence may use power words that overlap with burned words → cross-reference `shared/burned-words.md`
-- MindFluence social proof anecdotes may not contain keywords → add keyword-adjacent language
+### Conflict Awareness
 
-**Joint prompt example:**
-> "Create an SEO-optimized landing page for [topic]. Use RankWise for structure, then MindFluence for persuasion. Tone: expert-calm."
+| Transformation | Risk | Guardrail |
+|---------------|------|-----------|
+| Text cleanup / deduplication | May remove keyword instances | Re-check density after pass; instruct skill to skip keyword-bearing sentences |
+| Tone adjustment | May strip power words or sentiment signals | Cross-reference `shared/power-words.md`; cap power word density at ~2 per 300 words |
+| Content shortening | May drop below 600-word threshold or cut H2 sections | Set minimum word count before pass; lock heading structure |
+| Content expansion | May over-stuff keywords or dilute structure | Cap keyword density at 1.5%; maintain heading count |
+| Translation | Source-language idioms may not map to target | Apply `shared/burned-words.md` and `shared/readability-params.md` of target language |
 
-### Triple Integration: RankWise + MindFluence + HumanAI
+### Multi-Skill Joint Prompt Pattern
 
-**Recommended order:**
-1. **RankWise Brief** → SEO structure, keywords, headings map
-2. **MindFluence** → Apply cognitive biases within SEO structure
-3. **HumanAI** → Humanize the voice while preserving both SEO signals and bias structure
-4. **RankWise Audit** → Final verification that all 49 factors survived both passes
+```
+"1) RankWise SEO [brief/generate/rewrite] for [topic]. Keyword: [kw].
+ 2) [Skill Name] [action] from that output. [Additional instructions if needed].
+ 3) RankWise audit the final result. [LANG: xx]."
+```
 
-**Conflict matrix:**
-
-| Stage | What Could Break | Mitigation |
-|-------|-----------------|------------|
-| MindFluence after RankWise | bold-sell tone may over-stuff keywords | Cap density at 1.5%. Add note: "Preserve RankWise keyword placement." |
-| HumanAI after MindFluence | Cleanup stage may strip bias language | Tell HumanAI: "SKIP Stage 1 cleanup for persuasion elements. Keep social proof, power words, bias markers." |
-| HumanAI after both | May remove keyword from headings for natural flow | Tell HumanAI: "Preserve all H2/H3 keywords. Only rewrite surrounding sentences." |
-| Final Audit | May show lower score due to humanization trade-offs | Accept 40+/49 as excellent for triple-pipeline output. Human voice > perfect score. |
-
-**Joint triple prompt example:**
-> "Triple pipeline: 1) RankWise SEO brief for [topic]. 2) MindFluence generate from that brief (expert-calm tone). 3) HumanAI humanize the MindFluence output. 4) RankWise audit the final result. EN. Keyword: [kw]."
+This pattern works with any skill — humanization, persuasion, translation, formatting, summarization, or any other downstream processor.
 
 ---
 
@@ -662,11 +650,8 @@ If 2+ items are missing, ask about all of them in a single response. Do not ask 
 **Content brief:**
 > "Create an SEO content brief for [topic]. Target keyword: [keyword]."
 
-**Joint with HumanAI:**
-> "SEO-rewrite this article (RankWise), then humanize it (HumanAI). EN. Keyword: [kw]."
-
-**Joint with MindFluence:**
-> "RankWise SEO brief for [topic], then MindFluence landing page from that brief."
+**Joint with another skill:**
+> "RankWise SEO brief for [topic], then [other skill] from that brief. EN. Keyword: [kw]."
 
 ---
 
@@ -676,7 +661,7 @@ If 2+ items are missing, ask about all of them in a single response. Do not ask 
 rankwise/
 ├── SKILL.md                        ← This file — orchestrator
 ├── README.md / README.ru.md        ← Documentation (bilingual)
-├── INTEGRATION-GUIDE.md            ← Integration spec for HumanAI & MindFluence maintainers
+
 ├── CHANGELOG.md                    ← Version history
 ├── LICENSE                         ← MIT | Copyright Yevhen Leonidov
 ├── .gitignore
@@ -702,8 +687,7 @@ rankwise/
 └── examples/
     ├── before-after-article.md     ← Full article rewrite example
     ├── meta-examples.md            ← Meta tag before/after examples
-    ├── audit-example.md            ← Complete audit report example
-    └── integration-pipeline.md     ← End-to-end triple integration example
+    └── audit-example.md            ← Complete audit report example
 ```
 
 Each `shared/` file is a data reference. The full pipeline works without loading them — this SKILL.md contains all core rules. Load shared files for richer detail and language-specific parameters.

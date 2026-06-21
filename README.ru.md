@@ -141,10 +141,10 @@ rankwise/
 > «Перепиши эту статью для SEO: [URL]. Ключ: SEO чек-лист.»
 
 **Совместно с HumanAI:**
-> «SEO-рерайт через RankWise, затем очеловечь через HumanAI. RU. Ключ: SEO-аудит.»
+> «SEO-рерайт через RankWise, затем очеловечь через [HumanAI](https://github.com/MADEVAL/HumanAI). RU. Ключ: SEO-аудит.»
 
 **Совместно с MindFluence:**
-> «RankWise SEO-бриф для лендинга, затем MindFluence из этого брифа. Тон: expert-calm.»
+> «RankWise SEO-бриф для лендинга, затем [MindFluence](https://github.com/MADEVAL/MindFluence) из этого брифа. Тон: expert-calm.»
 
 ---
 
@@ -152,8 +152,8 @@ rankwise/
 
 RankWise спроектирован для совместной работы:
 
-- **HumanAI:** RankWise → структура SEO → HumanAI → человеческий голос. Следите за плотностью ключей после очеловечивания.
-- **MindFluence:** RankWise → SEO-структура → MindFluence → когнитивное убеждение. Следите за переспамом ключей в `bold-sell` тоне.
+- **[HumanAI](https://github.com/MADEVAL/HumanAI)** — Text Humanization Engine. RankWise → структура SEO → HumanAI → человеческий голос. Следите за плотностью ключей после очеловечивания.
+- **[MindFluence](https://github.com/MADEVAL/MindFluence)** — Cognitive Bias Marketing Engine. RankWise → SEO-структура → MindFluence → когнитивное убеждение. Следите за переспамом ключей в `bold-sell` тоне.
 - **Тройная интеграция:** RankWise (структура) → MindFluence (убеждение) → HumanAI (голос) → RankWise Audit (финальная проверка).
 
 Подробнее в `SKILL.md` → INTEGRATION WITH OTHER SKILLS.

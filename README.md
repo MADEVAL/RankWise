@@ -124,10 +124,10 @@ rankwise/
 > "Rewrite this article for SEO: [URL]. Focus keyword: SEO checklist."
 
 **Joint with HumanAI:**
-> "SEO-rewrite this article using RankWise, then humanize it with HumanAI. EN. Keyword: seo audit."
+> "SEO-rewrite this article using RankWise, then humanize it with [HumanAI](https://github.com/MADEVAL/HumanAI). EN. Keyword: seo audit."
 
 **Joint with MindFluence:**
-> "RankWise SEO brief for SaaS landing page, then MindFluence from that brief. Expert-calm tone."
+> "RankWise SEO brief for SaaS landing page, then [MindFluence](https://github.com/MADEVAL/MindFluence) from that brief. Expert-calm tone."
 
 ---
 
@@ -135,8 +135,9 @@ rankwise/
 
 RankWise is designed to work with, not against, these skills:
 
-- **HumanAI:** RankWise handles SEO structure → HumanAI humanizes the voice. Monitor keyword density and heading keywords after humanization.
-- **MindFluence:** RankWise provides SEO structure → MindFluence applies cognitive bias persuasion. Monitor for keyword over-stuffing in `bold-sell` tone.
+- **[HumanAI](https://github.com/MADEVAL/HumanAI)** — Text Humanization Engine. RankWise handles SEO structure → HumanAI humanizes the voice. Monitor keyword density and heading keywords after humanization.
+- **[MindFluence](https://github.com/MADEVAL/MindFluence)** — Cognitive Bias Marketing Engine. RankWise provides SEO structure → MindFluence applies cognitive bias persuasion. Monitor for keyword over-stuffing in `bold-sell` tone.
+- **Triple pipeline:** RankWise (structure) → MindFluence (persuasion) → HumanAI (voice) → RankWise Audit (final check).
 
 See `SKILL.md` → INTEGRATION WITH OTHER SKILLS for full compatibility guide.
 
