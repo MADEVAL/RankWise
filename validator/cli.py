@@ -9,12 +9,17 @@ Usage:
 import argparse
 import json
 import sys
+import os
 from pathlib import Path
 
 from .metrics import analyze, score_checklist
 
 
 def main():
+    # Ensure stdout uses UTF-8 on Windows
+    if sys.platform == "win32":
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
     parser = argparse.ArgumentParser(description="RankWise Text Metrics Validator")
     parser.add_argument("--text", type=str, default=None, help="Content text (body)")
     parser.add_argument("--file", type=str, default=None, help="Read content from file")
