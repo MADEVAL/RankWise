@@ -1,7 +1,7 @@
 """
 RankWise Validator — computable SEO metrics for text content.
-Uses textstat for readability, regex for linguistic patterns.
-Supports EN; per-language extension points for RU, UK, DE, FR, ES, PT, IT, PL.
+Uses textstat for EN readability, regex for linguistic patterns.
+Supports all 9 RankWise languages: EN, RU, UK, DE, FR, ES, PT, IT, PL.
 """
 
 import re
@@ -12,51 +12,253 @@ from typing import Optional
 import textstat
 
 
-# ── Language-specific resources ────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════════
+# LANGUAGE RESOURCES — all 9 languages
+# ═══════════════════════════════════════════════════════════════════════════════
 
-STOP_WORDS_EN = {
-    "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for",
-    "of", "with", "by", "from", "up", "about", "into", "through", "during",
-    "before", "after", "above", "below", "between", "out", "off", "over",
-    "under", "again", "further", "then", "once", "here", "there", "when",
-    "where", "why", "how", "all", "both", "each", "few", "more", "most",
-    "other", "some", "such", "no", "nor", "not", "only", "own", "same",
-    "so", "than", "too", "very", "just", "because", "as", "until", "while",
-    "is", "are", "was", "were", "be", "been", "being", "have", "has", "had",
-    "do", "does", "did", "will", "would", "shall", "should", "may", "might",
-    "must", "can", "could",
+# ── Readability support ─────────────────────────────────────────────────────
+# textstat formulas (Flesch-Kincaid, Gunning Fog, etc.) are designed for English.
+# For other languages, readability scores are marked as unreliable / N/A.
+READABILITY_LANGS = {"en"}  # Only EN has reliable textstat-based readability
+
+# ── Word tokenization patterns ──────────────────────────────────────────────
+WORD_PATTERNS = {
+    "en": re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9]+", re.IGNORECASE),
+    "ru": re.compile(r"[А-Яа-яЁёA-Za-z0-9]+"),
+    "uk": re.compile(r"[А-Яа-яЇїІіЄєҐґA-Za-z0-9]+"),
+    "de": re.compile(r"[A-Za-zÄäÖöÜüß0-9]+"),
+    "fr": re.compile(r"[A-Za-zÀ-ÿ0-9]+"),
+    "es": re.compile(r"[A-Za-zÁáÉéÍíÓóÚúÜüÑñ0-9]+"),
+    "pt": re.compile(r"[A-Za-zÀ-ü0-9]+"),
+    "it": re.compile(r"[A-Za-zÀ-ü0-9]+"),
+    "pl": re.compile(r"[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż0-9]+"),
 }
 
-TRANSITION_WORDS_EN = {
-    "however", "therefore", "because", "although", "specifically",
-    "for example", "for instance", "in contrast", "similarly", "consequently",
-    "notably", "meanwhile", "furthermore", "moreover", "additionally",
-    "nevertheless", "nonetheless", "otherwise", "instead", "accordingly",
-    "hence", "thus", "in addition", "on the other hand", "as a result",
-    "in particular", "in conclusion", "to summarize", "first", "second",
-    "third", "finally", "next", "then", "also", "besides", "indeed",
-    "in fact", "of course", "certainly", "surely", "undoubtedly",
-    "regardless", "despite", "even though", "while", "whereas",
+# ── Transition words per language ───────────────────────────────────────────
+TRANSITION_WORDS = {
+    "en": {
+        "however", "therefore", "because", "although", "specifically",
+        "for example", "for instance", "in contrast", "similarly", "consequently",
+        "notably", "meanwhile", "furthermore", "moreover", "additionally",
+        "nevertheless", "nonetheless", "otherwise", "instead", "accordingly",
+        "hence", "thus", "in addition", "on the other hand", "as a result",
+        "in particular", "in conclusion", "to summarize", "first", "second",
+        "third", "finally", "next", "then", "also", "besides", "indeed",
+        "in fact", "of course", "certainly", "surely", "undoubtedly",
+        "regardless", "despite", "even though", "while", "whereas",
+    },
+    "ru": {
+        "однако", "поэтому", "так как", "хотя", "например", "в частности",
+        "в то же время", "кроме того", "следовательно", "тем не менее",
+        "в отличие от", "в результате", "также", "потому что", "несмотря на",
+        "вместо", "в первую очередь", "во-первых", "во-вторых", "наконец",
+        "прежде всего", "в целом", "в связи с", "благодаря", "вследствие",
+    },
+    "uk": {
+        "однак", "тому", "через те що", "хоча", "наприклад", "зокрема",
+        "водночас", "крім того", "отже", "тим не менш", "на відміну від",
+        "у результаті", "також", "бо", "тому що", "попри", "замість",
+        "по-перше", "по-друге", "нарешті", "передусім", "загалом",
+        "у зв'язку з", "завдяки", "внаслідок",
+    },
+    "de": {
+        "jedoch", "deshalb", "weil", "obwohl", "zum Beispiel", "insbesondere",
+        "darüber hinaus", "daher", "dennoch", "im Gegensatz dazu", "infolgedessen",
+        "außerdem", "schließlich", "zuerst", "zweitens", "drittens", "trotzdem",
+        "stattdessen", "auch", "zudem", "allerdings", "sowohl", "weder",
+    },
+    "fr": {
+        "cependant", "donc", "parce que", "bien que", "par exemple",
+        "en particulier", "de plus", "par conséquent", "néanmoins",
+        "en revanche", "ainsi", "également", "malgré", "au lieu de",
+        "d'abord", "ensuite", "enfin", "pourtant", "toutefois", "en effet",
+        "d'une part", "d'autre part", "en outre",
+    },
+    "es": {
+        "sin embargo", "por lo tanto", "porque", "aunque", "por ejemplo",
+        "en particular", "además", "por consiguiente", "no obstante",
+        "en contraste", "asimismo", "también", "a pesar de", "en lugar de",
+        "primero", "segundo", "tercero", "finalmente", "entonces", "pues",
+        "en cambio", "en resumen", "es decir",
+    },
+    "pt": {
+        "no entanto", "portanto", "porque", "embora", "por exemplo",
+        "em particular", "além disso", "consequentemente", "apesar disso",
+        "por outro lado", "também", "primeiro", "segundo", "finalmente",
+        "então", "assim", "dessa forma", "em vez de", "apesar de", "pois",
+        "em contrapartida", "em resumo", "ou seja",
+    },
+    "it": {
+        "tuttavia", "quindi", "perché", "sebbene", "per esempio",
+        "in particolare", "inoltre", "di conseguenza", "nonostante",
+        "al contrario", "anche", "primo", "secondo", "infine", "dunque",
+        "pertanto", "invece", "malgrado", "cioè", "ovvero", "infatti",
+        "d'altra parte", "in sintesi",
+    },
+    "pl": {
+        "jednak", "dlatego", "ponieważ", "chociaż", "na przykład",
+        "w szczególności", "ponadto", "w rezultacie", "niemniej jednak",
+        "natomiast", "również", "po pierwsze", "po drugie", "wreszcie",
+        "zatem", "więc", "mimo", "zamiast", "czyli", "to znaczy",
+        "w przeciwieństwie", "podsumowując", "przede wszystkim",
+    },
 }
 
-PASSIVE_PATTERNS_EN = [
-    re.compile(r"\b(?:am|is|are|was|were|be|been|being)\s+(?:\w+ly\s+)?(?:\w+ed|built|done|made|found|known|seen|taken|given|said|set|shown|told|written)\b", re.IGNORECASE),
-    re.compile(r"\b(?:has|have|had|will have)\s+been\s+\w+(?:ed|d|t|en)\b", re.IGNORECASE),
-    re.compile(r"\b(?:is|are|was|were|be)\s+(?:being|getting)\s+\w+(?:ed|d|t|en)\b", re.IGNORECASE),
-]
-
-POWER_WORDS_EN = {
-    "proven", "secret", "stop", "simple", "exclusive", "limited", "hidden",
-    "surprising", "shocking", "unexpected", "amazing", "incredible", "ultimate",
-    "essential", "critical", "guaranteed", "instant", "immediate", "automatic",
-    "effortless", "breakthrough", "insider", "behind the scenes", "revealed",
-    "mistake", "warning", "never", "avoid", "dangerous", "risk", "urgent",
-    "little-known", "unknown", "unconventional", "tested", "research-backed",
-    "data-driven", "expert", "science-based", "actual", "real", "exact",
-    "specific", "step-by-step", "definitive", "powerful", "effective",
+# ── Passive voice patterns per language ─────────────────────────────────────
+PASSIVE_PATTERNS = {
+    "en": [
+        re.compile(r"\b(?:am|is|are|was|were|be|been|being)\s+(?:\w+ly\s+)?(?:\w+ed|built|done|made|found|known|seen|taken|given|said|set|shown|told|written)\b", re.IGNORECASE),
+        re.compile(r"\b(?:has|have|had|will have)\s+been\s+\w+(?:ed|d|t|en)\b", re.IGNORECASE),
+    ],
+    "ru": [
+        re.compile(r"\b(?:был|была|было|были|будет|будут)\s+\w+(?:н|на|но|ны|т|та|то|ты|ен|ена|ено|ены|ан|ана|ано|аны)\b", re.IGNORECASE),
+    ],
+    "uk": [
+        re.compile(r"\b(?:був|була|було|були|буде|будуть)\s+\w+(?:н|на|но|ні|т|та|то|ті|ен|ена|ено|ені|ан|ана|ано|ані)\b", re.IGNORECASE),
+    ],
+    "de": [
+        re.compile(r"\b(?:wird|wurde|wurden|werden|ist|war|waren)\s+\w+(?:t|en|iert)\b", re.IGNORECASE),
+    ],
+    "fr": [
+        re.compile(r"\b(?:est|sont|était|étaient|a été|ont été|sera|seront)\s+\w+(?:é|ée|és|ées|u|ue|us|ues|i|ie|is|ies)\b", re.IGNORECASE),
+    ],
+    "es": [
+        re.compile(r"\b(?:es|son|era|eran|fue|fueron|ha sido|han sido|será|serán)\s+\w+(?:ado|ada|ados|adas|ido|ida|idos|idas)\b", re.IGNORECASE),
+    ],
+    "pt": [
+        re.compile(r"\b(?:é|são|era|eram|foi|foram|tem sido|será|serão)\s+\w+(?:ado|ada|ados|adas|ido|ida|idos|idas)\b", re.IGNORECASE),
+    ],
+    "it": [
+        re.compile(r"\b(?:è|sono|era|erano|fu|furono|è stato|sono stati|sarà|saranno)\s+\w+(?:ato|ata|ati|ate|uto|uta|uti|ute|ito|ita|iti|ite)\b", re.IGNORECASE),
+    ],
+    "pl": [
+        re.compile(r"\b(?:jest|są|był|była|było|byli|były|został|została|zostało|zostali|zostały|będzie|będą)\s+\w+(?:owany|ana|ane|ani|ony|ona|one|ęty|ęta|ęte|ty|ta|te)\b", re.IGNORECASE),
+    ],
 }
 
-# ── Data structures ────────────────────────────────────────────────────────
+# ── Power words per language ────────────────────────────────────────────────
+POWER_WORDS = {
+    "en": {
+        "proven", "secret", "stop", "simple", "exclusive", "limited", "hidden",
+        "surprising", "shocking", "unexpected", "amazing", "incredible", "ultimate",
+        "essential", "critical", "guaranteed", "instant", "immediate", "automatic",
+        "effortless", "breakthrough", "insider", "revealed", "mistake", "warning",
+        "never", "avoid", "dangerous", "risk", "urgent", "little-known", "unknown",
+        "unconventional", "tested", "research-backed", "data-driven", "expert",
+        "science-based", "actual", "real", "exact", "specific", "step-by-step",
+        "definitive", "powerful", "effective",
+    },
+    "ru": {
+        "доказано", "секрет", "просто", "эксклюзив", "скрытый", "неожиданный",
+        "удивительный", "шокирующий", "гарантировано", "мгновенно", "автоматически",
+        "без усилий", "прорыв", "инсайдер", "раскрыто", "ошибка", "предупреждение",
+        "никогда", "избегайте", "опасный", "риск", "срочно", "малоизвестный",
+        "нестандартный", "протестировано", "эксперт", "реальный", "точный",
+        "конкретный", "пошаговый", "мощный", "эффективный", "бесплатно",
+        "проверенный", "научно", "исследование", "данные",
+    },
+    "uk": {
+        "доведено", "секрет", "просто", "ексклюзив", "прихований", "несподіваний",
+        "дивовижний", "шокуючий", "гарантовано", "миттєво", "автоматично",
+        "без зусиль", "прорив", "інсайдер", "розкрито", "помилка", "попередження",
+        "ніколи", "уникайте", "небезпечний", "ризик", "терміново", "маловідомий",
+        "нестандартний", "протестовано", "експерт", "реальний", "точний",
+        "конкретний", "покроковий", "потужний", "ефективний", "безкоштовно",
+        "перевірений", "науково", "дослідження", "дані",
+    },
+    "de": {
+        "bewährt", "geheim", "einfach", "exklusiv", "versteckt", "überraschend",
+        "schockierend", "erstaunlich", "garantiert", "sofort", "automatisch",
+        "mühelos", "durchbruch", "insider", "enthüllt", "fehler", "warnung",
+        "niemals", "vermeiden", "gefährlich", "risiko", "dringend", "unbekannt",
+        "getestet", "experte", "wissenschaftlich", "datengestützt", "echt",
+        "genau", "spezifisch", "schrittweise", "kraftvoll", "effektiv",
+    },
+    "fr": {
+        "prouvé", "secret", "simple", "exclusif", "caché", "surprenant",
+        "choquant", "incroyable", "garanti", "instant", "automatique",
+        "sans effort", "percée", "initié", "révélé", "erreur", "avertissement",
+        "jamais", "éviter", "dangereux", "risque", "urgent", "inconnu",
+        "testé", "expert", "scientifique", "réel", "exact", "spécifique",
+        "étape par étape", "puissant", "efficace",
+    },
+    "es": {
+        "probado", "secreto", "simple", "exclusivo", "oculto", "sorprendente",
+        "impactante", "increíble", "garantizado", "instantáneo", "automático",
+        "sin esfuerzo", "revelación", "insider", "revelado", "error", "advertencia",
+        "nunca", "evitar", "peligroso", "riesgo", "urgente", "desconocido",
+        "probado", "experto", "científico", "real", "exacto", "específico",
+        "paso a paso", "poderoso", "eficaz",
+    },
+    "pt": {
+        "comprovado", "segredo", "simples", "exclusivo", "escondido", "surpreendente",
+        "chocante", "incrível", "garantido", "instantâneo", "automático",
+        "sem esforço", "revelação", "revelado", "erro", "aviso", "nunca",
+        "evitar", "perigoso", "arriscado", "urgente", "desconhecido",
+        "testado", "especialista", "científico", "real", "exato", "específico",
+        "passo a passo", "poderoso", "eficaz",
+    },
+    "it": {
+        "provato", "segreto", "semplice", "esclusivo", "nascosto", "sorprendente",
+        "scioccante", "incredibile", "garantito", "istantaneo", "automatico",
+        "senza sforzo", "svolta", "rivelato", "errore", "avvertimento",
+        "mai", "evitare", "pericoloso", "rischioso", "urgente", "sconosciuto",
+        "testato", "esperto", "scientifico", "reale", "esatto", "specifico",
+        "passo dopo passo", "potente", "efficace",
+    },
+    "pl": {
+        "sprawdzony", "sekret", "prosty", "ekskluzywny", "ukryty", "zaskakujący",
+        "szokujący", "niesamowity", "gwarantowany", "natychmiast", "automatyczny",
+        "bez wysiłku", "przełom", "ujawniony", "błąd", "ostrzeżenie",
+        "nigdy", "unikaj", "niebezpieczny", "ryzykowny", "pilne", "nieznany",
+        "przetestowany", "ekspert", "naukowy", "prawdziwy", "dokładny",
+        "konkretny", "krok po kroku", "skuteczny",
+    },
+}
+
+# ── Stop words per language (for URL/minimal use) ───────────────────────────
+STOP_WORDS = {
+    "en": {"the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for",
+           "of", "with", "by", "from", "up", "about", "into", "through",
+           "is", "are", "was", "were", "be", "been", "being", "have", "has",
+           "do", "does", "did", "will", "would", "can", "could", "may", "might",
+           "must", "shall", "should", "not", "no"},
+    "ru": {"и", "в", "на", "с", "по", "к", "от", "из", "о", "об", "за", "до",
+           "для", "без", "над", "под", "при", "про", "у", "через", "или", "но",
+           "а", "не", "ни", "бы", "ли", "же", "то", "что", "как", "так", "это"},
+    "uk": {"і", "й", "та", "в", "у", "на", "з", "до", "для", "без", "над",
+           "під", "при", "про", "через", "або", "але", "не", "ні", "би", "ж",
+           "що", "як", "це", "від", "по", "за", "перед"},
+    "de": {"der", "die", "das", "den", "dem", "des", "ein", "eine", "einer",
+           "in", "auf", "mit", "von", "zu", "für", "an", "bei", "aus", "nach",
+           "über", "vor", "durch", "um", "gegen", "zwischen", "oder", "und",
+           "aber", "nicht", "auch", "noch", "nur", "schon", "so", "wie", "als",
+           "am", "im", "ins", "zum", "zur"},
+    "fr": {"le", "la", "les", "un", "une", "des", "de", "du", "à", "au", "aux",
+           "en", "sur", "dans", "par", "pour", "avec", "sans", "sous", "entre",
+           "et", "ou", "mais", "ne", "pas", "plus", "moins", "très", "tout",
+           "comme", "que", "qui", "quoi", "dont", "où"},
+    "es": {"el", "la", "los", "las", "un", "una", "unos", "unas", "de", "del",
+           "a", "al", "en", "por", "para", "con", "sin", "sobre", "entre",
+           "y", "e", "o", "u", "pero", "no", "ni", "que", "cual", "como",
+           "más", "muy", "tan", "todo", "esta", "este", "esto"},
+    "pt": {"o", "a", "os", "as", "um", "uma", "uns", "umas", "de", "do", "da",
+           "dos", "das", "em", "no", "na", "nos", "nas", "por", "para", "com",
+           "sem", "sobre", "entre", "e", "ou", "mas", "não", "nem", "que",
+           "qual", "como", "mais", "muito", "tão", "todo", "todos"},
+    "it": {"il", "lo", "la", "i", "gli", "le", "un", "uno", "una", "di", "a",
+           "da", "in", "con", "su", "per", "tra", "fra", "e", "o", "ma",
+           "non", "né", "che", "chi", "cui", "come", "più", "molto", "tanto"},
+    "pl": {"w", "na", "z", "do", "po", "za", "przez", "dla", "przy", "nad",
+           "pod", "przed", "między", "i", "oraz", "lub", "albo", "ale",
+           "nie", "tak", "jak", "to", "ten", "ta", "te", "się", "już",
+           "jeszcze", "tylko", "bardzo"},
+}
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DATA STRUCTURES
+# ═══════════════════════════════════════════════════════════════════════════════
 
 @dataclass
 class SentenceInfo:
@@ -85,7 +287,8 @@ class TextMetrics:
     avg_syllables_per_word: float
     avg_words_per_sentence: float
 
-    # Readability
+    # Readability (EN only — marked as N/A for other languages)
+    readability_supported: bool
     flesch_reading_ease: float
     flesch_kincaid_grade: float
     gunning_fog: float
@@ -128,15 +331,25 @@ class TextMetrics:
     meta_description_char_count: int = 0
 
 
-# ── Tokenization ───────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════════
+# TOKENIZATION
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _word_pattern(lang: str) -> re.Pattern:
+    return WORD_PATTERNS.get(lang, WORD_PATTERNS["en"])
+
+
+def _tokenize_words(text: str, lang: str = "en") -> list[str]:
+    """Tokenize words using language-specific pattern. Falls back to EN."""
+    return _word_pattern(lang).findall(text.lower())
+
 
 def _split_sentences(text: str) -> list[str]:
-    """Simple sentence splitter — handles ., !, ? terminators. Falls back to textstat."""
-    result = []
+    result: list[str] = []
     current: list[str] = []
     for ch in text:
         current.append(ch)
-        if ch in ".!?":
+        if ch in ".!?…":
             result.append("".join(current).strip())
             current = []
     if current:
@@ -146,16 +359,14 @@ def _split_sentences(text: str) -> list[str]:
     return result or [text]
 
 
-def _tokenize_words(text: str) -> list[str]:
-    return re.findall(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9]+", text.lower())
-
-
-def _first_word(sentence: str) -> str:
-    words = _tokenize_words(sentence)
+def _first_word(sentence: str, lang: str = "en") -> str:
+    words = _tokenize_words(sentence, lang)
     return words[0] if words else ""
 
 
-# ── Core analysis ──────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════════
+# CORE ANALYSIS
+# ═══════════════════════════════════════════════════════════════════════════════
 
 def analyze(
     text: str,
@@ -169,15 +380,20 @@ def analyze(
 
     Args:
         text: Body content (headings + paragraphs).
-        keyword: Focus keyword (case-insensitive matching).
+        keyword: Focus keyword (case-insensitive exact match).
         title: SEO title (H1 or <title>).
         meta_description: Meta description text.
-        lang: Language code (currently 'en' only for advanced features).
+        lang: Language code (en, ru, uk, de, fr, es, pt, it, pl).
 
     Returns:
         TextMetrics dataclass with all computed values.
     """
-    # ── Basic counts ───────────────────────────────────────────────────
+    lang = lang.lower()
+    if lang not in WORD_PATTERNS:
+        print(f"[WARN] Unknown language '{lang}', falling back to 'en'")
+        lang = "en"
+
+    # ── Basic counts (textstat works for all languages) ──────────────────
     word_count = textstat.lexicon_count(text, removepunct=True)
     sentence_count = textstat.sentence_count(text)
     char_count = textstat.char_count(text, ignore_spaces=False)
@@ -185,39 +401,44 @@ def analyze(
     avg_sentence_length = textstat.avg_sentence_length(text)
     avg_syllables_per_word = textstat.avg_syllables_per_word(text)
 
-    # ── Readability (all EN formulas via textstat) ─────────────────────
-    fre = textstat.flesch_reading_ease(text)         # 0–100, higher = easier
-    fkg = textstat.flesch_kincaid_grade(text)        # US grade level
-    gf = textstat.gunning_fog(text)
-    smog = textstat.smog_index(text)
-    ari = textstat.automated_readability_index(text)
-    cli = textstat.coleman_liau_index(text)
-    agg = textstat.text_standard(text, float_output=False)  # e.g. "9th and 10th grade"
+    # ── Readability: EN only ────────────────────────────────────────────
+    readability_supported = lang in READABILITY_LANGS
+    if readability_supported:
+        fre = textstat.flesch_reading_ease(text)
+        fkg = textstat.flesch_kincaid_grade(text)
+        gf = textstat.gunning_fog(text)
+        smog = textstat.smog_index(text)
+        ari = textstat.automated_readability_index(text)
+        cli = textstat.coleman_liau_index(text)
+        agg = textstat.text_standard(text, float_output=False)
+    else:
+        fre = -1.0
+        fkg = -1.0
+        gf = -1.0
+        smog = -1.0
+        ari = -1.0
+        cli = -1.0
+        agg = f"N/A (textstat is EN-only; lang={lang})"
 
-    # ── Sentence-level analysis ────────────────────────────────────────
+    # ── Sentence-level analysis ─────────────────────────────────────────
+    tw_set = TRANSITION_WORDS.get(lang, TRANSITION_WORDS["en"])
+    passive_res = PASSIVE_PATTERNS.get(lang, PASSIVE_PATTERNS["en"])
+
     raw_sentences = _split_sentences(text)
     sentences: list[SentenceInfo] = []
     passive_count = 0
     transition_count = 0
 
     for s in raw_sentences:
-        words = _tokenize_words(s)
+        words = _tokenize_words(s, lang)
         if not words:
             continue
         wc = len(words)
         fw = words[0] if words else ""
 
-        has_transition = False
-        for tw in TRANSITION_WORDS_EN:
-            if tw in s.lower():
-                has_transition = True
-                break
-
-        is_passive = False
-        for pat in PASSIVE_PATTERNS_EN:
-            if pat.search(s):
-                is_passive = True
-                break
+        s_lower = s.lower()
+        has_transition = any(tw in s_lower for tw in tw_set)
+        is_passive = any(pat.search(s) for pat in passive_res)
 
         if is_passive:
             passive_count += 1
@@ -236,26 +457,27 @@ def analyze(
     passive_ratio = (passive_count / total_sent * 100) if total_sent else 0.0
     transition_ratio = (transition_count / total_sent * 100) if total_sent else 0.0
 
-    # Sentence monotony: 3+ consecutive sentences within ±2 words
+    # ── Sentence monotony ───────────────────────────────────────────────
     monotony_violations = 0
     for i in range(len(sentences) - 2):
         a, b, c = sentences[i].word_count, sentences[i + 1].word_count, sentences[i + 2].word_count
         if abs(a - b) <= 2 and abs(b - c) <= 2:
             monotony_violations += 1
 
-    # Starter monotony: 3+ consecutive same first word
     starter_violations = 0
     for i in range(len(sentences) - 2):
         a, b, c = sentences[i].first_word, sentences[i + 1].first_word, sentences[i + 2].first_word
         if a and a == b == c:
             starter_violations += 1
 
-    # ── Paragraph analysis ─────────────────────────────────────────────
+    # ── Paragraph analysis ──────────────────────────────────────────────
     paragraphs_raw = re.split(r"\n\s*\n", text)
     too_long_count = 0
     para_list: list[ParagraphInfo] = []
     total_para_words = 0
-    total_para_sentences = 0
+
+    max_para_words = 150 if lang == "en" else 120
+    max_para_sents = 3 if lang == "en" else 4
 
     for p in paragraphs_raw:
         p = p.strip()
@@ -265,13 +487,12 @@ def analyze(
         p_sents = textstat.sentence_count(p)
         para_list.append(ParagraphInfo(sentence_count=p_sents, word_count=p_words, text=p))
         total_para_words += p_words
-        total_para_sentences += p_sents
-        if p_words > 150 or p_sents > 3:
+        if p_words > max_para_words or p_sents > max_para_sents:
             too_long_count += 1
 
     avg_para_words = total_para_words / len(para_list) if para_list else 0.0
 
-    # ── Keyword analysis ───────────────────────────────────────────────
+    # ── Keyword analysis ────────────────────────────────────────────────
     kw = keyword.lower().strip()
     kw_occurrences = 0
     kw_in_first_150 = False
@@ -285,21 +506,22 @@ def analyze(
         else:
             kw_density = 0.0
 
-        first_150 = " ".join(text_lower.split()[:150])
+        words_list = text_lower.split()[:150]
+        first_150 = " ".join(words_list)
         kw_in_first_150 = kw in first_150
         kw_in_title = kw in title.lower() if title else False
     else:
         kw_density = 0.0
 
-    # ── Title / Meta ───────────────────────────────────────────────────
+    # ── Title / Meta ────────────────────────────────────────────────────
     title_chars = len(title) if title else 0
     title_has_num = bool(re.search(r"\d", title)) if title else False
+
+    pw_set = POWER_WORDS.get(lang, POWER_WORDS["en"])
     title_pw_count = 0
     if title:
         title_lower = title.lower()
-        for pw in POWER_WORDS_EN:
-            if pw in title_lower:
-                title_pw_count += 1
+        title_pw_count = sum(1 for pw in pw_set if pw in title_lower)
 
     meta_chars = len(meta_description) if meta_description else 0
 
@@ -313,6 +535,7 @@ def analyze(
         avg_syllables_per_word=avg_syllables_per_word,
         avg_words_per_sentence=avg_sentence_length,
 
+        readability_supported=readability_supported,
         flesch_reading_ease=fre,
         flesch_kincaid_grade=fkg,
         gunning_fog=gf,
@@ -349,18 +572,27 @@ def analyze(
     )
 
 
-# ── Checklist mapping ──────────────────────────────────────────────────────
-# Maps metrics to the 49-factor scorecard, returning factor ID → {status, detail}
+# ═══════════════════════════════════════════════════════════════════════════════
+# CHECKLIST SCORING
+# ═══════════════════════════════════════════════════════════════════════════════
 
 def score_checklist(m: TextMetrics) -> dict:
-    """
-    Map computed metrics to RankWise 49-factor checklist.
-    Only scores factors that are reliably computable without web access.
-    Returns dict of factor_id → {status: pass/fail/warning/na, detail: str, value: str}.
-    """
+    """Map computed metrics to RankWise 49-factor checklist. Returns dict of factor_id → {status, detail, value}."""
     result = {}
 
-    # ── K: Keyword Placement ────────────────────────────────────────────
+    # Title/meta length ranges per language (from readability-params.md)
+    title_ranges = {
+        "en": (50, 60), "de": (50, 65), "fr": (50, 63), "es": (50, 63),
+        "pt": (50, 63), "it": (50, 63), "pl": (50, 65), "ru": (55, 70), "uk": (55, 70),
+    }
+    meta_ranges = {
+        "en": (145, 158), "de": (145, 158), "fr": (145, 158), "es": (145, 158),
+        "pt": (145, 158), "it": (145, 158), "pl": (145, 158), "ru": (140, 160), "uk": (140, 160),
+    }
+    tw_targets = {"en": 30, "ru": 25, "uk": 25, "de": 25, "fr": 25, "es": 25, "pt": 25, "it": 25, "pl": 25}
+    readability_target = {"en": (7.0, 9.0)}  # Only EN has grade-level targets
+
+    # ── K: Keyword ──────────────────────────────────────────────────────
     if m.keyword:
         result["K1"] = {"status": "pass", "detail": f"Keyword set: '{m.keyword}'", "value": m.keyword}
     else:
@@ -390,22 +622,23 @@ def score_checklist(m: TextMetrics) -> dict:
         result["K10"] = {"status": "pass", "detail": f"Keyword density: {density:.2f}% (target 0.8–1.5%)",
                          "value": f"{density:.2f}%"}
     elif density <= 3.0:
-        result["K10"] = {"status": "warning", "detail": f"Keyword density elevated: {density:.2f}% (target 0.8–1.5%, >3% = stuffing)",
+        result["K10"] = {"status": "warning", "detail": f"Keyword density elevated: {density:.2f}% (target 0.8–1.5%)",
                          "value": f"{density:.2f}%"}
     else:
         result["K10"] = {"status": "fail", "detail": f"Keyword stuffing: {density:.2f}% (target 0.8–1.5%)",
                          "value": f"{density:.2f}%"}
 
-    # ── C: Content Quality ─────────────────────────────────────────────
+    # ── C: Content Quality ──────────────────────────────────────────────
     if m.word_count >= 1500:
         result["C1"] = {"status": "pass", "detail": f"Word count: {m.word_count} (competitive)", "value": str(m.word_count)}
     elif m.word_count >= 600:
         result["C1"] = {"status": "pass", "detail": f"Word count: {m.word_count} (meets minimum)", "value": str(m.word_count)}
     else:
-        result["C1"] = {"status": "fail", "detail": f"Word count too low: {m.word_count} (min 600)", "value": str(m.word_count)}
+        result["C1"] = {"status": "fail", "detail": f"Word count: {m.word_count} (min 600)", "value": str(m.word_count)}
 
+    max_para_w = 150 if m.lang == "en" else 120
     result["C2"] = {"status": "fail" if m.paragraphs_too_long > 0 else "pass",
-                    "detail": f"Paragraphs too long: {m.paragraphs_too_long} of {len(m.paragraphs)}" if m.paragraphs_too_long > 0 else "All paragraphs within limits",
+                    "detail": f"Paragraphs too long: {m.paragraphs_too_long} of {len(m.paragraphs)} (>{max_para_w}w)" if m.paragraphs_too_long > 0 else "All paragraphs within limits",
                     "value": f"{m.paragraphs_too_long}/{len(m.paragraphs)}"}
 
     result["C5"] = {"status": "pass" if m.title_has_number else "fail",
@@ -413,73 +646,78 @@ def score_checklist(m: TextMetrics) -> dict:
                     "value": "yes" if m.title_has_number else "no"}
 
     result["C6"] = {"status": "pass" if m.title_power_word_count >= 2 else "warning",
-                    "detail": f"Power words in title: {m.title_power_word_count} (target ≥2)" if m.title_power_word_count < 2 else f"Power words in title: {m.title_power_word_count}",
+                    "detail": f"Power words in title: {m.title_power_word_count} (target ≥2, lang={m.lang})",
                     "value": str(m.title_power_word_count)}
 
     # Readability (C8)
-    fkg_rounded = round(m.flesch_kincaid_grade, 1)
-    if m.flesch_kincaid_grade <= 0:
-        result["C8"] = {"status": "warning", "detail": f"Readability: Grade {fkg_rounded} (unusually low)", "value": f"FK Grade {fkg_rounded}"}
-    elif m.flesch_kincaid_grade <= 9:
-        result["C8"] = {"status": "pass", "detail": f"Readability: Grade {fkg_rounded} (target 7–9)", "value": f"FK Grade {fkg_rounded}"}
-    elif m.flesch_kincaid_grade <= 12:
-        result["C8"] = {"status": "warning", "detail": f"Readability: Grade {fkg_rounded} (high)", "value": f"FK Grade {fkg_rounded}"}
+    if m.readability_supported:
+        fkg = round(m.flesch_kincaid_grade, 1)
+        lo, hi = readability_target.get(m.lang, (7.0, 9.0))
+        if fkg <= 0:
+            result["C8"] = {"status": "warning", "detail": f"Readability: Grade {fkg} (unusually low)", "value": f"FK Grade {fkg}"}
+        elif lo <= fkg <= hi:
+            result["C8"] = {"status": "pass", "detail": f"Readability: Grade {fkg} (target {lo}-{hi})", "value": f"FK Grade {fkg}"}
+        elif fkg <= hi + 3:
+            result["C8"] = {"status": "warning", "detail": f"Readability: Grade {fkg} (target {lo}-{hi})", "value": f"FK Grade {fkg}"}
+        else:
+            result["C8"] = {"status": "fail", "detail": f"Readability too high: Grade {fkg} (target {lo}-{hi})", "value": f"FK Grade {fkg}"}
     else:
-        result["C8"] = {"status": "fail", "detail": f"Readability too high: Grade {fkg_rounded} (target 7–9)", "value": f"FK Grade {fkg_rounded}"}
+        result["C8"] = {"status": "na", "detail": f"Readability [N/A]: textstat formulas are EN-only (lang={m.lang})", "value": "N/A"}
 
     # Passive voice (C9)
     if m.passive_ratio_pct <= 10:
         result["C9"] = {"status": "pass", "detail": f"Passive voice: {m.passive_ratio_pct}% (target ≤10%)", "value": f"{m.passive_ratio_pct}%"}
     else:
-        result["C9"] = {"status": "fail", "detail": f"Passive voice too high: {m.passive_ratio_pct}% (target ≤10%)", "value": f"{m.passive_ratio_pct}%"}
+        result["C9"] = {"status": "fail", "detail": f"Passive voice: {m.passive_ratio_pct}% (target ≤10%)", "value": f"{m.passive_ratio_pct}%"}
 
     # Transition words (C10)
-    target_tw = 30 if m.lang in ("en",) else 25
+    target_tw = tw_targets.get(m.lang, 30)
     if m.transition_ratio_pct >= target_tw:
         result["C10"] = {"status": "pass", "detail": f"Transition words: {m.transition_ratio_pct}% (target ≥{target_tw}%)", "value": f"{m.transition_ratio_pct}%"}
     else:
-        result["C10"] = {"status": "fail", "detail": f"Transition words too low: {m.transition_ratio_pct}% (target ≥{target_tw}%)", "value": f"{m.transition_ratio_pct}%"}
+        result["C10"] = {"status": "fail", "detail": f"Transition words: {m.transition_ratio_pct}% (target ≥{target_tw}%)", "value": f"{m.transition_ratio_pct}%"}
 
     # Sentence variety (C11)
-    if m.monotony_violations == 0:
-        result["C11"] = {"status": "pass", "detail": "Sentence length variety: OK", "value": "no violations"}
-    else:
-        result["C11"] = {"status": "fail", "detail": f"Sentence length monotony: {m.monotony_violations} violation(s)", "value": f"{m.monotony_violations}"}
+    result["C11"] = {"status": "pass" if m.monotony_violations == 0 else "fail",
+                     "detail": f"Sentence length variety: {'OK' if m.monotony_violations == 0 else f'{m.monotony_violations} monotony violation(s)'}",
+                     "value": str(m.monotony_violations)}
 
-    # Consecutive sentence starts (C12)
-    if m.starter_violations == 0:
-        result["C12"] = {"status": "pass", "detail": "Sentence starts varied: OK", "value": "no violations"}
-    else:
-        result["C12"] = {"status": "fail", "detail": f"Repeated sentence starts: {m.starter_violations} violation(s)", "value": f"{m.starter_violations}"}
+    # Sentence starts (C12)
+    result["C12"] = {"status": "pass" if m.starter_violations == 0 else "fail",
+                     "detail": f"Sentence starts: {'varied' if m.starter_violations == 0 else f'{m.starter_violations} repeated-start violation(s)'}",
+                     "value": str(m.starter_violations)}
 
-    # ── T: Title / Meta length ─────────────────────────────────────────
+    # ── T: Title / Meta ─────────────────────────────────────────────────
+    t_lo, t_hi = title_ranges.get(m.lang, (50, 60))
     if m.title_char_count == 0:
         result["T3"] = {"status": "fail", "detail": "No title provided", "value": "0 chars"}
-    elif 50 <= m.title_char_count <= 60:
-        result["T3"] = {"status": "pass", "detail": f"Title length: {m.title_char_count} chars (target 50–60)", "value": f"{m.title_char_count} chars"}
+    elif t_lo <= m.title_char_count <= t_hi:
+        result["T3"] = {"status": "pass", "detail": f"Title length: {m.title_char_count} chars (target {t_lo}-{t_hi})", "value": f"{m.title_char_count} chars"}
     else:
-        result["T3"] = {"status": "warning", "detail": f"Title length off: {m.title_char_count} chars (target 50–60)", "value": f"{m.title_char_count} chars"}
+        result["T3"] = {"status": "warning", "detail": f"Title length: {m.title_char_count} chars (target {t_lo}-{t_hi})", "value": f"{m.title_char_count} chars"}
 
+    m_lo, m_hi = meta_ranges.get(m.lang, (145, 158))
     if m.meta_description_char_count == 0:
         result["T4"] = {"status": "fail", "detail": "No meta description provided", "value": "0 chars"}
-    elif 145 <= m.meta_description_char_count <= 158:
-        result["T4"] = {"status": "pass", "detail": f"Meta description length: {m.meta_description_char_count} chars", "value": f"{m.meta_description_char_count} chars"}
+    elif m_lo <= m.meta_description_char_count <= m_hi:
+        result["T4"] = {"status": "pass", "detail": f"Meta length: {m.meta_description_char_count} chars (target {m_lo}-{m_hi})", "value": f"{m.meta_description_char_count} chars"}
     else:
-        result["T4"] = {"status": "warning", "detail": f"Meta description length off: {m.meta_description_char_count} chars (target 145–158)", "value": f"{m.meta_description_char_count} chars"}
+        result["T4"] = {"status": "warning", "detail": f"Meta length: {m.meta_description_char_count} chars (target {m_lo}-{m_hi})", "value": f"{m.meta_description_char_count} chars"}
 
     return result
 
 
-# ── Report generator ───────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════════
+# REPORT GENERATOR
+# ═══════════════════════════════════════════════════════════════════════════════
 
 def report(m: TextMetrics) -> str:
-    """Generate a human-readable report from metrics."""
     lines = [
         "=" * 60,
-        "  RankWise Validator — Text Metrics Report",
+        f"  RankWise Validator — Text Metrics Report ({m.lang.upper()})",
         "=" * 60,
         "",
-        f"  Language:            {m.lang}",
+        f"  Language:            {m.lang} {'(readability: EN-only)' if not m.readability_supported else ''}",
         f"  Keyword:             {m.keyword or '(not set)'}",
         "",
         "── COUNTS ──",
@@ -489,38 +727,51 @@ def report(m: TextMetrics) -> str:
         f"  Avg sentence length: {m.avg_sentence_length:.1f} words",
         f"  Avg syllables/word:  {m.avg_syllables_per_word:.2f}",
         "",
-        "── READABILITY ──",
-        f"  Flesch Reading Ease: {m.flesch_reading_ease:.1f} (60–70 = standard)",
-        f"  Flesch-Kincaid Grade:{m.flesch_kincaid_grade:.1f} (target 7–9)",
-        f"  Gunning Fog:         {m.gunning_fog:.1f}",
-        f"  SMOG Index:          {m.smog_index:.1f}",
-        f"  ARI:                 {m.automated_readability_index:.1f}",
-        f"  Coleman-Liau:        {m.coleman_liau_index:.1f}",
-        f"  Aggregate:           {m.aggregate_grade}",
+    ]
+
+    if m.readability_supported:
+        lines += [
+            "── READABILITY (EN textstat) ──",
+            f"  Flesch Reading Ease: {m.flesch_reading_ease:.1f} (60-70 = standard)",
+            f"  Flesch-Kincaid Grade:{m.flesch_kincaid_grade:.1f} (target 7-9)",
+            f"  Gunning Fog:         {m.gunning_fog:.1f}",
+            f"  SMOG Index:          {m.smog_index:.1f}",
+            f"  ARI:                 {m.automated_readability_index:.1f}",
+            f"  Coleman-Liau:        {m.coleman_liau_index:.1f}",
+            f"  Aggregate:           {m.aggregate_grade}",
+        ]
+    else:
+        lines += [
+            "── READABILITY ──",
+            f"  [N/A] textstat formulas are designed for English only.",
+            f"  Language '{m.lang}' readability must be scored by LLM.",
+        ]
+
+    lines += [
         "",
         "── LINGUISTIC ──",
         f"  Passive voice:       {m.passive_ratio_pct}% ({m.passive_sentence_count}/{m.sentence_count} sentences, target ≤10%)",
-        f"  Transition words:    {m.transition_ratio_pct}% ({m.transition_sentence_count}/{m.sentence_count} sentences, target ≥30%)",
+        f"  Transition words:    {m.transition_ratio_pct}% ({m.transition_sentence_count}/{m.sentence_count} sentences)",
         f"  Length monotony:     {m.monotony_violations} violation(s)",
         f"  Starter monotony:    {m.starter_violations} violation(s)",
         "",
         "── PARAGRAPHS ──",
         f"  Total paragraphs:    {len(m.paragraphs)}",
-        f"  Too long (>150w/>3s):{m.paragraphs_too_long}",
+        f"  Too long:            {m.paragraphs_too_long}",
         f"  Avg words/paragraph: {m.avg_words_per_paragraph:.1f}",
         "",
         "── KEYWORD ──",
         f"  Occurrences:         {m.keyword_occurrences}",
-        f"  Density:             {m.keyword_density_pct}% (target 0.8–1.5%)",
+        f"  Density:             {m.keyword_density_pct}% (target 0.8-1.5%)",
         f"  In first 150 words:  {'yes' if m.keyword_in_first_150 else 'NO'}",
         f"  In title:            {'yes' if m.keyword_in_title else 'NO'}",
         "",
         "── TITLE / META ──",
         f"  Title:               \"{m.title_text}\"",
-        f"  Title length:        {m.title_char_count} chars (target 50–60)",
+        f"  Title length:        {m.title_char_count} chars",
         f"  Title has number:    {'yes' if m.title_has_number else 'NO'}",
-        f"  Title power words:   {m.title_power_word_count} (target ≥2)",
-        f"  Meta description:    {m.meta_description_char_count} chars (target 145–158)",
+        f"  Title power words:   {m.title_power_word_count} (target >=2)",
+        f"  Meta description:    {m.meta_description_char_count} chars",
         "",
         "── CHECKLIST SCORING ──",
     ]

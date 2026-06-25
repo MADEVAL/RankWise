@@ -131,7 +131,9 @@ python -m validator.cli --file article.txt --keyword "seo strategy" --title "SEO
 python -m validator.cli --file article.txt --keyword "seo" --title "Title" --checklist --json
 ```
 
-**What it computes:** word count (C1), paragraph metrics (C2), readability — Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau (C8), passive voice ratio (C9), transition word ratio (C10), sentence length variety (C11), consecutive sentence starts (C12), keyword density (K10), keyword placement (K2, K6, K7), title/meta length (T3, T4), power words, numbers in title.
+**What it computes:** word count (C1), paragraph metrics (C2), readability — Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau for EN only (C8), passive voice ratio per language (C9), transition word ratio per language (C10), sentence length variety (C11), consecutive sentence starts (C12), keyword density (K10), keyword placement (K2, K6, K7), title/meta length with per-language ranges (T3, T4), power words in all 9 languages (C6).
+
+**Multi-language support:** `--lang en|ru|uk|de|fr|es|pt|it|pl`. Passive voice, transition words, and power words use language-specific patterns for all 9 languages. Readability (C8) uses textstat formulas for EN only — other languages show `[N/A]` and must be scored by the LLM. Title/meta length targets adjust per language.
 
 ---
 
