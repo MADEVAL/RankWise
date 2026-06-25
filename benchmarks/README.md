@@ -9,19 +9,30 @@ Five reference texts with manually verified SEO properties. Used to validate sco
 python -m validator.cli --file benchmarks/01-well-optimized.txt --keyword "content marketing strategy" --title "7 Proven Content Marketing Strategies That Actually Work in 2026" --meta "Content marketing strategy guide: 7 proven tactics to grow organic traffic. Based on analysis of 200+ SaaS companies. Free template included." --checklist
 ```
 
+Omit `--title` / `--meta` when not applicable — do NOT pass empty strings.
+
 ## Cases
 
-| # | File | Type | Expected Grade |
-|---|------|------|---------------|
-| 1 | `01-well-optimized.txt` | Blog article (well-optimized) | A (90%+) |
-| 2 | `02-keyword-stuffed.txt` | Blog article (keyword-stuffed) | D-F (density fail) |
-| 3 | `03-too-short.txt` | Blog post (too short, no structure) | D (word count + hierarchy fail) |
-| 4 | `04-no-meta.txt` | Article body only (missing meta layer) | C (meta factors fail) |
-| 5 | `05-product-page.txt` | E-commerce product page | B (some N/A, good structure) |
+| # | File | Type | Validator Factors (16 of 49) | Expected Result |
+|---|------|------|------------------------------|-----------------|
+| 1 | `01-well-optimized.txt` | Blog article (moderate optimization) | 8 pass, 4 fail, 4 warn | Mixed — keyword in body, density elevated, missing from title (plural vs singular) |
+| 2 | `02-keyword-stuffed.txt` | Blog article (23% keyword density) | 7 pass, 6 fail, 3 warn | D–F: critical density fail + word count |
+| 3 | `03-too-short.txt` | Blog post (69 words, no structure) | 8 pass, 6 fail, 2 warn | D: word count, title length, meta missing |
+| 4 | `04-no-meta.txt` | Article body only (no title/meta) | 5 pass, 8 fail, 3 warn | D: no title, word count, C2/C10/C11/C12 fails |
+| 5 | `05-product-page.txt` | E-commerce product page | 8 pass, 5 fail, 3 warn | C+: best density, keyword placement OK |
 
-## Expected Validator Factors
+## Validator Coverage
 
-Each benchmark has expected pass/fail status for factors computable by `validator/metrics.py`:
-K1, K2, K6, K7, K10, C1, C2, C5, C6, C8, C9, C10, C11, C12, T3, T4.
+The Python validator computes **16 of 49** factors:
+**K1, K2, K6, K7, K10, C1, C2, C5, C6, C8, C9, C10, C11, C12, T3, T4**
 
-Web-access-only factors (K11, L5, L6, L7, L8, T6, T7) are excluded from validator scoring.
+Not computed (require LLM, web access, or manual judgment):
+K3–K5, K8, K9, K11, K12, C3, C4, C7, C13, C14, L1–L9, T1, T2, T5–T8, A1–A6
+
+## Limitations
+
+- **Exact keyword matching only** — does not handle stemming or plural forms (e.g., "strategies" ≠ "strategy")
+- **English-only readability formulas** — textstat's Flesch-Kincaid etc. are EN-specific
+- **Regex-based passive voice** — catches ~80% of cases, not 100%
+- **Simple sentence splitter** — may mis-split on abbreviations (Dr., U.S., etc.)
+- **No heading hierarchy analysis** — assumes flat body text input

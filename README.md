@@ -139,18 +139,20 @@ python -m validator.cli --file article.txt --keyword "seo" --title "Title" --che
 
 `benchmarks/` contains 5 reference texts with known SEO properties for regression testing across versions:
 
-| # | File | Expected Grade |
-|---|------|---------------|
-| 1 | `01-well-optimized.txt` | A |
-| 2 | `02-keyword-stuffed.txt` | D–F |
-| 3 | `03-too-short.txt` | D |
-| 4 | `04-no-meta.txt` | C |
-| 5 | `05-product-page.txt` | B |
+| # | File | Expected Result |
+|---|------|----------------|
+| 1 | `01-well-optimized.txt` | Mixed — keyword in body, title mismatch (plural) |
+| 2 | `02-keyword-stuffed.txt` | D–F: 23% density, word count fail |
+| 3 | `03-too-short.txt` | D: 69 words, missing meta |
+| 4 | `04-no-meta.txt` | D: no title/meta, short content |
+| 5 | `05-product-page.txt` | C+: best density & keyword placement |
 
 ```bash
-# Run a single benchmark
-python -m validator.cli --file benchmarks/01-well-optimized.txt --keyword "content marketing strategy" --title "7 Proven Content Marketing Strategies That Actually Work in 2026" --checklist
+# Run a single benchmark (omit --title/--meta if not applicable)
+python -m validator.cli --file benchmarks/01-well-optimized.txt --keyword "content marketing strategy" --title "7 Proven Content Marketing Strategies That Actually Work in 2026" --meta "Content marketing strategy guide: 7 proven tactics." --checklist
 ```
+
+> **Coverage:** The validator computes 16 of 49 factors (K1-K2, K6-K7, K10, C1-C2, C5-C6, C8-C12, T3-T4). Remaining 33 factors require LLM judgment or web access. See `benchmarks/README.md` for details.
 
 ---
 

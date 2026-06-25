@@ -16,8 +16,8 @@ from .metrics import analyze, score_checklist
 
 def main():
     parser = argparse.ArgumentParser(description="RankWise Text Metrics Validator")
-    parser.add_argument("--text", type=str, help="Content text (body)")
-    parser.add_argument("--file", type=str, help="Read content from file")
+    parser.add_argument("--text", type=str, default=None, help="Content text (body)")
+    parser.add_argument("--file", type=str, default=None, help="Read content from file")
     parser.add_argument("--keyword", type=str, default="", help="Focus keyword")
     parser.add_argument("--title", type=str, default="", help="SEO title or H1")
     parser.add_argument("--meta", type=str, default="", help="Meta description")
@@ -28,6 +28,9 @@ def main():
     args = parser.parse_args()
 
     if args.file:
+        if not Path(args.file).exists():
+            print(f"[ERROR] File not found: {args.file}", file=sys.stderr)
+            sys.exit(1)
         text = Path(args.file).read_text(encoding="utf-8")
     elif args.text:
         text = args.text
