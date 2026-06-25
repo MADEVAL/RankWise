@@ -8,6 +8,12 @@ An AI skill system that generates, rewrites, and audits content against 49 SEO r
 
 ---
 
+## Scope
+
+RankWise is a **content-level SEO engine** — it optimizes text, meta tags, alt texts, URLs, and content structure. It does **not** measure page speed, Core Web Vitals, server configuration, SSL, or cookie compliance. For those, use Lighthouse, PageSpeed Insights, or Screaming Frog.
+
+---
+
 ## What is this?
 
 **RankWise** is a system prompt (skill) for any LLM - GPT, Claude, Gemini, DeepSeek, or any capable model. It transforms the AI into a world-class SEO strategist and content engineer who:
