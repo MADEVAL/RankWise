@@ -83,7 +83,7 @@ rankwise/
 │   ├── readability-params.md       ← Readability targets per language
 │   ├── burned-words.md             ← AI detection patterns × 9 languages
 │   └── link-strategy.md            ← Internal/external linking rules
-├── scenarios/
+  ├── scenarios/
 │   ├── article-generate.md         ← Full article generation from topic + keywords
 │   ├── article-rewrite.md          ← Rewrite pipeline (URL or pasted text)
 │   ├── meta-optimize.md            ← Meta titles, descriptions, OG tags
@@ -93,12 +93,63 @@ rankwise/
 │   ├── url-optimize.md             ← URL slug optimization
 │   ├── quick-fix.md                ← Single-factor quick fixes (all 49)
 │   ├── home-page.md                ← Home page / brand page optimization
-│   └── product-page.md             ← Product / e-commerce page optimization
-└── examples/
-    ├── before-after-article.md     ← Full article rewrite example
-    ├── meta-examples.md            ← Meta tag before/after examples
-    ├── audit-example.md            ← Complete audit report example
-    └── integration-pipeline.md     ← End-to-end triple integration example
+│   ├── product-page.md             ← Product / e-commerce page optimization
+│   └── video-podcast.md            ← YouTube / podcast description & metadata SEO
+├── examples/
+│   ├── before-after-article.md     ← Full article rewrite example
+│   ├── meta-examples.md            ← Meta tag before/after examples
+│   ├── audit-example.md            ← Complete audit report example
+│   └── integration-pipeline.md     ← End-to-end triple integration example
+├── validator/
+│   ├── metrics.py                  ← Python: readability, density, passive voice, etc.
+│   └── cli.py                      ← CLI entry point
+└── benchmarks/
+    ├── README.md                    ← Benchmark dataset documentation
+    ├── 01-well-optimized.txt        ← Reference: Grade A article
+    ├── 02-keyword-stuffed.txt       ← Reference: keyword stuffing
+    ├── 03-too-short.txt             ← Reference: too short, no structure
+    ├── 04-no-meta.txt               ← Reference: article body only
+    └── 05-product-page.txt          ← Reference: e-commerce product page
+```
+
+---
+
+## Validator (Python)
+
+The `validator/` directory contains a Python tool that computes measurable SEO metrics from text — complementing the LLM-based scoring with deterministic calculations:
+
+```bash
+pip install textstat
+
+# Full report
+python -m validator.cli --text "Your content..." --keyword "seo" --title "My Title" --meta "Description"
+
+# Read from file
+python -m validator.cli --file article.txt --keyword "seo strategy" --title "SEO Guide"
+
+# Checklist scores only (machine-readable JSON)
+python -m validator.cli --file article.txt --keyword "seo" --title "Title" --checklist --json
+```
+
+**What it computes:** word count (C1), paragraph metrics (C2), readability — Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau (C8), passive voice ratio (C9), transition word ratio (C10), sentence length variety (C11), consecutive sentence starts (C12), keyword density (K10), keyword placement (K2, K6, K7), title/meta length (T3, T4), power words, numbers in title.
+
+---
+
+## Benchmarks
+
+`benchmarks/` contains 5 reference texts with known SEO properties for regression testing across versions:
+
+| # | File | Expected Grade |
+|---|------|---------------|
+| 1 | `01-well-optimized.txt` | A |
+| 2 | `02-keyword-stuffed.txt` | D–F |
+| 3 | `03-too-short.txt` | D |
+| 4 | `04-no-meta.txt` | C |
+| 5 | `05-product-page.txt` | B |
+
+```bash
+# Run a single benchmark
+python -m validator.cli --file benchmarks/01-well-optimized.txt --keyword "content marketing strategy" --title "7 Proven Content Marketing Strategies That Actually Work in 2026" --checklist
 ```
 
 ---
@@ -154,8 +205,9 @@ See `SKILL.md` → INTEGRATION WITH OTHER SKILLS for full compatibility guide.
 - Any capable LLM with a system prompt / custom instructions field
 - For full skill functionality: a skill system that loads files from a folder (OpenCode, Claude Code)
 - **SKILL.md is self-sufficient** - contains all core rules for standalone use. `shared/` and `scenarios/` files add professional depth (scoring formulas, AI-marker lists, per-language readability, schema templates, content-type blueprints)
-- No API keys, no tools, no dependencies - pure prompt engineering
+- No API keys, no tools, no dependencies — pure prompt engineering
 - Works in any language; per-language parameters for 9 languages (EN, RU, UK, DE, FR, ES, PT, IT, PL)
+- **Optional:** Python 3.10+ + `textstat` for deterministic metric validation via `validator/`
 
 ---
 

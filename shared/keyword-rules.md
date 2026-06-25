@@ -1,4 +1,5 @@
 # Keyword Rules - Placement, Density, LSI, Cannibalization
+> **Version:** 1.2.1
 
 > Full keyword strategy: from selection to distribution.
 

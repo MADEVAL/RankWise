@@ -1,4 +1,5 @@
 # Scenario: Article Rewrite
+> **Version:** 1.2.1
 
 **Use when:** User provides URL or pastes text content. Says "rewrite", "optimize", "improve SEO", "fix". Mode: REWRITE.
 

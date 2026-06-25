@@ -1,4 +1,5 @@
 # Scenario: Product Page
+> **Version:** 1.2.1
 
 **Use when:** User asks to generate, rewrite, or audit a product page, service page, or e-commerce listing.
 

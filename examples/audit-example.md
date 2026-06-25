@@ -101,27 +101,27 @@ Score:             8.0 / 67.5 = 11.9%
 Constraint:        4 CRITICAL failures → grade F
 
 ====================================
-ESTIMATED IMPACT
+IMPACT SUMMARY
 ====================================
-Fixing Critical only (4 factors):         +45% ranking potential
-Fixing Critical + High (18 factors):      +65% ranking potential
-Fixing all (33 factors):                  +80% ranking potential
+Critical fixes:       Very High
+Critical + High:      High
+All fixes:            Medium–High
 
 ====================================
 TOP 5 ACTIONS (Do These First)
 ====================================
 1. Rewrite SEO title to: "TaskPro: Project Management Software for Remote Teams"
-   Impact: Critical (×3) | Effort: Low (5 min)
+   Impact: Very High | Effort: Low (5 min)
 
 2. Add meta description with keyword in first 20 words
-   Impact: Critical (×3) | Effort: Low (5 min)
+   Impact: Very High | Effort: Low (5 min)
 
 3. Add keyword naturally to hero section + 2 H2 headings
-   Impact: High (×2 each for K6, K7, K8) | Effort: Medium (30 min)
+   Impact: High | Effort: Medium (30 min)
 
 4. Change URL slug to include keyword (/project-management-software)
-   Impact: High (×2 for K5) | Effort: Medium (needs 301 redirect)
+   Impact: High | Effort: Medium (needs 301 redirect)
 
 5. Expand content from 520 to 800+ words with feature details + proper H2 structure
-   Impact: High (×2 for C1) + fixes C13 | Effort: High (2–3 hrs)
+   Impact: High | Effort: High (2–3 hrs)
 ```

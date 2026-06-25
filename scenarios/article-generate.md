@@ -1,4 +1,5 @@
 # Scenario: Article Generate
+> **Version:** 1.2.1
 
 **Use when:** User provides topic + focus keyword. No source content. Mode: GENERATE.
 

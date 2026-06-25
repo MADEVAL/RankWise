@@ -65,6 +65,7 @@ The user's request determines the mode. Announce the mode at the top of every ou
 2. Load `scenarios/audit-report.md` - follow report format
 3. Output: scorecard (pass/fail/warning per factor) + prioritized fix list + estimated impact
 4. Group by: Critical (fix now) / High (fix this week) / Medium (improve) / Low (optional)
+5. **Offline mode:** If web access is unavailable, mark K11, L5, L6, L7, L8, T6, T7 as `⊘ [NO_WEB]` and exclude from denominator (see `shared/checklist.md → OFFLINE MODE`)
 
 ### Mode 4: META-ONLY
 **Trigger:** User asks specifically for meta tags, descriptions, alt texts, or OG tags. Says "meta", "title tag", "description", "alt text", "OG".
@@ -603,6 +604,8 @@ Scan the request for module triggers (see OUTPUT COMPOSITION table above).
 9. **Ambiguous** → ask: "Just the article text? Full package with meta and alt texts? Or something else?"
 
 **Module activation is independent of mode.** The mode (Generate/Rewrite/Audit) determines HOW content is produced. Modules determine WHAT is delivered.
+
+**Offline mode detection:** Before audit operations, determine if web access is available (fetch tool, search capability). If NO web access → activate OFFLINE scoring (K11, L5, L6, L7, L8, T6, T7 → ⊘ [NO_WEB], exclude from denominator). If YES → score all factors normally. See `shared/checklist.md` → OFFLINE MODE for full table.
 
 ### Handling Incomplete Input
 

@@ -1,4 +1,5 @@
 # Link Strategy - Internal & External Linking Rules
+> **Version:** 1.2.1
 
 > Every link should have a purpose. Internal for structure. External for credibility.
 

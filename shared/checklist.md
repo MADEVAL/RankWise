@@ -1,4 +1,5 @@
 # SEO Checklist - 49 Ranking Factors
+> **Version:** 1.2.1
 
 > Complete scoring matrix with thresholds, severity levels, and fix instructions.
 > Used by RankWise in Generate, Rewrite, and Audit modes.
@@ -81,7 +82,7 @@
 | # | Factor | Target | Severity | Fix If Failing |
 |---|--------|--------|----------|----------------|
 | A1 | Featured snippet potential | 40–60 word concise answer to target query | MEDIUM | Add a clear, direct answer paragraph. Use definition format or list format. |
-| A2 | E-E-A-T signals | Experience, Expertise, Authoritativeness, Trustworthiness: ≥3 of 5 must be present - (1) author name + bio with credentials, (2) publication/modified date visible, (3) at least 1 credible external citation/source, (4) about/site-info page reference, (5) contact info or privacy policy link. 3+ = ✅ Pass, 2 = ⚠️ Warning, 0–1 = ❌ Fail. | HIGH | Add: author bio with credentials, publication date, citations, about page link, privacy policy. |
+| A2 | E-E-A-T signals | Experience, Expertise, Authoritativeness, Trustworthiness: ≥3 of 5 must be present - (1) author name + bio with credentials, (2) publication/modified date visible, (3) at least 1 credible external citation/source, (4) about/site-info page reference, (5) contact info or privacy policy link. 3+ = ✅ Pass, 2 = ⚠️ Warning, 0–1 = ❌ Fail. See also HCU notes below. | HIGH | Add: author bio with credentials, publication date, citations, about page link, privacy policy. |
 | A3 | LSI / semantic keywords | 5–15 related terms naturally present | MEDIUM | Add: related terms, synonyms, category words. Use SERP "Searches related to" for ideas. |
 | A4 | Content freshness | Date visible, updated within reasonable period | LOW | Add "Last updated" date. Update annually for evergreen, within weeks for news-sensitive. |
 | A5 | Mobile readability | Short paragraphs, clear headings, adequate font size equivalent | MEDIUM | Test: can you scan the page on a phone? Break long sections. Ensure heading contrast. |
@@ -121,10 +122,12 @@ Where PASS_WEIGHTS sums the multipliers of all ✅ factors, and ALL_WEIGHTS sums
 **Constraint enforcement:** A page with 95% raw score but 1 CRITICAL failure → capped at B. A page with 80% and 4 CRITICAL failures → capped at C. ⚠️ Warning on a CRITICAL factor counts as 0.5 CRITICAL failures for cap purposes (e.g., K1⚠️ = probably defined but not explicit → 0.5 toward the cap).
 
 ### Priority levels
-- **CRITICAL** - Fix immediately. These factors alone can prevent ranking.
-- **HIGH** - Fix this week. Major ranking impact.
-- **MEDIUM** - Improve. Noticeable ranking impact over time.
-- **LOW** - Optional. Marginal improvements, competitive differentiators.
+- **CRITICAL** - Fix immediately. These factors alone can prevent ranking. Impact: Very High.
+- **HIGH** - Fix this week. Major ranking impact. Impact: High.
+- **MEDIUM** - Improve. Noticeable ranking impact over time. Impact: Medium.
+- **LOW** - Optional. Marginal improvements, competitive differentiators. Impact: Low.
+
+> **Note:** Impact labels are qualitative, not derived from rank-correlation studies. They express consensus SEO prioritization, not guaranteed ranking deltas.
 
 ### Delivery validation rule
 Before delivering any scored output, verify: N/A + CRITICAL + HIGH + MEDIUM + LOW + PASSED = 49. If sum ≠ 49, re-scan the content - a factor was missed. This guarantees 100% coverage on every audit.
@@ -169,3 +172,35 @@ Before delivering ANY output, scan these 8 highest-impact factors:
 8. ☐ L1 - At least 3 internal links?
 
 If any of these 8 fail, fix before delivery.
+
+---
+
+## HCU / HELPFUL CONTENT COMPLIANCE
+
+Google's Helpful Content Update (HCU) rewards **people-first** content — original, satisfying, and demonstrating first-hand experience. RankWise aligns via:
+
+- **Burned words** (`shared/burned-words.md`): removes AI-marker vocabulary that signals low-effort content
+- **E-E-A-T signals** (A2): author expertise, citations, transparency — all core HCU signals
+- **Originality gate** (article-generate.md Step 3): 1 data point per 500 words, 1 concrete example per H2, 1 contrarian insight per article
+- **Ruthless editor** persona: default stance is DELETE — content must earn its place
+
+> **HCU risk note:** AI-generated content that lacks original examples, unique data, or first-hand experience is at risk of HCU classifier demotion. RankWise's content quality rules are designed to surface these gaps — but the final responsibility for originality rests with the human author/editor.
+
+---
+
+## OFFLINE MODE — WEB-ACCESS FACTORS
+
+When operating **without web access** (no fetch/crawl capability), the following factors cannot be reliably scored. Instead of penalizing with ⚠️ marks, mark them as `⊘ [NO_WEB]` and **exclude from denominator**:
+
+| Factor | Offline handling |
+|--------|-----------------|
+| K11 | ⊘ [NO_WEB] — Cannibalization check requires `site:` search |
+| L5 | ⊘ [NO_WEB] — Outbound link quality requires domain lookup |
+| L6 | ⊘ [NO_WEB] — Broken link check requires HTTP verification |
+| L7 | ⊘ [NO_WEB] — Internal link relevance requires cross-page analysis |
+| L8 | ⊘ [NO_WEB] — Orphan check requires full-site crawl |
+| T6 | ⊘ [NO_WEB] — Schema validation requires source access |
+| T7 | ⊘ [NO_WEB] — Canonical URL check requires source access |
+| A3 | Scored offline — Use topic vocabulary diversity as proxy for LSI |
+
+**With web access:** score all factors normally. **Without web access:** exclude these 7 from denominator (denominator becomes 42 max, not 49). Mark clearly in report: `⊘ K11 [NO_WEB]: Requires site search — skipped.`

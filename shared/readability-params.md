@@ -1,4 +1,5 @@
 # Readability Parameters - Per Language
+> **Version:** 1.2.1
 
 > Readability scoring, passive voice rules, sentence/paragraph length targets.
 
@@ -170,19 +171,24 @@ jedoch, deshalb, weil, obwohl, zum Beispiel, insbesondere, darüber hinaus, dahe
 
 ## FRENCH / FRANÇAIS
 
+### Search landscape
+- Google dominates (~92% market share). Bing ~5%.
+- Qwant (French search engine, ~1-2% share) uses similar ranking signals to Google.
+- Accented characters are treated as distinct in SERP rendering.
+
 ### Lisibilité
 - **Cible:** Niveau B1–B2 (grand public), C1 (technique)
 - **Indice Gunning Fog adapté:** viser 10–14
+- **Formule Kandel-Moles:** Indice de lisibilité = 207 − 1.015 × (mots/phrases) − 73.6 × (syllabes/mots)
+- **Référence:** Un texte journalistique standard (Le Monde) ≈ score 50–60
 
 ### Voix passive
 - **Cible:** ≤10% des phrases
 - **Correction:** «Le rapport a été rédigé» → «Nous avons rédigé le rapport»
+- **Note:** Le passif français est plus fréquent que l'anglais — ≤12% acceptable pour le contenu technique.
 
 ### Longueur de phrase
-- **Courte:** 5–10 mots
-- **Moyenne:** 11–20 mots
-- **Longue:** 21–28 mots
-- **Maximum:** 28 mots
+- **Courte:** 5–10 mots | **Moyenne:** 11–20 mots | **Longue:** 21–28 mots | **Maximum:** 28 mots
 
 ### Longueur de paragraphe
 - **Maximum:** 120 mots ou 4 phrases
@@ -190,15 +196,29 @@ jedoch, deshalb, weil, obwohl, zum Beispiel, insbesondere, darüber hinaus, dahe
 ### Mots de transition (≥25% des phrases)
 cependant, donc, parce que, bien que, par exemple, en particulier, de plus, par conséquent, néanmoins, en revanche, ainsi, également
 
+### SEO-Specific Notes
+- «En termes de», «dans le cadre de», «en matière de» → kill on sight (Nominalstil français)
+- Éviter la nominalisation abusive: «la mise en œuvre de» → verbe actif
+- Les titres français sont souvent plus longs que l'anglais: tolérance jusqu'à 65 caractères
+- Balises hreflang essentielles pour contenu français vs canadien-français (fr-FR vs fr-CA)
+
 ---
 
 ## SPANISH / ESPAÑOL
 
+### Search landscape
+- Google dominates (~96% market share).
+- Spanish queries are 15-20% longer than English due to preposition-rich grammar.
+- Accents: á, é, í, ó, ú, ü, ñ — search engines handle them correctly; omit at your own risk.
+
 ### Legibilidad (Fernández Huerta)
 - **Objetivo:** 60–70 (normal - prensa general)
+- **Fórmula:** 206.84 − 0.60 × (sílabas/100 palabras) − 1.02 × (frases/100 palabras)
+- Equivalencia: 60–70 ≈ textos de El País / prensa general
 
 ### Voz pasiva
 - **Objetivo:** ≤10%
+- **Marcadores:** «fue hecho», «ha sido publicado», «se realizó» (pasiva refleja)
 
 ### Longitud de frase
 - **Corta:** 5–10 palabras | **Media:** 11–22 | **Larga:** 23–30 | **Máximo:** 30
@@ -206,15 +226,28 @@ cependant, donc, parce que, bien que, par exemple, en particulier, de plus, par 
 ### Palabras de transición (≥25%)
 sin embargo, por lo tanto, porque, aunque, por ejemplo, en particular, además, por consiguiente, no obstante, en contraste, asimismo, también
 
+### SEO-Specific Notes
+- Pasiva refleja («se vende», «se recomienda») — no la cuentes como pasiva si es idiomática
+- Dos mercados distintos: España (es-ES) y Latinoamérica (es-419, es-MX, es-AR...) — usa hreflang si apuntas a región específica
+- Keywords: diferencias léxicas significativas entre regiones («ordenador» vs «computadora», «móvil» vs «celular»)
+
 ---
 
 ## PORTUGUESE / PORTUGUÊS
 
+### Search landscape
+- Google dominates (~97% in Brazil, ~95% in Portugal).
+- Two distinct markets: pt-BR (Brazilian) and pt-PT (European). Lexical differences large: «time» vs «equipa», «tela» vs «ecrã».
+- Brazilian queries tend to be more colloquial and longer.
+
 ### Legibilidade
 - **Objetivo:** Frases de 12–20 palavras (média)
+- **Índice Flesch adaptado (pt-BR):** 248.835 − 1.015 × (palavras/frases) − 84.6 × (sílabas/palavras)
+- **Alvo:** 50–65 (fácil a razoavelmente fácil)
 
 ### Voz passiva
 - **Objetivo:** ≤10%
+- **Marcadores:** «foi feito», «é considerado», «foi publicado»
 
 ### Comprimento de frase
 - **Curta:** 5–10 | **Média:** 11–22 | **Longa:** 23–30 | **Máximo:** 30
@@ -222,16 +255,29 @@ sin embargo, por lo tanto, porque, aunque, por ejemplo, en particular, además, 
 ### Palavras de transição
 no entanto, portanto, porque, embora, por exemplo, em particular, além disso, consequentemente, apesar disso, por outro lado
 
+### SEO-Specific Notes
+- hreflang crítico para pt-BR vs pt-PT — Google no los confunde, pero la audiencia sí
+- Brasileños usan más preguntas directas en queries → incluye keywords en formato pregunta
+- «Você» (informal) vs «O senhor» (formal): match al tono de la audiencia objetivo
+
 ---
 
 ## ITALIAN / ITALIANO
 
+### Search landscape
+- Google dominates (~96% market share).
+- Italian queries are often shorter than English — users tend to omit articles and prepositions in search.
+- Accents are critical: «perché» ≠ «perche» in SERP.
+
 ### Leggibilità (Indice Gulpease)
 - **Obiettivo:** 50–60 (leggibilità media - giornali)
+- **Formula:** 89 − (10 × lettere/parole) + (300 × frasi/parole)
+- **Scala:** <40 = difficile (testi universitari), 40–60 = media (giornali), 60–80 = facile, >80 = molto facile
 
 ### Voce passiva
 - **Obiettivo:** ≤10%
 - **Correzione:** «È stato fatto» → «Abbiamo fatto»
+- **Nota:** «Si + verbo» (si passivante) — «si vende», «si richiede» — accettabile in contesti commerciali
 
 ### Lunghezza frase
 - **Corta:** 5–10 | **Media:** 11–22 | **Lunga:** 23–30 | **Massimo:** 30
@@ -239,21 +285,39 @@ no entanto, portanto, porque, embora, por exemplo, em particular, além disso, c
 ### Parole di transizione
 tuttavia, quindi, perché, sebbene, per esempio, in particolare, inoltre, di conseguenza, nonostante, al contrario, anche
 
+### SEO-Specific Notes
+- «Si passivante» ubiquo nel linguaggio commerciale — non penalizzare se naturale
+- Gerundio italiano diverso dall'inglese: «sta facendo» (azione in corso) non è passivo
+- Periodi ipotetici lunghi («Se... allora...») — accorciare per migliorare leggibilità senza perdere struttura logica
+
 ---
 
 ## POLISH / POLSKI
 
-### Czytelność (Indeks Jasnopisu)
-- **Cel:** 40–50 (tekst średnio trudny)
+### Search landscape
+- Google dominates (~98% market share).
+- Polish declension creates many word forms (7 cases × 3 genders × 2 numbers) — search engines recognize morphological variants.
+- Queries often shorter than English due to rich morphology carrying more meaning per word.
+
+### Czytelność (Indeks Jasnopisu — «Fog» for Polish)
+- **Cel:** 40–50 (tekst średnio trudny — poziom gazety codziennej)
+- **Formula:** 0.4 × (średnia długość zdania + procent wyrazów trudnych >4 sylaby)
+- W praktyce: monitoruj średnią długość zdania, bo liczenie sylab w polskim jest złożone (zbitki spółgłoskowe)
 
 ### Strona bierna
 - **Cel:** ≤10%
+- **Marker:** «zostało zrobione», «jest wykonywane», formy zakończone na -no/-to («wykonano» — bezosobnik, nie pasywna)
 
 ### Długość zdania
 - **Krótkie:** 5–10 | **Średnie:** 11–20 | **Długie:** 21–28 | **Maksimum:** 28
 
 ### Słowa przejścia
 jednak, dlatego, ponieważ, chociaż, na przykład, w szczególności, ponadto, w rezultacie, niemniej jednak, natomiast, również
+
+### SEO-Specific Notes
+- Bezosobniki (-no, -to): «wykonano», «zrobiono» — to nie jest strona bierna, nie penalizuj
+- Anglicyzmy w nomenklaturze biznesowej: «dedykowany» → zastąp «przeznaczony», «serwis» → «usługa» (gdzie naturalne)
+- Bardzo długie wyrazy (8+ liter) obniżają czytelność — monitoruj proporcję
 
 ---
 

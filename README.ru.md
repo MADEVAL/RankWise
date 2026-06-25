@@ -110,12 +110,63 @@ rankwise/
 │   ├── url-optimize.md             ← Оптимизация URL-slug
 │   ├── quick-fix.md                ← Точечные правки (все 49 факторов)
 │   ├── home-page.md                ← Оптимизация главных страниц
-│   └── product-page.md             ← Оптимизация товарных страниц
-└── examples/
-    ├── before-after-article.md     ← Пример полного рерайта статьи
-    ├── meta-examples.md            ← Примеры мета-тегов до/после
-    ├── audit-example.md            ← Пример полного аудит-отчёта
-    └── integration-pipeline.md     ← Сквозной пример интеграции
+│   ├── product-page.md             ← Оптимизация товарных страниц
+│   └── video-podcast.md            ← SEO для YouTube / подкастов
+├── examples/
+│   ├── before-after-article.md     ← Пример полного рерайта статьи
+│   ├── meta-examples.md            ← Примеры мета-тегов до/после
+│   ├── audit-example.md            ← Пример полного аудит-отчёта
+│   └── integration-pipeline.md     ← Сквозной пример интеграции
+├── validator/
+│   ├── metrics.py                  ← Python: читаемость, плотность, пассивный залог
+│   └── cli.py                      ← CLI-интерфейс
+└── benchmarks/
+    ├── README.md                    ← Документация бенчмарков
+    ├── 01-well-optimized.txt        ← Эталон: Grade A
+    ├── 02-keyword-stuffed.txt       ← Эталон: переспам ключей
+    ├── 03-too-short.txt             ← Эталон: слишком короткий
+    ├── 04-no-meta.txt               ← Эталон: только тело статьи
+    └── 05-product-page.txt          ← Эталон: товарная страница
+```
+
+---
+
+## Валидатор (Python)
+
+`validator/` — Python-инструмент для детерминированного вычисления SEO-метрик из текста. Дополняет LLM-скоринг точными расчётами:
+
+```bash
+pip install textstat
+
+# Полный отчёт
+python -m validator.cli --text "Ваш текст..." --keyword "seo" --title "Заголовок" --meta "Описание"
+
+# Из файла
+python -m validator.cli --file статья.txt --keyword "seo стратегия" --title "Гайд по SEO"
+
+# Только чек-лист (JSON)
+python -m validator.cli --file статья.txt --keyword "seo" --title "Заголовок" --checklist --json
+```
+
+**Что считает:** количество слов (C1), метрики абзацев (C2), читаемость — Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau (C8), доля пассивного залога (C9), доля переходных слов (C10), разнообразие длины предложений (C11), повтор начала предложений (C12), плотность ключевых слов (K10), размещение ключей (K2, K6, K7), длина title/meta (T3, T4), power words, числа в заголовке.
+
+---
+
+## Бенчмарки
+
+`benchmarks/` содержит 5 эталонных текстов с известными SEO-свойствами для регрессионного тестирования:
+
+| # | Файл | Ожидаемый Grade |
+|---|------|----------------|
+| 1 | `01-well-optimized.txt` | A |
+| 2 | `02-keyword-stuffed.txt` | D–F |
+| 3 | `03-too-short.txt` | D |
+| 4 | `04-no-meta.txt` | C |
+| 5 | `05-product-page.txt` | B |
+
+```bash
+# Запуск одного бенчмарка
+python -m validator.cli --file benchmarks/01-well-optimized.txt --keyword "content marketing strategy" --title "7 Proven Content Marketing Strategies That Actually Work in 2026" --checklist
 ```
 
 ---
@@ -173,6 +224,7 @@ RankWise спроектирован для совместной работы:
 - **SKILL.md самодостаточен** - содержит все ключевые правила для standalone-использования. `shared/` и `scenarios/` добавляют профессиональную глубину (формулы скоринга, списки AI-маркеров, читаемость по языкам, шаблоны schema, контент-типы)
 - Без API-ключей, без инструментов, без зависимостей - чистый промпт-инжиниринг
 - Работает на любом языке; языковые параметры в `shared/readability-params.md` и `shared/power-words.md` для 9 языков (EN, RU, UK, DE, FR, ES, PT, IT, PL)
+- **Опционально:** Python 3.10+ + `textstat` для детерминированной валидации метрик через `validator/`
 
 ---
 

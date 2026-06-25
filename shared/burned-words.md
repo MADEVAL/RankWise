@@ -1,4 +1,5 @@
 # Burned Words - AI Marker Lists Per Language
+> **Version:** 1.2.1
 
 > Words and patterns that signal AI origin in SEO content.
 > Used by RankWise in Rewrite Mode (article-rewrite.md) and Quick-Fix.

@@ -1,4 +1,5 @@
 # Scenario: Audit Report
+> **Version:** 1.2.1
 
 **Use when:** User asks to audit, review, score, or check SEO. Mode: AUDIT.
 
@@ -141,11 +142,16 @@ Group all ❌ and ⚠️ by severity:
 
 ## STEP 3: ESTIMATE IMPACT
 
-Per fix category:
-- Fixing CRITICAL factors: +30–50% ranking improvement potential
-- Adding HIGH fixes: +20–30% additional
-- Adding MEDIUM fixes: +10–20% additional
-- Adding LOW fixes: +5–10% additional
+Impact is expressed qualitatively based on SEO consensus prioritization:
+
+| Fix level | Ranking impact | Description |
+|-----------|---------------|-------------|
+| CRITICAL | Very High | These factors alone can prevent ranking |
+| CRITICAL + HIGH | High | Core ranking signals addressed |
+| + MEDIUM | Medium | Noticeable improvement over time |
+| + LOW | Low | Marginal gains, competitive differentiator |
+
+> Impact labels are qualitative, not empirical percentages. Actual ranking changes depend on domain authority, competition, niche, and search engine algorithm specifics.
 
 ---
 
@@ -168,28 +174,28 @@ NOT APPLICABLE (excluded from score)
 ...
 
 ====================================
-CRITICAL FAILURES - Fix Now (×3 weight)
+CRITICAL FAILURES - Fix Now (×3 weight, Impact: Very High)
 ====================================
 ❌ [Factor ID]: [Factor name] - [Current state] → [Target]
    Fix: [1-2 sentence instruction]
 ...
 
 ====================================
-HIGH PRIORITY - Fix This Week (×2 weight)
+HIGH PRIORITY - Fix This Week (×2 weight, Impact: High)
 ====================================
 ❌ [Factor ID]: ...
 ⚠️ [Factor ID]: ...
 ...
 
 ====================================
-MEDIUM PRIORITY - Improve (×1 weight)
+MEDIUM PRIORITY - Improve (×1 weight, Impact: Medium)
 ====================================
 ❌ [Factor ID]: ...
 ⚠️ [Factor ID]: ...
 ...
 
 ====================================
-LOW PRIORITY - Optional (×0.5 weight)
+LOW PRIORITY - Optional (×0.5 weight, Impact: Low)
 ====================================
 ⚠️ [Factor ID]: ...
 ...
@@ -200,15 +206,15 @@ PASSED FACTORS (XX/XX applicable)
 ✅ K2, K7, C2, ... (list all passing)
 
 ====================================
-ESTIMATED IMPACT
+IMPACT SUMMARY
 ====================================
-Fixing Critical only:     +XX% ranking potential
-Fixing Critical + High:   +XX% ranking potential
-Fixing all:               +XX% ranking potential
+Critical fixes:       Very High
+Critical + High:      High
+All fixes:            Medium–High
 
 ====================================
 TOP 5 ACTIONS (Do These First)
 ====================================
-1. [Action] - [Impact: Critical/High/Medium] - [Effort: Low/Med/High]
+1. [Action] - [Impact: Very High/High/Medium/Low] - [Effort: Low/Med/High]
 2. ...
 ```
