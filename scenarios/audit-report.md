@@ -1,5 +1,5 @@
 # Scenario: Audit Report
-> **Version:** 1.2.1
+> **Version:** 1.2.2
 
 **Use when:** User asks to audit, review, score, or check SEO. Mode: AUDIT.
 

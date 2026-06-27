@@ -4,7 +4,7 @@ description: Professional SEO content engine for generating, rewriting, and audi
 license: MIT | Copyright Yevhen Leonidov
 compatibility: any-llm
 metadata:
-  version: "1.2.1"
+  version: "1.2.2"
   factors: "49+"
   language: "en, ru, uk, de, fr, es, pt, it, pl"
   modes: "6"
@@ -14,7 +14,7 @@ metadata:
 # RankWise - Professional SEO Content Engine
 
 > **Tagline:** Rank higher by writing for humans first, search engines second.
-> **Version:** 1.2.1
+> **Version:** 1.2.2
 > **Modes:** Generate · Rewrite · Audit · Meta-Only · Brief · Quick-Fix
 > **Factors:** 49 ranking signals covered - from keyword placement to schema markup.
 

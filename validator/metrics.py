@@ -1,48 +1,94 @@
 """
 RankWise Validator — computable SEO metrics for text content.
-Uses textstat v0.7.13+ for readability (7 of 9 languages supported via set_lang).
+Uses ReadSightPy (readsight) for readability — TeX/Liang syllable counting,
+17 formulas, all 9 RankWise languages supported (incl. UK and PT).
 Supports all 9 RankWise languages: EN, RU, UK, DE, FR, ES, PT, IT, PL.
 """
 
 import re
 import statistics
-import warnings
 from dataclasses import dataclass, field
-from typing import Optional
 
-import textstat
+from readsight import ReadSight
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# LANGUAGE SUPPORT MATRIX (textstat v0.7.13)
+# LANGUAGE SUPPORT MATRIX (ReadSightPy)
 # ═══════════════════════════════════════════════════════════════════════════════
 #
-# Lang | set_lang | flesch_reading_ease | gunning_fog | language-specific formula
-# EN   | en_US    | ✔ (full)           | ✔           | FK Grade, SMOG, ARI, CL, text_standard
-# DE   | de       | ✔ (pyphen)         | ✔           | wiener_sachtextformel
-# ES   | es       | ✔ (pyphen)         | ✔           | fernandez_huerta, szigriszt_pazos
-# FR   | fr       | ✔ (pyphen)         | ✔           | —
-# IT   | it       | ✔ (pyphen)         | ✔           | gulpease_index
-# PL   | pl       | ✔ (pyphen)         | ✔           | —
-# RU   | ru       | ✔ (pyphen)         | ✔           | —
-# UK   | —        | ✗ (no pyphen dict) | ✗           | N/A
-# PT   | —        | ✗ (no pyphen dict) | ✗           | N/A
+# Lang | RS code  | FRE | FKGL | universal (GF/SMOG/CL/ARI/LIX) | headline formula
+# EN   | en-us    | ✔   | ✔    | ✔                              | Flesch Reading Ease
+# DE   | de-1996  | ✔   | ✔    | ✔                              | Wiener Sachtextformel
+# ES   | es       | ✔   | ✔    | ✔                              | Fernández-Huerta
+# FR   | fr       | ✔   | ✔    | ✔                              | Flesch Reading Ease
+# IT   | it       | ✔   | ✔    | ✔                              | Gulpease
+# PT   | pt       | ✔   | ✔    | ✔                              | Flesch Reading Ease
+# RU   | ru       | ✔   | ✔    | ✔                              | Flesch Reading Ease
+# UK   | uk       | ✗   | ✗    | ✔                              | LIX
+# PL   | pl       | ✗   | ✗    | ✔ (+ FOG-PL)                   | FOG-PL
 #
-# Readability for UK and PT must be scored by the LLM.
+# Every RankWise language now has deterministic readability (no LLM fallback).
 
-# Languages with reliable textstat-based readability (syllable counting via pyphen)
-READABILITY_LANGS = {"en", "de", "es", "fr", "it", "pl", "ru"}
-
-# Mapping from RankWise lang codes to textstat set_lang codes
-TEXTSTAT_LANG_MAP = {
-    "en": "en_US",
-    "de": "de",
-    "es": "es",
+# Mapping from RankWise lang codes to ReadSightPy language codes
+READSIGHT_LANG_MAP = {
+    "en": "en-us",
+    "ru": "ru",
+    "uk": "uk",
+    "de": "de-1996",
     "fr": "fr",
+    "es": "es",
+    "pt": "pt",
     "it": "it",
     "pl": "pl",
-    "ru": "ru",
 }
+
+# All 9 languages now carry computable readability via ReadSightPy
+READABILITY_LANGS = set(READSIGHT_LANG_MAP.keys())
+
+# ── ReadSightPy engine cache (engine init parses .tex patterns — cache per code) ──
+_ENGINE_CACHE: dict = {}
+
+
+def _get_engine(lang: str) -> ReadSight:
+    code = READSIGHT_LANG_MAP[lang]
+    if code not in _ENGINE_CACHE:
+        _ENGINE_CACHE[code] = ReadSight(code)
+    return _ENGINE_CACHE[code]
+
+
+# Registry key (from get_supported_formulas) → ReadSight method name
+_FORMULA_METHOD = {
+    "flesch_reading_ease": "flesch_reading_ease",
+    "flesch_kincaid_grade_level": "flesch_kincaid_grade_level",
+    "gunning_fog": "gunning_fog",
+    "smog": "smog_index",
+    "ari": "automated_readability_index",
+    "coleman_liau": "coleman_liau",
+    "lix": "lix",
+    "wiener_sachtextformel": "wiener_sachtextformel",
+    "gulpease": "gulpease",
+    "fernandez_huerta": "fernandez_huerta",
+    "fog_pl": "fog_pl",
+}
+
+
+def _formula_score(rs: ReadSight, supported: set, key: str, text: str):
+    """Return a formula's float score, or None if unsupported/errored."""
+    if key not in supported:
+        return None
+    method = _FORMULA_METHOD.get(key)
+    if method is None:
+        return None
+    try:
+        result = getattr(rs, method)(text)
+        return float(result.score)
+    except Exception:
+        return None
+
+
+def _nz(value) -> float:
+    """None → -1.0 sentinel (matches legacy 'unavailable' convention)."""
+    return value if value is not None else -1.0
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # LANGUAGE RESOURCES — all 9 languages
@@ -282,49 +328,39 @@ STOP_WORDS = {
            "jeszcze", "tylko", "bardzo"},
 }
 
-# ── Per-language readability targets ────────────────────────────────────────
-# For flesch_reading_ease: 0-100 scale, higher = easier. Target: 50-70.
-# For language-specific formulas, targets are noted individually.
+# ── C8 readability scoring: which metric + target band per language ─────────
+# mode selects the metric used to score C8; (lo, hi) is the "pass" band.
+#   fkgl  → Flesch-Kincaid grade (lower=easier), pass band is target grade
+#   wstf  → Wiener Sachtextformel grade (DE)
+#   fh    → Fernández-Huerta (ES, 0-100, higher=easier)
+#   gulpease → Gulpease (IT, higher=easier)
+#   fre   → Flesch Reading Ease (0-100, higher=easier)
+#   lix   → LIX (lower=easier)           — UK (no Flesch available)
+#   fogpl → FOG-PL grade (lower=easier)  — PL (no Flesch available)
 READABILITY_TARGETS = {
-    "en": {
-        "flesch_ease": (60.0, 70.0),       # Standard range
-        "fkg_grade": (7.0, 9.0),            # Grade 7-9
-        "label": "Flesch-Kincaid Grade",
-        "unit": "grade",
-    },
-    "de": {
-        "flesch_ease": (50.0, 70.0),
-        "wstf": (4, 10),                    # 4=easy, 15=hard
-        "label": "Flesch Reading Ease / Wiener Sachtextformel",
-        "unit": "score",
-    },
-    "es": {
-        "flesch_ease": (50.0, 70.0),
-        "fernandez_huerta": (50.0, 70.0),   # Same scale as Flesch
-        "label": "Fernández-Huerta / Flesch Reading Ease",
-        "unit": "score",
-    },
-    "fr": {
-        "flesch_ease": (50.0, 70.0),
-        "label": "Flesch Reading Ease",
-        "unit": "score",
-    },
-    "it": {
-        "flesch_ease": (50.0, 70.0),
-        "gulpease": (40, 80),               # >80=elementary, 60-79=middle, 40-59=high, <40=university
-        "label": "Gulpease / Flesch Reading Ease",
-        "unit": "score",
-    },
-    "pl": {
-        "flesch_ease": (0.0, 50.0),     # Pyphen produces lower absolute scores for Polish
-        "label": "Flesch Reading Ease (PL-adjusted)",
-        "unit": "score",
-    },
-    "ru": {
-        "flesch_ease": (50.0, 70.0),
-        "label": "Flesch Reading Ease",
-        "unit": "score",
-    },
+    "en": {"mode": "fkgl",     "range": (7.0, 9.0)},
+    "de": {"mode": "wstf",     "range": (4.0, 10.0)},
+    "es": {"mode": "fh",       "range": (50.0, 70.0)},
+    "it": {"mode": "gulpease", "range": (40.0, 80.0)},
+    "fr": {"mode": "fre",      "range": (50.0, 70.0)},
+    "ru": {"mode": "fre",      "range": (50.0, 70.0)},
+    "pt": {"mode": "fre",      "range": (50.0, 70.0)},
+    "uk": {"mode": "lix",      "range": (30.0, 45.0)},
+    "pl": {"mode": "fogpl",    "range": (7.0, 12.0)},
+}
+
+# ── Headline "language-specific" formula shown in reports (display only) ─────
+# (registry_key, display_name). For EN/FR/RU/PT this is plain Flesch Reading Ease.
+LANG_SPECIFIC = {
+    "en": ("flesch_reading_ease",   "Flesch Reading Ease"),
+    "de": ("wiener_sachtextformel", "Wiener Sachtextformel"),
+    "es": ("fernandez_huerta",      "Fernández-Huerta"),
+    "it": ("gulpease",              "Gulpease"),
+    "fr": ("flesch_reading_ease",   "Flesch Reading Ease"),
+    "ru": ("flesch_reading_ease",   "Flesch Reading Ease"),
+    "pt": ("flesch_reading_ease",   "Flesch Reading Ease"),
+    "uk": ("lix",                   "LIX"),
+    "pl": ("fog_pl",                "FOG-PL"),
 }
 
 # ── Sentence-ending abbreviations (periods that don't end sentences) ────────
@@ -438,15 +474,17 @@ class TextMetrics:
     # Readability — supported languages
     readability_supported: bool
 
-    # Common readability scores (available for all supported langs)
+    # Common readability scores. -1.0 = not available for this language.
     flesch_reading_ease: float
     gunning_fog: float
 
-    # EN-only full suite
+    # Grade-level / index suite (universal formulas available for all 9 langs;
+    # flesch_kincaid_grade is -1.0 for UK/PL which lack a Flesch model)
     flesch_kincaid_grade: float
     smog_index: float
     automated_readability_index: float
     coleman_liau_index: float
+    lix: float
     aggregate_grade: str
 
     # Language-specific formulas
@@ -533,60 +571,52 @@ def analyze(
         print(f"[WARN] Unknown language '{lang}', falling back to 'en'")
         lang = "en"
 
-    # ── Basic counts ───────────────────────────────────────────────────
-    word_count = textstat.lexicon_count(text, removepunct=True)
-    sentence_count = textstat.sentence_count(text)
-    char_count = textstat.char_count(text, ignore_spaces=False)
-    char_count_no_spaces = textstat.char_count(text, ignore_spaces=True)
-    avg_sentence_length = textstat.avg_sentence_length(text)
-    avg_syllables_per_word = textstat.avg_syllables_per_word(text)
+    # ── Basic counts (deterministic, library-independent) ──────────────
+    raw_sentences = _split_sentences(text)
+    sentence_count = len(raw_sentences)
+    word_count = len(_tokenize_words(text, lang))
+    char_count = len(text)
+    char_count_no_spaces = len(re.sub(r"\s", "", text))
+    avg_sentence_length = (word_count / sentence_count) if sentence_count else 0.0
+    avg_syllables_per_word = 0.0
 
-    # ── Readability: set_lang for syllable counting ────────────────────
+    # ── Readability via ReadSightPy (deterministic, all 9 languages) ────
     readability_supported = lang in READABILITY_LANGS
-    ts_lang = TEXTSTAT_LANG_MAP.get(lang, "en_US")
+    fre = gf = fkg = smog = ari = cli = lix_score = -1.0
+    lang_score = -1.0
+    lang_name = "N/A"
+    agg = "N/A"
 
-    if readability_supported:
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            textstat.set_lang(ts_lang)
-            fre = textstat.flesch_reading_ease(text)
-            gf = textstat.gunning_fog(text)
+    if readability_supported and word_count > 0 and sentence_count > 0:
+        rs = _get_engine(lang)
+        supported = set(rs.get_supported_formulas())
 
-        fkg = textstat.flesch_kincaid_grade(text)
-        smog = textstat.smog_index(text)
-        ari = textstat.automated_readability_index(text)
-        cli = textstat.coleman_liau_index(text)
-        agg = textstat.text_standard(text, float_output=False)
+        fre = _nz(_formula_score(rs, supported, "flesch_reading_ease", text))
+        gf = _nz(_formula_score(rs, supported, "gunning_fog", text))
+        fkg = _nz(_formula_score(rs, supported, "flesch_kincaid_grade_level", text))
+        smog = _nz(_formula_score(rs, supported, "smog", text))
+        ari = _nz(_formula_score(rs, supported, "ari", text))
+        cli = _nz(_formula_score(rs, supported, "coleman_liau", text))
+        lix_score = _nz(_formula_score(rs, supported, "lix", text))
 
-        # Language-specific formula
-        lang_score: float = fre
-        lang_name: str = "Flesch Reading Ease"
+        try:
+            avg_syllables_per_word = float(rs.average_syllables_per_word(text))
+        except Exception:
+            avg_syllables_per_word = 0.0
 
-        if lang == "es":
-            lang_score = textstat.fernandez_huerta(text)
-            lang_name = "Fernández-Huerta"
-        elif lang == "de":
-            lang_score = textstat.wiener_sachtextformel(text, 1)
-            lang_name = "Wiener Sachtextformel"
-        elif lang == "it":
-            lang_score = textstat.gulpease_index(text)
-            lang_name = "Gulpease"
-    else:
-        fre = -1.0
-        gf = -1.0
-        fkg = -1.0
-        smog = -1.0
-        ari = -1.0
-        cli = -1.0
-        agg = f"N/A (textstat has no pyphen dict for lang={lang})"
-        lang_score = -1.0
-        lang_name = "N/A"
+        # Headline language-specific formula (for display/report)
+        ls_key, lang_name = LANG_SPECIFIC.get(lang, ("flesch_reading_ease", "Flesch Reading Ease"))
+        lang_score = _nz(_formula_score(rs, supported, ls_key, text))
+
+        # Aggregate grade from numeric grade-level formulas
+        grades = [g for g in (fkg, gf, smog, cli, ari) if g > 0]
+        if grades:
+            agg = f"~Grade {round(statistics.median(grades))}"
 
     # ── Sentence-level analysis ────────────────────────────────────────
     tw_set = TRANSITION_WORDS.get(lang, TRANSITION_WORDS["en"])
     passive_res = PASSIVE_PATTERNS.get(lang, PASSIVE_PATTERNS["en"])
 
-    raw_sentences = _split_sentences(text)
     sentences: list[SentenceInfo] = []
     passive_count = 0
     transition_count = 0
@@ -647,8 +677,8 @@ def analyze(
         p = p.strip()
         if not p:
             continue
-        p_words = textstat.lexicon_count(p, removepunct=True)
-        p_sents = textstat.sentence_count(p)
+        p_words = len(_tokenize_words(p, lang))
+        p_sents = len(_split_sentences(p))
         para_list.append(ParagraphInfo(sentence_count=p_sents, word_count=p_words, text=p))
         total_para_words += p_words
         if p_words > max_para_words or p_sents > max_para_sents:
@@ -706,6 +736,7 @@ def analyze(
         smog_index=smog,
         automated_readability_index=ari,
         coleman_liau_index=cli,
+        lix=lix_score,
         aggregate_grade=agg,
         lang_specific_score=lang_score,
         lang_specific_name=lang_name,
@@ -814,15 +845,13 @@ def score_checklist(m: TextMetrics) -> dict:
                     "detail": f"Power words in title: {m.title_power_word_count} (target >=2, lang={m.lang})",
                     "value": str(m.title_power_word_count)}
 
-    # ── Readability (C8) — language-aware ──────────────────────────────
+    # ── Readability (C8) — language-aware via ReadSightPy ──────────────
     if m.readability_supported:
-        targets = READABILITY_TARGETS.get(m.lang, READABILITY_TARGETS["en"])
-        score_info = _score_readability(m, targets)
-        result["C8"] = score_info
+        result["C8"] = _score_readability(m)
     else:
         result["C8"] = {
             "status": "na",
-            "detail": f"Readability [N/A]: textstat has no pyphen dictionary for lang={m.lang}. Must be scored by LLM.",
+            "detail": f"Readability [N/A]: no ReadSightPy model for lang={m.lang}.",
             "value": "N/A",
         }
 
@@ -869,63 +898,57 @@ def score_checklist(m: TextMetrics) -> dict:
     return result
 
 
-def _score_readability(m: TextMetrics, targets: dict) -> dict:
-    """Score readability based on language-specific formula and targets."""
-    lang = m.lang
+def _score_readability(m: TextMetrics) -> dict:
+    """Score C8 readability using the language-appropriate metric (ReadSightPy).
 
-    if lang == "en":
-        fkg = round(m.flesch_kincaid_grade, 1)
-        lo, hi = targets["fkg_grade"]
-        if fkg <= 0:
-            return {"status": "warning", "detail": f"Readability: Grade {fkg} (unusually low)", "value": f"FK Grade {fkg}"}
-        elif lo <= fkg <= hi:
-            return {"status": "pass", "detail": f"Readability: FK Grade {fkg} (target {lo}-{hi})", "value": f"FK Grade {fkg}"}
-        elif fkg <= hi + 3:
-            return {"status": "warning", "detail": f"Readability: FK Grade {fkg} (target {lo}-{hi})", "value": f"FK Grade {fkg}"}
-        else:
-            return {"status": "fail", "detail": f"Readability too high: FK Grade {fkg} (target {lo}-{hi})", "value": f"FK Grade {fkg}"}
+    Metric per language (see READABILITY_TARGETS):
+      en → FK Grade · de → WSTF · es → Fernández-Huerta · it → Gulpease
+      fr/ru/pt → Flesch Reading Ease · uk → LIX · pl → FOG-PL
+    """
+    target = READABILITY_TARGETS.get(m.lang, READABILITY_TARGETS["en"])
+    mode = target["mode"]
+    lo, hi = target["range"]
 
-    if lang == "de":
-        wstf = round(m.lang_specific_score, 1)
-        lo, hi = targets["wstf"]
-        if lo <= wstf <= hi:
-            return {"status": "pass", "detail": f"Readability: {m.lang_specific_name} {wstf} (target {lo}-{hi})", "value": f"WSTF {wstf}"}
-        elif wstf <= hi + 3:
-            return {"status": "warning", "detail": f"Readability: {m.lang_specific_name} {wstf} (target {lo}-{hi})", "value": f"WSTF {wstf}"}
-        else:
-            return {"status": "fail", "detail": f"Readability: {m.lang_specific_name} {wstf} (target {lo}-{hi})", "value": f"WSTF {wstf}"}
+    def band(value: float, value_str: str, *, lower_is_easier: bool) -> dict:
+        if value < 0:
+            return {"status": "warning", "detail": f"Readability: {value_str} (could not compute)", "value": value_str}
+        if lower_is_easier:
+            # Below the band (easier) is fine; only the harder side is penalized.
+            warn_margin = 3 if mode in ("fkgl", "fogpl") else 10
+            if value <= hi:
+                return {"status": "pass", "detail": f"Readability: {value_str} (target {lo}-{hi})", "value": value_str}
+            if value <= hi + warn_margin:
+                return {"status": "warning", "detail": f"Readability: {value_str} (target {lo}-{hi})", "value": value_str}
+            return {"status": "fail", "detail": f"Readability too hard: {value_str} (target {lo}-{hi})", "value": value_str}
+        # Higher is easier (FRE / FH / Gulpease): in-band pass, near-band warning.
+        if lo <= value <= hi:
+            return {"status": "pass", "detail": f"Readability: {value_str} (target {lo}-{hi})", "value": value_str}
+        if value >= lo - 15:
+            return {"status": "warning", "detail": f"Readability: {value_str} (target {lo}-{hi})", "value": value_str}
+        return {"status": "fail", "detail": f"Readability: {value_str} (target {lo}-{hi})", "value": value_str}
 
-    if lang == "es":
-        fh = round(m.lang_specific_score, 1)
-        fre = round(m.flesch_reading_ease, 1)
-        lo, hi = targets["fernandez_huerta"]
-        if lo <= fh <= hi:
-            return {"status": "pass", "detail": f"Readability: {m.lang_specific_name} {fh} (target {lo}-{hi})", "value": f"FH {fh}"}
-        elif fh >= lo - 15:
-            return {"status": "warning", "detail": f"Readability: {m.lang_specific_name} {fh} (target {lo}-{hi})", "value": f"FH {fh}"}
-        else:
-            return {"status": "fail", "detail": f"Readability: {m.lang_specific_name} {fh} (target {lo}-{hi})", "value": f"FH {fh}"}
+    if mode == "fkgl":
+        v = round(m.flesch_kincaid_grade, 1)
+        return band(v, f"FK Grade {v}", lower_is_easier=True)
+    if mode == "fogpl":
+        v = round(m.lang_specific_score, 1)
+        return band(v, f"FOG-PL {v}", lower_is_easier=True)
+    if mode == "lix":
+        v = round(m.lang_specific_score, 1)
+        return band(v, f"LIX {v}", lower_is_easier=True)
+    if mode == "wstf":
+        v = round(m.lang_specific_score, 1)
+        return band(v, f"WSTF {v}", lower_is_easier=True)
+    if mode == "fh":
+        v = round(m.lang_specific_score, 1)
+        return band(v, f"FH {v}", lower_is_easier=False)
+    if mode == "gulpease":
+        v = round(m.lang_specific_score, 1)
+        return band(v, f"Gulpease {v}", lower_is_easier=False)
 
-    if lang == "it":
-        gulp = round(m.lang_specific_score, 1)
-        lo, hi = targets["gulpease"]
-        if lo <= gulp <= hi:
-            return {"status": "pass", "detail": f"Readability: {m.lang_specific_name} {gulp} (target {lo}-{hi})", "value": f"Gulpease {gulp}"}
-        elif lo - 10 <= gulp <= hi + 10:
-            return {"status": "warning", "detail": f"Readability: {m.lang_specific_name} {gulp} (target {lo}-{hi})", "value": f"Gulpease {gulp}"}
-        else:
-            return {"status": "fail", "detail": f"Readability: {m.lang_specific_name} {gulp} (target {lo}-{hi})", "value": f"Gulpease {gulp}"}
-
-    # Generic fallback (FR, PL, RU): use flesch_reading_ease
-    fre = round(m.flesch_reading_ease, 1)
-    lo, hi = targets["flesch_ease"]
-    label = targets.get("label", "Flesch Reading Ease")
-    if lo <= fre <= hi:
-        return {"status": "pass", "detail": f"Readability: {label} {fre} (target {lo}-{hi})", "value": f"FRE {fre}"}
-    elif fre >= lo - 15:
-        return {"status": "warning", "detail": f"Readability: {label} {fre} (target {lo}-{hi})", "value": f"FRE {fre}"}
-    else:
-        return {"status": "fail", "detail": f"Readability: {label} {fre} (target {lo}-{hi})", "value": f"FRE {fre}"}
+    # fre (fr / ru / pt and generic fallback)
+    v = round(m.flesch_reading_ease, 1)
+    return band(v, f"FRE {v}", lower_is_easier=False)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -950,27 +973,26 @@ def report(m: TextMetrics) -> str:
         "",
     ]
 
+    def _fmt(v, suffix=""):
+        return f"{v:.1f}{suffix}" if v is not None and v >= 0 else "n/a"
+
     if m.readability_supported:
         lines += [
-            "── READABILITY ──",
-            f"  Flesch Reading Ease: {m.flesch_reading_ease:.1f} (0-100, higher=easier)",
-            f"  Gunning Fog:         {m.gunning_fog:.1f}",
-            f"  Flesch-Kincaid Grade:{m.flesch_kincaid_grade:.1f} (target 7-9 for EN)",
-            f"  SMOG Index:          {m.smog_index:.1f}",
-            f"  ARI:                 {m.automated_readability_index:.1f}",
-            f"  Coleman-Liau:        {m.coleman_liau_index:.1f}",
+            "── READABILITY (ReadSightPy) ──",
+            f"  Flesch Reading Ease: {_fmt(m.flesch_reading_ease)} (0-100, higher=easier)",
+            f"  Gunning Fog:         {_fmt(m.gunning_fog)}",
+            f"  Flesch-Kincaid Grade:{_fmt(m.flesch_kincaid_grade)} (target 7-9 for EN)",
+            f"  SMOG Index:          {_fmt(m.smog_index)}",
+            f"  ARI:                 {_fmt(m.automated_readability_index)}",
+            f"  Coleman-Liau:        {_fmt(m.coleman_liau_index)}",
+            f"  LIX:                 {_fmt(m.lix)}",
             f"  Aggregate:           {m.aggregate_grade}",
+            f"  Headline ({m.lang_specific_name}): {_fmt(m.lang_specific_score)}",
         ]
-        if m.lang in ("es", "de", "it"):
-            lines += [
-                f"  {m.lang_specific_name}: {m.lang_specific_score:.1f} (language-specific)",
-            ]
     else:
         lines += [
             "── READABILITY ──",
-            f"  [N/A] textstat has no pyphen hyphenation dictionary for '{m.lang}'.",
-            f"  Readability for this language must be scored by LLM.",
-            f"  Supported languages: en, de, es, fr, it, pl, ru.",
+            f"  [N/A] No ReadSightPy model for '{m.lang}'.",
         ]
 
     lines += [

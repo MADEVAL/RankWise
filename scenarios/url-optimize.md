@@ -1,5 +1,5 @@
 # Scenario: URL Optimize
-> **Version:** 1.2.1
+> **Version:** 1.2.2
 
 **Use when:** User asks to optimize a URL slug. Mode: META-ONLY (URL focus).
 

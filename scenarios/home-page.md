@@ -1,5 +1,5 @@
 # Scenario: Home Page
-> **Version:** 1.2.1
+> **Version:** 1.2.2
 
 **Use when:** User asks to generate, rewrite, or audit a home page. Content type: navigational/brand.
 

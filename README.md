@@ -119,7 +119,7 @@ rankwise/
 The `validator/` directory contains a Python tool that computes measurable SEO metrics from text — complementing the LLM-based scoring with deterministic calculations:
 
 ```bash
-pip install textstat
+pip install readsight
 
 # Full report
 python -m validator.cli --text "Your content..." --keyword "seo" --title "My Title" --meta "Description"
@@ -133,7 +133,7 @@ python -m validator.cli --file article.txt --keyword "seo" --title "Title" --che
 
 **What it computes:** word count (C1), paragraph metrics (C2), readability — Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau for EN only (C8), passive voice ratio per language (C9), transition word ratio per language (C10), sentence length variety (C11), consecutive sentence starts (C12), keyword density (K10), keyword placement (K2, K6, K7), title/meta length with per-language ranges (T3, T4), power words in all 9 languages (C6).
 
-**Multi-language support:** `--lang en|ru|uk|de|fr|es|pt|it|pl`. Passive voice, transition words, and power words use language-specific patterns for all 9 languages. Readability (C8) uses textstat formulas for EN only — other languages show `[N/A]` and must be scored by the LLM. Title/meta length targets adjust per language.
+**Multi-language support:** `--lang en|ru|uk|de|fr|es|pt|it|pl`. Passive voice, transition words, and power words use language-specific patterns for all 9 languages. Readability (C8) is computed deterministically via [ReadSightPy](https://github.com/MADEVAL/ReadSightPy) (TeX/Liang syllable counting) for all 9 languages — EN uses Flesch-Kincaid Grade, DE Wiener Sachtextformel, ES Fernández-Huerta, IT Gulpease, FR/RU/PT Flesch Reading Ease, UK LIX, PL FOG-PL. Title/meta length targets adjust per language.
 
 ---
 
@@ -211,7 +211,7 @@ See `SKILL.md` → INTEGRATION WITH OTHER SKILLS for full compatibility guide.
 - **SKILL.md is self-sufficient** - contains all core rules for standalone use. `shared/` and `scenarios/` files add professional depth (scoring formulas, AI-marker lists, per-language readability, schema templates, content-type blueprints)
 - No API keys, no tools, no dependencies — pure prompt engineering
 - Works in any language; per-language parameters for 9 languages (EN, RU, UK, DE, FR, ES, PT, IT, PL)
-- **Optional:** Python 3.10+ + `textstat` for deterministic metric validation via `validator/`
+- **Optional:** Python 3.10+ + `readsight` for deterministic metric validation via `validator/`
 
 ---
 

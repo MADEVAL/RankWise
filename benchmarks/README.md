@@ -1,5 +1,5 @@
 # RankWise Benchmark Dataset
-> **Version:** 1.2.1
+> **Version:** 1.2.2
 
 Five reference texts with manually verified SEO properties. Used to validate scoring consistency across versions.
 
@@ -32,7 +32,7 @@ K3–K5, K8, K9, K11, K12, C3, C4, C7, C13, C14, L1–L9, T1, T2, T5–T8, A1–
 ## Limitations
 
 - **Exact keyword matching only** — does not handle stemming or plural forms (e.g., "strategies" ≠ "strategy")
-- **English-only readability formulas** — textstat's Flesch-Kincaid etc. are EN-specific
+- **Readability via ReadSightPy** — all 9 languages covered; UK and PL have no Flesch model so C8 uses LIX (UK) and FOG-PL (PL)
 - **Regex-based passive voice** — catches ~80% of cases, not 100%
 - **Simple sentence splitter** — may mis-split on abbreviations (Dr., U.S., etc.)
 - **No heading hierarchy analysis** — assumes flat body text input

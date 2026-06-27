@@ -1,5 +1,5 @@
 # SEO Checklist - 49 Ranking Factors
-> **Version:** 1.2.1
+> **Version:** 1.2.2
 
 > Complete scoring matrix with thresholds, severity levels, and fix instructions.
 > Used by RankWise in Generate, Rewrite, and Audit modes.

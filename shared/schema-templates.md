@@ -1,5 +1,5 @@
 # Schema Templates - JSON-LD Structured Data
-> **Version:** 1.2.1
+> **Version:** 1.2.2
 
 > Copy-paste-ready templates for every content type.
 > Add to `<head>` or inject via RankWise when generating.

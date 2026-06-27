@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.2.2] - 2026-06-27
+
+### Changed
+- **Validator readability engine: `textstat` → [ReadSightPy](https://github.com/MADEVAL/ReadSightPy)** (`readsight>=1.0.0`). Syllable counting now uses the Frank M. Liang (TeX) hyphenation algorithm; 17 formulas with published per-language coefficients.
+- **C8 readability is now computed deterministically for all 9 languages** (was EN-only via textstat). UK and PT are no longer `[N/A]` / delegated to the LLM — both are scored from real metrics.
+- Per-language C8 metric: EN → Flesch-Kincaid Grade · DE → Wiener Sachtextformel · ES → Fernández-Huerta · IT → Gulpease · FR/RU/PT → Flesch Reading Ease · UK → LIX · PL → FOG-PL.
+- PL readability moved off the old pyphen-based Flesch workaround onto the proper Polish **FOG-PL** formula.
+- Basic counts (words, sentences, characters) are now library-independent — derived from the validator's own per-language tokenizer and sentence splitter, consistent with keyword/passive/transition analysis.
+- `TEXTSTAT_LANG_MAP` renamed to `READSIGHT_LANG_MAP`; `READABILITY_LANGS` now covers all 9 languages.
+
+### Added
+- **LIX readability index** in validator output (`TextMetrics.lix`) — closes a previously missing readability signal.
+- ReadSightPy engine caching per language code for repeated analyses.
+
+### Fixed
+- Validator no longer depends on `textstat` (removed from `requirements.txt` and `pyproject.toml`). Readability for UK/PT/PL is no longer silently handed to the LLM.
+
 ## [1.2.1] - 2026-06-21
 
 ### Fixed

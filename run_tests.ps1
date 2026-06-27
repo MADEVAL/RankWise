@@ -8,9 +8,9 @@ Write-Host ""
 
 # Check dependencies
 Write-Host "[1/3] Checking dependencies..." -ForegroundColor Yellow
-python -c "import textstat; print(f'  textstat v{textstat.__version__} — OK')" 2>$null
+python -c "import readsight; print('  readsight — OK')" 2>$null
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "  ERROR: textstat not installed. Run: pip install -r requirements.txt" -ForegroundColor Red
+    Write-Host "  ERROR: readsight not installed. Run: pip install -r requirements.txt" -ForegroundColor Red
     exit 1
 }
 python -c "import pytest; print(f'  pytest v{pytest.__version__} — OK')" 2>$null
