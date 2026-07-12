@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.0] - 2026-07-12
+
+### Added
+- `scenarios/video-podcast.md` — YouTube / podcast description & metadata SEO (11th scenario)
+- `SKILL.md` architecture now includes `INTEGRATION-GUIDE.md` reference
+
+### Changed
+- Scenarios count: 10 → 11
+
 ## [1.2.2] - 2026-06-27
 
 ### Changed

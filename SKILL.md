@@ -8,7 +8,7 @@ metadata:
   factors: "49+"
   language: "en, ru, uk, de, fr, es, pt, it, pl"
   modes: "6"
-  scenarios: "10"
+  scenarios: "11"
   base_url: "https://raw.githubusercontent.com/MADEVAL/RankWise/main"
   pinned_urls: "v1.3.0"
 ---
@@ -884,7 +884,7 @@ rankwise/
 ├── README.md / README.ru.md        ← Documentation (bilingual)
 ├── CHANGELOG.md                    ← Version history
 ├── LICENSE                         ← MIT | Copyright Yevhen Leonidov
-├── IMPROVEMENT-PLAN.md             ← v1.3.0 improvement plan (this version)
+├── INTEGRATION-GUIDE.md            ← Integration spec for HumanAI & MindFluence
 ├── .gitignore
 ├── shared/
 │   ├── checklist.md                ← 49 SEO factors with thresholds, severity, fixes
