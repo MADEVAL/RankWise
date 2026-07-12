@@ -1,5 +1,5 @@
 # Readability Parameters - Per Language
-> **Version:** 1.2.2
+> **Version:** 1.3.0
 
 > Readability scoring, passive voice rules, sentence/paragraph length targets.
 

@@ -1,5 +1,5 @@
 # Scenario: Meta Optimize
-> **Version:** 1.2.2
+> **Version:** 1.3.0
 
 **Use when:** User asks for meta tags only - title, meta description, OG tags. Mode: META-ONLY.
 

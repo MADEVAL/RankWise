@@ -1,5 +1,5 @@
 # Schema Templates - JSON-LD Structured Data
-> **Version:** 1.2.2
+> **Version:** 1.3.0
 
 > Copy-paste-ready templates for every content type.
 > Add to `<head>` or inject via RankWise when generating.
@@ -280,6 +280,36 @@
   "priceRange": "{{PRICE_RANGE}}"
 }
 ```
+
+---
+
+## VideoObject
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "{{VIDEO_TITLE}}",
+  "description": "{{VIDEO_DESCRIPTION}}",
+  "thumbnailUrl": "{{THUMBNAIL_URL}}",
+  "uploadDate": "{{PUBLISH_DATE}}",
+  "duration": "{{DURATION_ISO8601}}",
+  "contentUrl": "{{VIDEO_URL}}",
+  "embedUrl": "{{EMBED_URL}}",
+  "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": { "@type": "WatchAction" },
+    "userInteractionCount": "{{VIEW_COUNT}}"
+  }
+}
+```
+
+**Rules for VideoObject:**
+- `duration` must be ISO 8601 format: "PT1H30M15S" for 1 hour 30 minutes 15 seconds
+- `uploadDate` must be ISO 8601 date: "2026-07-12"
+- `thumbnailUrl` must be an absolute URL to a high-resolution thumbnail
+- Optional: add `potentialAction` → `SeekToAction` array for YouTube-style chapter timestamps
+- Required for Google video rich results: name, description, thumbnailUrl, uploadDate
 
 ---
 

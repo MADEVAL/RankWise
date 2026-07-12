@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.0] - 2026-07-12
+
+### Added
+- `scenarios/video-podcast.md` — YouTube / podcast description & metadata SEO (11th scenario)
+- `SKILL.md` architecture now includes `INTEGRATION-GUIDE.md` reference
+
+### Changed
+- Scenarios count: 10 → 11
+
 ## [1.2.3] - 2026-07-12
 
 ### Added
@@ -16,15 +25,6 @@
 - **Keyword density:** added formula `(exact_matches / total_words) × 100`
 - **Anchor text:** added ratio targets (partial 30-40%, branded 20-25%, generic 20-25%, naked 5-10%, exact ≤2)
 - **Paragraph rules:** added "120 for non-English"
-
-## [1.3.0] - 2026-07-12
-
-### Added
-- `scenarios/video-podcast.md` — YouTube / podcast description & metadata SEO (11th scenario)
-- `SKILL.md` architecture now includes `INTEGRATION-GUIDE.md` reference
-
-### Changed
-- Scenarios count: 10 → 11
 
 ## [1.2.2] - 2026-06-27
 
@@ -65,10 +65,6 @@
 
 ### Added
 - `INTEGRATION-GUIDE.md` - integration specification for HumanAI and MindFluence maintainers: what rules to add, joint prompt recognition, density caps per tone, bias-SEO compatibility matrix, triple pipeline protocol
-
-
-
-### Added
 - `scenarios/home-page.md` - dedicated home page / brand page optimization with multi-keyword strategy
 - `scenarios/product-page.md` - product / e-commerce page optimization with feature-benefit mapping and e-commerce signals
 - Quick-fix coverage expanded to all 49 factors - each factor now has explicit fix instructions

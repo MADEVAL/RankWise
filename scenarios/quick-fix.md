@@ -1,5 +1,5 @@
 # Scenario: Quick Fix
-> **Version:** 1.2.2
+> **Version:** 1.3.0
 
 **Use when:** User asks to fix a specific SEO element without full article rewrite. Mode: auto-detect based on what user mentions.
 

@@ -1,5 +1,5 @@
 # Scenario: Video & Podcast SEO
-> **Version:** 1.2.2
+> **Version:** 1.3.0
 
 **Use when:** User asks to optimize YouTube video descriptions, podcast show notes, timestamps, or video metadata. Mode: GENERATE (video page) or META-ONLY (metadata).
 

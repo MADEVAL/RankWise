@@ -1,5 +1,5 @@
 # Power Words - Emotional Triggers for SEO Titles & Headings
-> **Version:** 1.2.2
+> **Version:** 1.3.0
 
 > Power words increase CTR, engagement, and emotional connection.
 > Use 2+ power words in every SEO title.

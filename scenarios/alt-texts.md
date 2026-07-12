@@ -1,5 +1,5 @@
 # Scenario: Alt Texts
-> **Version:** 1.2.2
+> **Version:** 1.3.0
 
 **Use when:** User asks for image alt texts. Provides images as array, inline markdown, HTML, or JSON. Mode: META-ONLY (media layer).
 

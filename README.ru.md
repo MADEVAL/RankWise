@@ -1,6 +1,6 @@
 # RankWise — Профессиональный SEO-движок
 
-[![Version](https://img.shields.io/badge/version-1.3-blue)]()
+[![Version](https://img.shields.io/badge/version-1.3.0-blue)]()
 
 \[ [English](README.md) | **Русский** \]
 

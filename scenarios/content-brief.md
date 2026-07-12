@@ -1,5 +1,5 @@
 # Scenario: Content Brief
-> **Version:** 1.2.2
+> **Version:** 1.3.0
 
 **Use when:** User asks for SEO content brief, plan, outline, or strategy. No full content required. Mode: BRIEF.
 
