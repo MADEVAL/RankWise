@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.4.0] - 2026-07-12
+
+### Changed
+- **SKILL.md rewritten for elegance and autonomy** — all core rules, English word lists, scoring formulas, and the full 49-factor scorecard are inline; no external fetches required for English operation
+- Removed HOW TO USE / Fetch Decision Tree section — replaced with a single clean statement: "All core rules are inline; load shared/ and scenarios/ files for deeper detail"
+- Removed RAW URL INDEX section (~40 lines of GitHub URLs) from the skill body — file references are now clean `load shared/...` instructions within procedures
+- Removed SCENARIO SUMMARIES quick-reference table — duplicative of the detailed mode procedures already present
+- Restored per-language narrative notes under LANGUAGE ADAPTATION (regressed in v1.3.0)
+- Unified load instructions: consistent `load shared/...` / `load scenarios/...` pattern instead of `fetch RAW_URL`
+- Composition rules table reformatted from numbered list to compact table (14 rules → one table)
+
+### Fixed
+- Architectural contradiction: SKILL.md no longer claims "single-file" while demanding external fetches — inline rules cover all 49 factors and English; external files are optional depth
+- Language nuance loss from v1.3.0: Russian Yandex penalty warning, Ukrainian conversational query note, German Nominalstil warning restored
+
+### Stats
+- SKILL.md: 923 lines → 798 lines (−14%) vs v1.3.0, +48% vs v1.2.2 (legacy)
+- v1.2.2 (legacy): 540 lines | v1.3.0 (main): 923 lines | v1.4.0: 798 lines
+
 ## [1.3.0] - 2026-07-12
 
 ### Added
