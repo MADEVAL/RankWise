@@ -1,31 +1,5 @@
 # Changelog
 
-## [1.3.0] - 2026-07-12
-
-### Added
-- `scenarios/video-podcast.md` — YouTube / podcast description & metadata SEO (11th scenario)
-- `SKILL.md` architecture now includes `INTEGRATION-GUIDE.md` reference
-
-### Changed
-- Scenarios count: 10 → 11
-
-## [1.2.3] - 2026-07-12
-
-### Added
-- **LANGUAGE RESOURCES** section — complete English word lists inline: power words (46), transition words (45), stop words (52), passive voice detection patterns, burned words × 8 categories. English operation requires zero external files.
-- **Scoring formula + grade thresholds** — `Score % = (Σ PASS) / (Σ ALL) × 100`, A/B/C/D/F table with CRITICAL constraints
-- **8-Factor Quick Scan** — pre-delivery checklist: K1, K2, K4, K7, K10, C1, C13, L1
-- **Offline mode scoring** — explicit 7-factor exclusion (K11, L5-L8, T6-T7), max denominator 42
-
-### Changed
-- **L5 (Outbound link quality):** "DA 40+ or recognized authority" → "Recognized authority (.edu, .gov, known brands)"
-- **A2 (E-E-A-T signals):** "Experience, Expertise, Authoritativeness, Trustworthiness" → "≥3 of 5 signals: author bio, publication date, citation, about page, contact/privacy"
-- **C14 (Content-to-ad ratio):** "Main content dominates above-fold" → "≤20% ad/nav in first 300 words"
-- **C10 (Transition words):** "≥30% of sentences contain transitions" → "≥30% of sentences (EN); ≥25% other languages"
-- **Keyword density:** added formula `(exact_matches / total_words) × 100`
-- **Anchor text:** added ratio targets (partial 30-40%, branded 20-25%, generic 20-25%, naked 5-10%, exact ≤2)
-- **Paragraph rules:** added "120 for non-English"
-
 ## [1.2.2] - 2026-06-27
 
 ### Changed
@@ -65,6 +39,10 @@
 
 ### Added
 - `INTEGRATION-GUIDE.md` - integration specification for HumanAI and MindFluence maintainers: what rules to add, joint prompt recognition, density caps per tone, bias-SEO compatibility matrix, triple pipeline protocol
+
+
+
+### Added
 - `scenarios/home-page.md` - dedicated home page / brand page optimization with multi-keyword strategy
 - `scenarios/product-page.md` - product / e-commerce page optimization with feature-benefit mapping and e-commerce signals
 - Quick-fix coverage expanded to all 49 factors - each factor now has explicit fix instructions

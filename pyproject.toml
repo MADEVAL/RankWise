@@ -1,7 +1,7 @@
 [project]
 name = "rankwise-validator"
 version = "1.3.0"
-description = "Deterministic SEO metric computation for RankWise — 16 of 49 factors"
+description = "Deterministic SEO metric computation + automated fix orchestration for RankWise — 16 of 49 factors"
 requires-python = ">=3.10"
 dependencies = [
     "readsight>=1.0.0",

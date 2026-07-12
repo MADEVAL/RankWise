@@ -79,8 +79,6 @@ rankwise/
 ├── README.md                       ← This documentation
 ├── CHANGELOG.md                    ← Version history
 ├── LICENSE                         ← MIT | Copyright Yevhen Leonidov
-├── INTEGRATION-GUIDE.md            ← Integration spec for HumanAI & MindFluence
-├── .gitignore
 ├── shared/
 │   ├── checklist.md                ← 49 SEO factors with thresholds, severity, fixes
 │   ├── keyword-rules.md            ← Density, placement, LSI, cannibalization rules
@@ -137,7 +135,7 @@ python -m validator.cli --file article.txt --keyword "seo strategy" --title "SEO
 python -m validator.cli --file article.txt --keyword "seo" --title "Title" --checklist --json
 ```
 
-**What it computes:** keyword presence (K1), keyword placement in title/first-150/body (K2, K6, K7), keyword density (K10), word count (C1), paragraph metrics (C2), number in title (C5), power words (C6), readability — Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau, LIX, aggregate grade (C8), passive voice ratio per language (C9), transition word ratio per language (C10), sentence length variety (C11), consecutive sentence starts (C12), title/meta length with per-language ranges (T3, T4).
+**What it computes:** word count (C1), paragraph metrics (C2), readability — Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau for EN only (C8), passive voice ratio per language (C9), transition word ratio per language (C10), sentence length variety (C11), consecutive sentence starts (C12), keyword density (K10), keyword placement (K2, K6, K7), title/meta length with per-language ranges (T3, T4), power words in all 9 languages (C6).
 
 **Multi-language support:** `--lang en|ru|uk|de|fr|es|pt|it|pl`. Passive voice, transition words, and power words use language-specific patterns for all 9 languages. Readability (C8) is computed deterministically via [ReadSightPy](https://github.com/MADEVAL/ReadSightPy) (TeX/Liang syllable counting) for all 9 languages — EN uses Flesch-Kincaid Grade, DE Wiener Sachtextformel, ES Fernández-Huerta, IT Gulpease, FR/RU/PT Flesch Reading Ease, UK LIX, PL FOG-PL. Title/meta length targets adjust per language.
 

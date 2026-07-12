@@ -62,45 +62,45 @@ Where PASS_WEIGHTS sum the multipliers (CRITICAL=×3, HIGH=×2, MEDIUM=×1, LOW=
 | K8 | Keyword in subheading | Match in any H2 or H3 |
 | K9 | Keyword as alt text | Match in any image alt attribute |
 | K10 | Keyword density | Count occurrences / total words × 100. 0.8%–1.5% = pass |
-| K11 | Cannibalization check | **[POST-PUBLISH]** If web access: search site for keyword. If no access: ⊘ "Verify post-publish: site:domain.com keyword" |
+| K11 | Cannibalization check | If site access: search site for keyword. If no access: flag ⚠️ "Verify manually: site:domain.com keyword" |
 | K12 | Keyword length | 3+ chars AND ≤7 words |
 | C1 | Word count | Total words ≥600 |
 | C2 | Short paragraphs | Avg paragraph ≤150 words AND ≤3 sentences |
 | C3 | Images/videos | Count. ≥1 per 300 words. If no images present, mark ⊘ N/A and note recommendation. |
 | C4 | Table of Contents | Present (for articles >800 words). For product/landing pages <800 words: ⊘ N/A. |
 | C5 | Number in title | Regex digit found in title |
-| C6 | Power words in title | ≥2 power words found |
+| C6 | Power words in title | ≥2 from `shared/power-words.md` found |
 | C7 | Sentiment | Title has positive or negative polarity (not neutral) |
-| C8 | Readability | Approximate: avg sentence length 12–20 words = Grade 7–9. Exact measurement via Python validator. |
-| C9 | Passive voice | Prefer active voice. Passive OK when actor unknown. Exact ratio via Python validator. |
-| C10 | Transition words | Check presence at logical turning points. Exact ratio via Python validator. |
-| C11 | Sentence variety | Check 3-consecutive rule violation (Python validator) |
-| C12 | Sentence starts | Check 3-consecutive same first word (Python validator) |
+| C8 | Readability | Approximate: avg sentence length 12–20 words = Grade 7–9. >22 words avg = Grade 12+. See `shared/readability-params.md`. |
+| C9 | Passive voice | Count passive / total sentences × 100 ≤10% |
+| C10 | Transition words | Count sentences with transitions / total × 100. EN: ≥30%, non-EN: ≥25% (see `shared/readability-params.md`) |
+| C11 | Sentence variety | Check 3-consecutive rule violation |
+| C12 | Sentence starts | Check 3-consecutive same first word |
 | C13 | Heading hierarchy | H1→H2→H3 proper, no skips |
-| C14 | Content-to-ad ratio | Proxy: first ~300 words - count ad/nav vs. main content. >20% ad/nav = ❌ Fail. Text-only view unavailable → ⚠️ "Verify on rendered page." |
+| C14 | Content-to-ad ratio | Proxy: first ~300 words of content - count sentences that are ads, nav, sidebar, or boilerplate vs. main content. >20% ad/nav = ❌ Fail. Text-only view unavailable → ⚠️ "Verify on rendered page." |
 | L1 | Internal links | Count ≥3 |
 | L2 | External links | Count ≥2 |
 | L3 | DoFollow external | Count DoFollow ≥1 |
 | L4 | Anchor variety | Count exact-match anchors ≤2 |
-| L5 | Outbound quality | **[POST-PUBLISH]** Verify: domain for .edu, .gov, Wikipedia, HBR, major publications. Unknown → ⚠️ "Verify post-publish." |
-| L6 | Broken links | **[POST-PUBLISH]** Verify with HTTP check. Offline: ⊘ "Verify links post-publish." |
-| L7 | Internal relevance | **[POST-PUBLISH]** Cross-page analysis: linked page title/H1 shares topic with linking paragraph. Offline: ⊘. |
-| L8 | Orphan check | **[POST-PUBLISH]** Verify with site crawl. Offline: ⊘. |
+| L5 | Outbound quality | Proxy: check domain for .edu, .gov, Wikipedia, HBR, major publications, or known trusted brands. If domain is unknown → ⚠️ Warning (not ❌ Fail) unless obviously spam/low-quality. No arbitrary DA threshold required. |
+| L6 | Broken links | If web access: verify. If no access: flag ⚠️ "Verify links manually." |
+| L7 | Internal relevance | Proxy: linked page title/H1 shares topic words with linking paragraph. If no access to linked pages: ⚠️ Warning. |
+| L8 | Orphan check | If site access: check incoming links. If no access: mark ⊘ N/A |
 | L9 | Link title attributes | Check for `title=""` attribute on ≥2 in-body links |
 | T1 | URL length | Characters ≤75 |
 | T2 | URL structure | Hyphens, keyword present, no stop words |
-| T3 | Title length | Characters within per-language range. Exact measurement via Python validator. |
-| T4 | Description length | Characters within per-language range. Exact measurement via Python validator. |
+| T3 | Title length | Characters within per-language range (see `shared/readability-params.md` Meta Length table). Default EN: 50–60. |
+| T4 | Description length | Characters within per-language range. Default EN: 145–158. |
 | T5 | Image file names | Descriptive, hyphenated (if visible in content) |
-| T6 | Schema markup | **[POST-PUBLISH]** Verify schema on live page with Rich Results Test. Offline: ⊘. |
-| T7 | Canonical URL | **[POST-PUBLISH]** Verify in page source. Offline: ⊘. |
-| T8 | OG / Twitter Card tags | OG title+description present, and/or twitter:card present. |
+| T6 | Schema markup | Appropriate schema present (if visible in source). If no source access: flag ⚠️ "Verify schema with search engine rich results testing tools" |
+| T7 | Canonical URL | Set (if visible in source). If no source access: ⊘ N/A |
+| T8 | OG / Twitter Card tags | OG title + description present, and/or twitter:card present. Pass if either OG tags (title+desc) OR twitter:card meta tags are present. |
 | A1 | Featured snippet | 40–60 word concise answer paragraph present |
-| A2 | E-E-A-T signals | ≥3 of 5 present: (1) author name + bio, (2) publication date, (3) ≥1 external citation, (4) about page reference, (5) contact/privacy link. 3+ = ✅, 2 = ⚠️, 0–1 = ❌. **[POST-PUBLISH]** verify author pages and citations on live site. |
-| A3 | LSI keywords | 5–15 related terms present. Use topic vocabulary diversity as proxy. If web access: cross-reference "Searches related to". |
+| A2 | E-E-A-T signals | ≥3 of 5 present: (1) author name + bio with credentials, (2) publication/modified date visible, (3) at least 1 credible external citation/source, (4) about/site-info page reference, (5) contact info or privacy policy link. 3+ = ✅ Pass, 2 = ⚠️ Warning, 0–1 = ❌ Fail. |
+| A3 | LSI keywords | 5–15 related terms present. If web access: cross-reference "Searches related to". If no access: check for natural topic vocabulary diversity. |
 | A4 | Freshness | Date visible |
 | A5 | Mobile readability | Proxy: all paragraphs ≤150 words AND headings spaced every 200–350 words |
-| A6 | Breadcrumb | Breadcrumb markup or visible breadcrumb navigation |
+| A6 | Breadcrumb | Breadcrumb markup or visible breadcrumb navigation (if visible)
 
 ---
 
@@ -137,16 +137,6 @@ Group all ❌ and ⚠️ by severity:
 - L8, L9 - link polish
 - T5, T7, T8 - minor technical
 - A4, A6 - minor signals
-
-### POST-PUBLISH - Verify After Publishing (7 factors)
-These factors require live website access and cannot be verified during content generation. Mark as ⊘ [POST-PUBLISH] in pre-publish audits and exclude from denominator. Verify after the page goes live:
-- K11 - keyword cannibalization (site: search)
-- L5 - outbound link quality (domain reputation)
-- L6 - broken links (HTTP status check)
-- L7 - internal link relevance (cross-page analysis)
-- L8 - orphan prevention (site crawl)
-- T6 - schema markup (Rich Results Test)
-- T7 - canonical URL (source verification)
 
 ---
 

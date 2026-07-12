@@ -20,7 +20,7 @@
 | K8 | Keyword in subheadings | At least 1 H2 or H3 | HIGH | Find the most relevant H2 - add keyword if it fits the section topic. |
 | K9 | Keyword as image alt text | At least 1 image | MEDIUM | Choose the most relevant image - add keyword to its alt text naturally. |
 | K10 | Keyword density | 0.8%–1.5%, not 0%, not >3% | HIGH | Below 0.8%: add keyword instances. Above 3%: replace some with synonyms/pronouns. |
-| K11 | Keyword cannibalization [POST-PUBLISH] | No other page targets same primary keyword | HIGH | **[POST-PUBLISH]** Check `site:yoursite.com "keyword"` on live site. If multiple pages: merge, differentiate, or canonicalize. Not verifiable during content creation. |
+| K11 | Keyword cannibalization | No other page targets same primary keyword | HIGH | Check `site:yoursite.com "keyword"`. If multiple pages: merge, differentiate, or canonicalize. See `shared/keyword-rules.md` Cannibalization section. |
 | K12 | Keyword length | 3+ characters, ≤7 words | MEDIUM | Too short (<3 chars): too generic. Too long (>7 words): unnatural. Pick a 2–5 word keyword phrase. |
 
 ---
@@ -54,10 +54,10 @@
 | L2 | External links | 2–5 links to authoritative sources | HIGH | Link to sources: studies, data, tools, recognized publications. Cite specific pages. |
 | L3 | DoFollow external links | At least 1 of external links | MEDIUM | Ensure at least one external link has no `rel="nofollow"`. |
 | L4 | Link anchor text variety | ≤2 exact-match anchors | MEDIUM | Vary anchor text. Mix: branded, partial match, generic ("read more"), naked URL. |
-| L5 | Outbound link quality [POST-PUBLISH] | Recognized authority: .edu, .gov, Wikipedia, HBR, major industry publications, or known trusted brands. If domain is unknown → score ⚠️ Warning (not ❌ Fail) unless it's a known spam/low-quality domain. Do not use arbitrary DA scores - verify by domain reputation instead. | MEDIUM | Check domain for .edu/.gov or known authority brands. If unknown → ⚠️ flag for manual verification. |
-| L6 | No broken links [POST-PUBLISH] | 0 broken outbound or internal links | HIGH | **[POST-PUBLISH]** Check all links with HTTP status verification. Remove or replace broken ones. |
-| L7 | Internal link relevance [POST-PUBLISH] | Linked pages are topically related | MEDIUM | **[POST-PUBLISH]** Verify linked page title/H1 shares topic words with linking paragraph. Cross-page analysis required. |
-| L8 | Orphan prevention [POST-PUBLISH] | Page has ≥1 incoming internal link | LOW | **[POST-PUBLISH]** Verify with full-site crawl. Add a link from at least one other page on the site to this page. |
+| L5 | Outbound link quality | Recognized authority: .edu, .gov, Wikipedia, HBR, major industry publications, or known trusted brands. If domain is unknown → score ⚠️ Warning (not ❌ Fail) unless it's a known spam/low-quality domain. Do not use arbitrary DA scores - verify by domain reputation instead. | MEDIUM | Check domain for .edu/.gov or known authority brands. If unknown → ⚠️ flag for manual verification. |
+| L6 | No broken links | 0 broken outbound or internal links | HIGH | Check all links. Remove or replace broken ones. |
+| L7 | Internal link relevance | Linked pages are topically related | MEDIUM | Ensure internal links point to context-relevant content. Heuristic: linked page title/H1 shares topic words with linking paragraph. |
+| L8 | Orphan prevention | Page has ≥1 incoming internal link | LOW | Add a link from at least one other page on the site to this page. |
 | L9 | Link title attributes | `title=""` attribute present on key in-body links | LOW | Add descriptive `title` attribute to internal and key external links. Screen readers + SEO bonus. |
 
 ---
@@ -71,8 +71,8 @@
 | T3 | SEO title length | Per-language limits - see `shared/readability-params.md` Meta Length table | HIGH | Trim or expand title to fit. Cut filler words. Add brand at end if space. |
 | T4 | Meta description length | Per-language limits - see `shared/readability-params.md` Meta Length table | HIGH | Trim to fit. Remove fluff. Ensure keyword + value proposition fit the window. |
 | T5 | Image file names | Descriptive, keyword-rich, hyphens | LOW | Rename: "IMG_4521.jpg" → "seo-checklist-ranking-factors.jpg". |
-| T6 | Schema markup [POST-PUBLISH] | Appropriate type present | MEDIUM | **[POST-PUBLISH]** Verify on live page with Rich Results Test. Add JSON-LD schema. See `shared/schema-templates.md` for templates. |
-| T7 | Canonical URL [POST-PUBLISH] | Correct canonical set | MEDIUM | **[POST-PUBLISH]** Verify in page source. Set canonical to preferred URL version. Resolve www/non-www, http/https, trailing slash. |
+| T6 | Schema markup | Appropriate type present | MEDIUM | Add JSON-LD schema. See `shared/schema-templates.md` for templates. Validate with search engine rich results testing tools if web access available. |
+| T7 | Canonical URL | Correct canonical set | MEDIUM | Set canonical to preferred URL version. Resolve www/non-www, http/https, trailing slash. |
 | T8 | OG / Twitter Card tags | Open Graph and/or Twitter Card meta tags present | LOW | Add `og:title`, `og:description`, `og:image`, and `twitter:card` meta tags. See `scenarios/meta-optimize.md` Step 3. |
 
 ---
@@ -102,11 +102,10 @@ Each factor receives one of:
 Not all factors carry equal weight. Score is calculated with multipliers:
 
 - **CRITICAL** = ×3 | **HIGH** = ×2 | **MEDIUM** = ×1 | **LOW** = ×0.5
-- **✅ Pass** = full multiplier weight | **⚠️ Warning** = **50%** of multiplier weight | **❌ Fail** = 0 weight
 
-**Formula:** `Score % = (Σ(PASS_WEIGHTS) + Σ(WARNING_WEIGHTS × 0.5)) / Σ(ALL_NON_NA_WEIGHTS) × 100`
+**Formula:** `Score % = (Σ(PASS_WEIGHTS) / Σ(ALL_WEIGHTS)) × 100`
 
-Where PASS_WEIGHTS sums the multipliers of all ✅ factors, WARNING_WEIGHTS sums multipliers of all ⚠️ factors (each at 50%), and ALL_NON_NA_WEIGHTS sums multipliers of all applicable (non-N/A) factors.
+Where PASS_WEIGHTS sums the multipliers of all ✅ factors, and ALL_WEIGHTS sums multipliers of all applicable (non-N/A) factors.
 
 **N/A handling:** ⊘ factors are excluded from both numerator and denominator. They do not penalize the score. Example: a product page with no images → K9, C3 are N/A → excluded. A blog post with images → K9, C3 are scored.
 
@@ -191,21 +190,17 @@ Google's Helpful Content Update (HCU) rewards **people-first** content — origi
 
 ## OFFLINE MODE — WEB-ACCESS FACTORS
 
-The following 7 factors require live website access. During content creation and pre-publish audit, they should be marked as **⊘ [POST-PUBLISH]** and excluded from the denominator.
-
-When operating **without web access**, mark them as `⊘ [NO_WEB]`:
+When operating **without web access** (no fetch/crawl capability), the following factors cannot be reliably scored. Instead of penalizing with ⚠️ marks, mark them as `⊘ [NO_WEB]` and **exclude from denominator**:
 
 | Factor | Offline handling |
 |--------|-----------------|
-| K11 | ⊘ [POST-PUBLISH/NO_WEB] — Cannibalization check requires `site:` search |
-| L5 | ⊘ [POST-PUBLISH/NO_WEB] — Outbound link quality requires domain lookup |
-| L6 | ⊘ [POST-PUBLISH/NO_WEB] — Broken link check requires HTTP verification |
-| L7 | ⊘ [POST-PUBLISH/NO_WEB] — Internal link relevance requires cross-page analysis |
-| L8 | ⊘ [POST-PUBLISH/NO_WEB] — Orphan check requires full-site crawl |
-| T6 | ⊘ [POST-PUBLISH/NO_WEB] — Schema validation requires source access |
-| T7 | ⊘ [POST-PUBLISH/NO_WEB] — Canonical URL check requires source access |
+| K11 | ⊘ [NO_WEB] — Cannibalization check requires `site:` search |
+| L5 | ⊘ [NO_WEB] — Outbound link quality requires domain lookup |
+| L6 | ⊘ [NO_WEB] — Broken link check requires HTTP verification |
+| L7 | ⊘ [NO_WEB] — Internal link relevance requires cross-page analysis |
+| L8 | ⊘ [NO_WEB] — Orphan check requires full-site crawl |
+| T6 | ⊘ [NO_WEB] — Schema validation requires source access |
+| T7 | ⊘ [NO_WEB] — Canonical URL check requires source access |
 | A3 | Scored offline — Use topic vocabulary diversity as proxy for LSI |
 
-> **Note on POST-PUBLISH vs NO_WEB:** `⊘ [POST-PUBLISH]` means "verify after publishing on live site." `⊘ [NO_WEB]` means "web access is completely unavailable." Both have identical effect on scoring — excluded from denominator. Use `[POST-PUBLISH]` during content generation; use `[NO_WEB]` when no web tools are available at all.
-
-**With web access:** score all factors normally. **Without:** exclude these 7 from denominator (denominator becomes 42 max, not 49).
+**With web access:** score all factors normally. **Without web access:** exclude these 7 from denominator (denominator becomes 42 max, not 49). Mark clearly in report: `⊘ K11 [NO_WEB]: Requires site search — skipped.`
