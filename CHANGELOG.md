@@ -1,23 +1,21 @@
 # Changelog
 
-## [1.4.0] - 2026-07-12
+## [1.2.3] - 2026-07-12
+
+### Added
+- **LANGUAGE RESOURCES** section — complete English word lists inline: power words (46), transition words (45), stop words (52), passive voice detection patterns, burned words × 8 categories. English operation requires zero external files.
+- **Scoring formula + grade thresholds** — `Score % = (Σ PASS) / (Σ ALL) × 100`, A/B/C/D/F table with CRITICAL constraints
+- **8-Factor Quick Scan** — pre-delivery checklist: K1, K2, K4, K7, K10, C1, C13, L1
+- **Offline mode scoring** — explicit 7-factor exclusion (K11, L5-L8, T6-T7), max denominator 42
 
 ### Changed
-- **SKILL.md rewritten for elegance and autonomy** — all core rules, English word lists, scoring formulas, and the full 49-factor scorecard are inline; no external fetches required for English operation
-- Removed HOW TO USE / Fetch Decision Tree section — replaced with a single clean statement: "All core rules are inline; load shared/ and scenarios/ files for deeper detail"
-- Removed RAW URL INDEX section (~40 lines of GitHub URLs) from the skill body — file references are now clean `load shared/...` instructions within procedures
-- Removed SCENARIO SUMMARIES quick-reference table — duplicative of the detailed mode procedures already present
-- Restored per-language narrative notes under LANGUAGE ADAPTATION (regressed in v1.3.0)
-- Unified load instructions: consistent `load shared/...` / `load scenarios/...` pattern instead of `fetch RAW_URL`
-- Composition rules table reformatted from numbered list to compact table (14 rules → one table)
-
-### Fixed
-- Architectural contradiction: SKILL.md no longer claims "single-file" while demanding external fetches — inline rules cover all 49 factors and English; external files are optional depth
-- Language nuance loss from v1.3.0: Russian Yandex penalty warning, Ukrainian conversational query note, German Nominalstil warning restored
-
-### Stats
-- SKILL.md: 923 lines → 798 lines (−14%) vs v1.3.0, +48% vs v1.2.2 (legacy)
-- v1.2.2 (legacy): 540 lines | v1.3.0 (main): 923 lines | v1.4.0: 798 lines
+- **L5 (Outbound link quality):** "DA 40+ or recognized authority" → "Recognized authority (.edu, .gov, known brands)"
+- **A2 (E-E-A-T signals):** "Experience, Expertise, Authoritativeness, Trustworthiness" → "≥3 of 5 signals: author bio, publication date, citation, about page, contact/privacy"
+- **C14 (Content-to-ad ratio):** "Main content dominates above-fold" → "≤20% ad/nav in first 300 words"
+- **C10 (Transition words):** "≥30% of sentences contain transitions" → "≥30% of sentences (EN); ≥25% other languages"
+- **Keyword density:** added formula `(exact_matches / total_words) × 100`
+- **Anchor text:** added ratio targets (partial 30-40%, branded 20-25%, generic 20-25%, naked 5-10%, exact ≤2)
+- **Paragraph rules:** added "120 for non-English"
 
 ## [1.3.0] - 2026-07-12
 
