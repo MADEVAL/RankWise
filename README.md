@@ -1,6 +1,6 @@
 # RankWise - Professional SEO Content Engine
 
-[![Version](https://img.shields.io/badge/version-1.3.0-blue)]()
+[![Version](https://img.shields.io/badge/version-1.4.0-blue)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Compatibility](https://img.shields.io/badge/compatibility-plain%20markdown-purple)]()
 [![skills.sh](https://img.shields.io/badge/skills.sh-listed-2ea44f)](https://www.skills.sh/madeval/rankwise)
@@ -75,65 +75,39 @@ Every piece of content is scored against 49 factors across 5 categories with wei
 ## Architecture
 
 ```
-rankwise/
-├── SKILL.md                        ← Main orchestrator (6 modes, 49 factors)
-├── README.md                       ← This documentation
-├── CHANGELOG.md                    ← Version history
-├── LICENSE                         ← MIT | Copyright Yevhen Leonidov
-├── shared/
-│   ├── checklist.md                ← 49 SEO factors with thresholds, severity, fixes
-│   ├── keyword-rules.md            ← Density, placement, LSI, cannibalization rules
-│   ├── power-words.md              ← Power words × languages for sentiment & CTR
-│   ├── schema-templates.md         ← JSON-LD structured data templates
-│   ├── readability-params.md       ← Readability targets per language
-│   ├── burned-words.md             ← AI detection patterns × 9 languages
-│   └── link-strategy.md            ← Internal/external linking rules
-  ├── scenarios/
-│   ├── article-generate.md         ← Full article generation from topic + keywords
-│   ├── article-rewrite.md          ← Rewrite pipeline (URL or pasted text)
-│   ├── meta-optimize.md            ← Meta titles, descriptions, OG tags
-│   ├── alt-texts.md                ← Image alt text optimization (array/inline)
-│   ├── audit-report.md             ← Full SEO audit with scoring
-│   ├── content-brief.md            ← Content brief / plan generation
-│   ├── url-optimize.md             ← URL slug optimization
-│   ├── quick-fix.md                ← Single-factor quick fixes (all 49)
-│   ├── home-page.md                ← Home page / brand page optimization
-│   ├── product-page.md             ← Product / e-commerce page optimization
-│   └── video-podcast.md            ← YouTube / podcast description & metadata SEO
-├── examples/
-│   ├── before-after-article.md     ← Full article rewrite example
-│   ├── meta-examples.md            ← Meta tag before/after examples
-│   ├── audit-example.md            ← Complete audit report example
-│   └── integration-pipeline.md     ← End-to-end triple integration example
-├── validator/
-│   ├── metrics.py                  ← Python: readability, density, passive voice, etc.
-│   └── cli.py                      ← CLI entry point
-└── benchmarks/
-    ├── README.md                    ← Benchmark dataset documentation
-    ├── 01-well-optimized.txt        ← Reference: Grade A article
-    ├── 02-keyword-stuffed.txt       ← Reference: keyword stuffing
-    ├── 03-too-short.txt             ← Reference: too short, no structure
-    ├── 04-no-meta.txt               ← Reference: article body only
-    └── 05-product-page.txt          ← Reference: e-commerce product page
+RankWise/
+├── skills/rankwise/                ← runtime skill package
+│   ├── SKILL.md                    ← Main orchestrator (6 modes, 49 factors)
+│   ├── shared/                     ← Checklist, keyword rules, power words, schema
+│   ├── scenarios/                  ← 11 procedural playbooks
+│   ├── examples/                   ← Annotated examples
+│   ├── validator/                  ← Python metrics + fix orchestrator
+│   └── agents/openai.yaml          ← OpenAI agent manifest
+├── tests/                          ← Validator unit tests (dev)
+├── benchmarks/                     ← 5 reference texts (dev)
+├── install.py                      ← Installer for Claude, OpenCode, Cursor, .agents
+├── README.md
+├── CHANGELOG.md
+└── LICENSE
 ```
 
 ---
 
 ## Validator (Python)
 
-The `validator/` directory contains a Python tool that computes measurable SEO metrics from text - complementing the LLM-based scoring with deterministic calculations:
+The `skills/rankwise/validator/` directory contains a Python tool that computes measurable SEO metrics from text - complementing the LLM-based scoring with deterministic calculations:
 
 ```bash
-pip install readsight
+pip install -e .
 
 # Full report
-python -m validator.cli --text "Your content..." --keyword "seo" --title "My Title" --meta "Description"
+rankwise-validator --text "Your content..." --keyword "seo" --title "My Title" --meta "Description"
 
 # Read from file
-python -m validator.cli --file article.txt --keyword "seo strategy" --title "SEO Guide"
+rankwise-validator --file article.txt --keyword "seo strategy" --title "SEO Guide"
 
 # Checklist scores only (machine-readable JSON)
-python -m validator.cli --file article.txt --keyword "seo" --title "Title" --checklist --json
+rankwise-validator --file article.txt --keyword "seo" --title "Title" --checklist --json
 ```
 
 **What it computes:** word count (C1), paragraph metrics (C2), readability - Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau for EN only (C8), passive voice ratio per language (C9), transition word ratio per language (C10), sentence length variety (C11), consecutive sentence starts (C12), keyword density (K10), keyword placement (K2, K6, K7), title/meta length with per-language ranges (T3, T4), power words in all 9 languages (C6).
@@ -156,7 +130,7 @@ python -m validator.cli --file article.txt --keyword "seo" --title "Title" --che
 
 ```bash
 # Run a single benchmark (omit --title/--meta if not applicable)
-python -m validator.cli --file benchmarks/01-well-optimized.txt --keyword "content marketing strategy" --title "7 Proven Content Marketing Strategies That Actually Work in 2026" --meta "Content marketing strategy guide: 7 proven tactics." --checklist
+rankwise-validator --file benchmarks/01-well-optimized.txt --keyword "content marketing strategy" --title "7 Proven Content Marketing Strategies That Actually Work in 2026" --meta "Content marketing strategy guide: 7 proven tactics." --checklist
 ```
 
 > **Coverage:** The validator computes 16 of 49 factors (K1-K2, K6-K7, K10, C1-C2, C5-C6, C8-C12, T3-T4). Remaining 33 factors require LLM judgment or web access. See `benchmarks/README.md` for details.
@@ -205,7 +179,7 @@ RankWise is designed to work with, not against, these skills:
 - **[MindFluence](https://github.com/MADEVAL/MindFluence)** - Cognitive Bias Marketing Engine. RankWise provides SEO structure → MindFluence applies cognitive bias persuasion. Monitor for keyword over-stuffing in `bold-sell` tone.
 - **Triple pipeline:** RankWise (structure) → MindFluence (persuasion) → human-ai (voice) → RankWise Audit (final check).
 
-See `SKILL.md` → INTEGRATION WITH OTHER SKILLS for full compatibility guide.
+See `SKILL.md` → Integration with Other Skills for the full compatibility guide.
 
 ---
 
@@ -213,14 +187,23 @@ See `SKILL.md` → INTEGRATION WITH OTHER SKILLS for full compatibility guide.
 
 - Any capable LLM with a system prompt / custom instructions field
 - For full skill functionality: a skill system that loads files from a folder (OpenCode, Claude Code)
-- **SKILL.md is self-sufficient** - contains all core rules for standalone use. `shared/` and `scenarios/` files add professional depth (scoring formulas, AI-marker lists, per-language readability, schema templates, content-type blueprints)
+- **SKILL.md is self-sufficient** - contains all core rules for standalone use. `skills/rankwise/shared/` and `skills/rankwise/scenarios/` add professional depth (scoring formulas, AI-marker lists, per-language readability, schema templates, content-type blueprints)
 - No API keys, no tools, no dependencies - pure prompt engineering
 - Works in any language; per-language parameters for 9 languages (EN, RU, UK, DE, FR, ES, PT, IT, PL)
-- **Optional:** Python 3.10+ + `readsight` for deterministic metric validation via `validator/`
+- **Optional:** Python 3.10+ + `readsight` for deterministic metric validation via `skills/rankwise/validator/`
 
 ---
 
 ## Installation
+
+The installer copies `skills/rankwise/` into the selected agent directory:
+
+```bash
+python install.py --target all
+python install.py --list
+python install.py --check
+python install.py --target project --dry-run
+```
 
 ### OpenCode
 ```
@@ -234,10 +217,22 @@ rankwise/ → ~/.claude/skills/
 ```
 
 ### Any LLM (standalone)
-Copy contents of `SKILL.md` as system prompt. Add `shared/` and `scenarios/` files for richer detail.
+Copy contents of `skills/rankwise/SKILL.md` as a system prompt. Add `shared/` and `scenarios/` files for richer detail.
 
 ---
 
 ## License
 
 MIT | Copyright Yevhen Leonidov
+
+---
+
+## GitHub Description
+
+```
+SEO Content Engine for LLMs - a prompt-engineering system that turns any capable AI into a world-class SEO strategist: generate, rewrite, and audit content against 49 ranking factors with multilingual support. Skills.sh: https://www.skills.sh/madeval/rankwise
+```
+
+## GitHub Tags
+
+`ai` `ai-agents` `content` `content-marketing` `content-strategy` `content-strategy-optimization` `llm` `llm-agent` `multilingual` `prompt-engineering` `seo` `seo-audit` `seo-optimization` `seo-tools`

@@ -90,64 +90,38 @@ RankWise - это **контентный SEO-движок**: оптимизир�
 ## Архитектура
 
 ```
-rankwise/
-├── SKILL.md                        ← Оркестратор (6 режимов, 49 факторов)
+RankWise/
+├── skills/rankwise/                ← рабочий пакет скилла
+│   ├── SKILL.md                    ← Оркестратор (6 режимов, 49 факторов)
+│   ├── shared/                     ← Чек-лист, правила ключей, power words, schema
+│   ├── scenarios/                  ← 11 процедурных плейбуков
+│   ├── examples/                   ← Разобранные примеры
+│   ├── validator/                  ← Python-метрики и fix-orchestrator
+│   └── agents/openai.yaml          ← Манифест OpenAI-агента
+├── tests/                          ← Юнит-тесты валидатора (dev)
+├── benchmarks/                     ← 5 эталонных текстов (dev)
+├── install.py                      ← Установщик для Claude, OpenCode, Cursor, .agents
 ├── README.md / README.ru.md        ← Документация (билингвальная)
 ├── CHANGELOG.md / LICENSE
-├── shared/
-│   ├── checklist.md                ← 49 SEO-факторов с порогами, severity, исправлениями
-│   ├── keyword-rules.md            ← Плотность, размещение, LSI, каннибализация
-│   ├── power-words.md              ← Power words × языки для CTR
-│   ├── schema-templates.md         ← JSON-LD шаблоны структурированных данных
-│   ├── readability-params.md       ← Параметры читаемости по языкам
-│   ├── burned-words.md             ← AI-маркеры × 9 языков
-│   └── link-strategy.md            ← Стратегия внутренних и внешних ссылок
-├── scenarios/
-│   ├── article-generate.md         ← Генерация статьи с нуля
-│   ├── article-rewrite.md          ← Рерайт (URL или текст)
-│   ├── meta-optimize.md            ← Мета-теги, описания, OG
-│   ├── alt-texts.md                ← Alt-тексты изображений
-│   ├── audit-report.md             ← Полный SEO-аудит со скорингом
-│   ├── content-brief.md            ← Контент-бриф / план
-│   ├── url-optimize.md             ← Оптимизация URL-slug
-│   ├── quick-fix.md                ← Точечные правки (все 49 факторов)
-│   ├── home-page.md                ← Оптимизация главных страниц
-│   ├── product-page.md             ← Оптимизация товарных страниц
-│   └── video-podcast.md            ← SEO для YouTube / подкастов
-├── examples/
-│   ├── before-after-article.md     ← Пример полного рерайта статьи
-│   ├── meta-examples.md            ← Примеры мета-тегов до/после
-│   ├── audit-example.md            ← Пример полного аудит-отчёта
-│   └── integration-pipeline.md     ← Сквозной пример интеграции
-├── validator/
-│   ├── metrics.py                  ← Python: читаемость, плотность, пассивный залог
-│   └── cli.py                      ← CLI-интерфейс
-└── benchmarks/
-    ├── README.md                    ← Документация бенчмарков
-    ├── 01-well-optimized.txt        ← Эталон: Grade A
-    ├── 02-keyword-stuffed.txt       ← Эталон: переспам ключей
-    ├── 03-too-short.txt             ← Эталон: слишком короткий
-    ├── 04-no-meta.txt               ← Эталон: только тело статьи
-    └── 05-product-page.txt          ← Эталон: товарная страница
 ```
 
 ---
 
 ## Валидатор (Python)
 
-`validator/` - Python-инструмент для детерминированного вычисления SEO-метрик из текста. Дополняет LLM-скоринг точными расчётами:
+`skills/rankwise/validator/` - Python-инструмент для детерминированного вычисления SEO-метрик из текста. Дополняет LLM-скоринг точными расчётами:
 
 ```bash
-pip install readsight
+pip install -e .
 
 # Полный отчёт
-python -m validator.cli --text "Ваш текст..." --keyword "seo" --title "Заголовок" --meta "Описание"
+rankwise-validator --text "Ваш текст..." --keyword "seo" --title "Заголовок" --meta "Описание"
 
 # Из файла
-python -m validator.cli --file статья.txt --keyword "seo стратегия" --title "Гайд по SEO"
+rankwise-validator --file статья.txt --keyword "seo стратегия" --title "Гайд по SEO"
 
 # Только чек-лист (JSON)
-python -m validator.cli --file статья.txt --keyword "seo" --title "Заголовок" --checklist --json
+rankwise-validator --file статья.txt --keyword "seo" --title "Заголовок" --checklist --json
 ```
 
 **Что считает:** количество слов (C1), метрики абзацев (C2), читаемость - Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau только для EN (C8), доля пассивного залога по языкам (C9), доля переходных слов по языкам (C10), разнообразие длины предложений (C11), повтор начала предложений (C12), плотность ключевых слов (K10), размещение ключей (K2, K6, K7), длина title/meta с языковыми диапазонами (T3, T4), power words на всех 9 языках (C6).
@@ -170,7 +144,7 @@ python -m validator.cli --file статья.txt --keyword "seo" --title "Заг�
 
 ```bash
 # Запуск одного бенчмарка (опустите --title/--meta если нет)
-python -m validator.cli --file benchmarks/01-well-optimized.txt --keyword "content marketing strategy" --title "7 Proven Content Marketing Strategies That Actually Work in 2026" --meta "Content marketing strategy guide: 7 proven tactics." --checklist
+rankwise-validator --file benchmarks/01-well-optimized.txt --keyword "content marketing strategy" --title "7 Proven Content Marketing Strategies That Actually Work in 2026" --meta "Content marketing strategy guide: 7 proven tactics." --checklist
 ```
 
 > **Покрытие:** Валидатор вычисляет 16 из 49 факторов. Остальные 33 требуют оценки LLM или веб-доступа. См. `benchmarks/README.md`.
@@ -219,7 +193,7 @@ RankWise спроектирован для совместной работы:
 - **[MindFluence](https://github.com/MADEVAL/MindFluence)** - Cognitive Bias Marketing Engine. RankWise → SEO-структура → MindFluence → когнитивное убеждение. Следите за переспамом ключей в `bold-sell` тоне.
 - **Тройная интеграция:** RankWise (структура) → MindFluence (убеждение) → human-ai (голос) → RankWise Audit (финальная проверка).
 
-Подробнее в `SKILL.md` → INTEGRATION WITH OTHER SKILLS.
+Подробнее в `SKILL.md` → Integration with Other Skills.
 
 ---
 
@@ -227,14 +201,23 @@ RankWise спроектирован для совместной работы:
 
 - Любая LLM с полем системного промпта
 - Для полной функциональности: система скиллов с загрузкой файлов из папки (OpenCode, Claude Code)
-- **SKILL.md самодостаточен** - содержит все ключевые правила для standalone-использования. `shared/` и `scenarios/` добавляют профессиональную глубину (формулы скоринга, списки AI-маркеров, читаемость по языкам, шаблоны schema, контент-типы)
+- **SKILL.md самодостаточен** - содержит все ключевые правила для standalone-использования. `skills/rankwise/shared/` и `skills/rankwise/scenarios/` добавляют профессиональную глубину (формулы скоринга, списки AI-маркеров, читаемость по языкам, шаблоны schema, контент-типы)
 - Без API-ключей, без инструментов, без зависимостей - чистый промпт-инжиниринг
 - Работает на любом языке; языковые параметры в `shared/readability-params.md` и `shared/power-words.md` для 9 языков (EN, RU, UK, DE, FR, ES, PT, IT, PL)
-- **Опционально:** Python 3.10+ + `readsight` для детерминированной валидации метрик через `validator/`
+- **Опционально:** Python 3.10+ + `readsight` для детерминированной валидации метрик через `skills/rankwise/validator/`
 
 ---
 
 ## Установка
+
+Установщик копирует `skills/rankwise/` в выбранный каталог агента:
+
+```bash
+python install.py --target all
+python install.py --list
+python install.py --check
+python install.py --target project --dry-run
+```
 
 ### OpenCode
 ```
@@ -248,10 +231,22 @@ rankwise/ → ~/.claude/skills/
 ```
 
 ### Любая LLM (standalone)
-Скопируйте содержимое `SKILL.md` как системный промпт. Добавьте файлы из `shared/` и `scenarios/` для расширенного контекста.
+Скопируйте содержимое `skills/rankwise/SKILL.md` как системный промпт. Добавьте файлы из `shared/` и `scenarios/` для расширенного контекста.
 
 ---
 
 ## Лицензия
 
 MIT | Copyright Yevhen Leonidov
+
+---
+
+## Описание для GitHub
+
+```
+SEO Content Engine for LLMs - движок промпт-инжиниринга, который превращает любую capable LLM в SEO-стратега: генерация, рерайт и аудит контента по 49 факторам ранжирования с мультиязычной поддержкой. Skills.sh: https://www.skills.sh/madeval/rankwise
+```
+
+## Теги для GitHub
+
+`ai` `ai-agents` `content` `content-marketing` `content-strategy` `content-strategy-optimization` `llm` `llm-agent` `multilingual` `prompt-engineering` `seo` `seo-audit` `seo-optimization` `seo-tools`

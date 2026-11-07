@@ -1,17 +1,22 @@
 # Changelog
 
-## [Unreleased]
+## [1.4.0] - 2026-11-07
 
 ### Changed
-- Reference files are now read by relative path from the skill folder. The GitHub URL index is kept only as a fallback for a single copied `SKILL.md`.
+- Moved the runtime skill to `skills/rankwise/` to match the suite layout; `tests/` and `benchmarks/` stay at the repository root.
+- Added `install.py`, Claude and Cursor plugin manifests, and an OpenAI agent manifest.
+- Removed the duplicated English power-word list; the list now lives only in `Language Resources`.
+- Normalized section headings to Title Case and removed decorative `──` wrappers.
+- Fixed double slashes in the validator, tests, and benchmark links.
+- Frontmatter: quoted description, `metadata.version: 1.4.0`, `metadata.factors: 49`, repository URL.
+- Reference files are read by relative path from the skill folder. The GitHub URL index is kept only as a fallback for a single copied `SKILL.md`.
 - Long dashes replaced with hyphens across all documentation.
-- Frontmatter normalized: `license: MIT`, environment-based `compatibility`, `metadata.author`, repository URL. Removed the non-existent `v1.3.0` pinned URL.
-- Section canon: added `WHEN NOT TO USE`, renamed the output section to `OUTPUT CONTRACT`.
 - Placeholder vocabulary aligned with the rest of the skill set: `[VERIFY: ...]`, `[DATA NEEDED: ...]`, `[N]`.
 - ReadSightPy is now an explicit requirement with an actionable error message (`pip install "readsight>=1.0.0"`, Python 3.10+).
 
 ### Fixed
 - The file tree no longer lists the missing `IMPROVEMENT-PLAN.md`.
+- The validator tests resolve the moved `validator/` package through `tests/conftest.py`.
 
 ## [1.3.0] - 2026-07-12
 

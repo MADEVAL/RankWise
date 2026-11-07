@@ -1,10 +1,14 @@
 """Shared fixtures and helpers for validator tests."""
 
-import pytest
+import sys
 from pathlib import Path
 
+import pytest
 
-BENCHMARKS_DIR = Path(__file__).parent.parent / "benchmarks"
+ROOT = Path(__file__).parent.parent
+sys.path.insert(0, str(ROOT / "skills" / "rankwise"))
+
+BENCHMARKS_DIR = ROOT / "benchmarks"
 
 
 MULTILINGUAL_TEXTS = {

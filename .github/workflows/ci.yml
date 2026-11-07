@@ -24,7 +24,8 @@ jobs:
           python - <<'PY'
           import os, re, sys
           import yaml
-          text = open("SKILL.md", encoding="utf-8").read()
+          skill_dir = "skills/rankwise"
+          text = open(f"{skill_dir}/SKILL.md", encoding="utf-8").read()
           m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
           if not m:
               sys.exit("SKILL.md: missing frontmatter")
@@ -39,9 +40,11 @@ jobs:
           for path in re.findall(r"\]\(([^)]+)\)", body):
               if not path.startswith(("shared/", "scenarios/", "examples/", "references/", "validator/", "tests/")):
                   continue
-              if not os.path.exists(path):
+              if not os.path.exists(os.path.join(skill_dir, path)):
                   missing.append(path)
           if missing:
               sys.exit("SKILL.md: broken relative links: " + ", ".join(sorted(set(missing))))
           print("frontmatter and links OK")
           PY
+      - name: Check installer plan
+        run: python install.py --target project --dry-run

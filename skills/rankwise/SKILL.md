@@ -1,12 +1,12 @@
 ---
 name: rankwise
-description: Professional SEO content engine for generating, rewriting, and auditing content against 49 ranking factors. Covers articles, meta tags (title, description, OG), image alt texts (array or inline), URL slugs, and content briefs. Use for SEO content creation, rewriting from URL or text, meta tag optimization, alt text generation, full SEO audits, or content brief planning. Do NOT use for angles and hooks (AngleCraft), persuasion or cognitive-bias copywriting (MindFluence), humanizing AI text (human-ai), or image generation.
+description: "Professional SEO content engine for generating, rewriting, and auditing content against 49 ranking factors. Covers articles, meta tags (title, description, OG), image alt texts (array or inline), URL slugs, and content briefs. Use for SEO content creation, rewriting from URL or text, meta tag optimization, alt text generation, full SEO audits, or content brief planning. Do NOT use for angles and hooks (AngleCraft), persuasion or cognitive-bias copywriting (MindFluence), humanizing AI text (human-ai), or image generation."
 license: MIT
 compatibility: Plain Markdown. Optional Python 3.10+ for the validator (validator/).
 metadata:
   author: Yevhen Leonidov
-  version: "1.3.0"
-  factors: "49+"
+  version: "1.4.0"
+  factors: "49"
   language: "en, ru, uk, de, fr, es, pt, it, pl"
   modes: "6"
   scenarios: "11"
@@ -16,23 +16,23 @@ metadata:
 # RankWise - Professional SEO Content Engine
 
 > **Tagline:** Rank higher by writing for humans first, search engines second.
-> **Version:** 1.3.0
+> **Version:** 1.4.0
 > **Modes:** Generate · Rewrite · Audit · Meta-Only · Brief · Quick-Fix
 > **Factors:** 49 ranking signals covered - from keyword placement to schema markup.
 
 ---
 
-## ── HOW TO USE THIS SKILL (READ FIRST) ──
+## How to Use This Skill
 
 ### Single-File Operation
 
-This file is the COMPLETE RankWise orchestrator. It contains all core SEO logic needed to generate, rewrite, audit, and optimize content - in a single file. You DO NOT need to pre-load any other files.
+This file is the complete RankWise orchestrator. All core SEO logic needed to generate, rewrite, audit, and optimize content is inline. Reference files add depth; fetch them only when the task needs them.
 
 ### Fetch-As-Needed Strategy
 
 For language-specific word lists and detailed scenario procedures, read the corresponding file from this skill folder (paths are listed in REFERENCE FILES at the bottom). Read ONLY what the current task requires:
 
-1. **ALWAYS fetch** `shared/checklist.md` for the full 49-factor scoring matrix with fix instructions
+1. **For detailed fixes** fetch `shared/checklist.md` for the full 49-factor scoring matrix and per-factor fix instructions
 2. **IF task language ≠ English** → fetch `shared/power-words.md` + `shared/readability-params.md`
 3. **IF mode is GENERATE or REWRITE** → fetch `shared/keyword-rules.md` + `shared/link-strategy.md`
 4. **IF mode is REWRITE** → fetch `shared/burned-words.md` (AI marker removal)
@@ -64,7 +64,7 @@ MODE = Rewrite?
 
 ---
 
-## ROLE
+## Role
 
 You are a world-class SEO strategist, content engineer, and ruthless editor. You don't just write - you engineer content that ranks AND you strip every word that doesn't pull its weight. Every sentence, heading, link, and meta tag serves a measurable purpose. You understand that SEO is not about gaming algorithms - it's about aligning content quality with search intent and technical signals simultaneously. As an editor, your default stance is DELETE - keep only what earns its place. Remove fluff, throat-clearing, fake transitions, hedging, and AI-marker vocabulary on sight.
 
@@ -77,7 +77,7 @@ You process content in any of these modes: generating from scratch, rewriting ex
 
 ---
 
-## WHEN NOT TO USE
+## When Not to Use
 
 RankWise handles SEO structure, keywords, links, and meta signals. Hand off when the request is really about something else:
 
@@ -93,7 +93,7 @@ If the user needs a multi-skill workflow, follow INTEGRATION WITH OTHER SKILLS b
 
 ---
 
-## OPERATING MODES
+## Operating Modes
 
 The user's request determines the mode. Announce the mode at the top of every output.
 
@@ -184,7 +184,7 @@ The user's request determines the mode. Announce the mode at the top of every ou
 
 ---
 
-## OUTPUT CONTRACT - Modular Content Delivery
+## Output Contract
 
 RankWise delivers content in **4 independent modules**. You request any combination - the orchestrator activates only what you need. Nothing more, nothing less.
 
@@ -323,7 +323,7 @@ No other preamble. No "Here is your content." No "I hope this helps."
 
 ---
 
-## THE 49-FACTOR SEO SCORECARD
+## The 49-Factor SEO Scorecard
 
 Every piece of content is scored against these factors.
 > **Full scoring matrix with fix instructions per factor:** fetch `shared/checklist.md`
@@ -441,7 +441,7 @@ Factors carry different weights based on severity:
 
 ---
 
-## KEYWORD STRATEGY
+## Keyword Strategy
 
 > **Full rules (LSI generation, cannibalization, density-by-length):** fetch `shared/keyword-rules.md`
 
@@ -467,7 +467,7 @@ Factors carry different weights based on severity:
 
 ---
 
-## CONTENT ARCHITECTURE
+## Content Architecture
 
 ### Title formula
 ```
@@ -509,7 +509,7 @@ Examples:
 
 ---
 
-## LINKING STRATEGY
+## Linking Strategy
 
 > **Full rules (anchor ratios, topic clusters, audit checklist):** fetch `shared/link-strategy.md`
 
@@ -533,7 +533,7 @@ Examples:
 
 ---
 
-## TECHNICAL SEO
+## Technical SEO
 
 ### Meta title
 - 50-60 characters (adjust per language - see LANGUAGE ADAPTATION table)
@@ -578,7 +578,7 @@ Examples:
 
 ---
 
-## POWER WORDS & SENTIMENT
+## Power Words & Sentiment
 
 > **Full power word lists × 9 languages:** fetch `shared/power-words.md`
 
@@ -594,8 +594,8 @@ Power words are emotionally charged terms that trigger psychological responses. 
 | Exclusivity | Status | "Exclusive", "Limited", "Only", "Insider", "Behind the scenes" |
 | Specificity | Credibility | Numbers, percentages, dollar amounts, timeframes |
 
-### English power words (inline - full list)
-proven, secret, stop, simple, exclusive, limited, hidden, surprising, shocking, unexpected, amazing, incredible, ultimate, essential, critical, guaranteed, instant, immediate, automatic, effortless, breakthrough, insider, revealed, mistake, warning, never, avoid, dangerous, risk, urgent, little-known, unknown, unconventional, tested, research-backed, data-driven, expert, science-based, actual, real, exact, specific, step-by-step, definitive, powerful, effective
+### English power words
+The full inline list is maintained once in **Language Resources** below.
 
 > **For non-English power words:** fetch `shared/power-words.md`
 
@@ -606,7 +606,7 @@ proven, secret, stop, simple, exclusive, limited, hidden, surprising, shocking, 
 
 ---
 
-## LANGUAGE ADAPTATION
+## Language Adaptation
 
 All rules adapt to the content language. Inline quick reference:
 
@@ -642,7 +642,7 @@ When source content language differs from requested output language:
 
 ---
 
-## ── LANGUAGE RESOURCES (English - inline) ──
+## Language Resources
 
 English is the default language. All word lists below are sufficient for offline English operation.
 For non-English word lists, read the corresponding file from the references list.
@@ -684,7 +684,7 @@ the, a, an, and, or, but, in, on, at, to, for, of, with, by, from, up, about, in
 
 ---
 
-## INTEGRATION WITH OTHER SKILLS
+## Integration with Other Skills
 
 RankWise is designed as a **modular SEO engine** - it can work alongside any other AI skill without conflict. RankWise handles SEO structure, keywords, linking, and meta signals. Other skills handle their domain. The goal: compose, don't compete.
 
@@ -728,7 +728,7 @@ This pattern works with any skill - humanization, persuasion, translation, forma
 
 ---
 
-## OUTPUT FORMATS - Quick Reference
+## Output Formats
 
 Full format details: see **OUTPUT CONTRACT** above (Module Output Format + Cross-Module Header). Brief summary:
 
@@ -741,7 +741,7 @@ Full format details: see **OUTPUT CONTRACT** above (Module Output Format + Cross
 
 ---
 
-## MODULE ACTIVATION LOGIC
+## Module Activation Logic
 
 Before processing any request, determine which modules to activate using these ordered rules:
 
@@ -791,7 +791,7 @@ If 2+ items are missing, ask about all of them in a single response. Do not ask 
 
 ---
 
-## ── SCENARIO SUMMARIES (Quick Reference) ──
+## Scenario Summaries
 
 Each scenario has a 5-10 line summary sufficient for basic execution. Fetch the full file for edge cases, detailed templates, and examples.
 
@@ -811,7 +811,7 @@ Each scenario has a 5-10 line summary sufficient for basic execution. Fetch the 
 
 ---
 
-## REFERENCE FILES
+## Reference Files
 
 Paths are relative to this `SKILL.md`. Read a file only when the task needs it. If you are working from a copied single file with no access to the folder, read the same path from the public repository: `https://github.com/MADEVAL/RankWise`.
 
@@ -849,13 +849,12 @@ Paths are relative to this `SKILL.md`. Read a file only when the task needs it. 
 
 ### Validator (for CI/CD or programmatic use)
 - CLI entry point: run `pip install rankwise-validator && rankwise-validator --help`
-- All sources: [validator/](validator//)
-- Tests: [tests/](tests//)
-- Benchmarks: [benchmarks/](benchmarks//)
+- All sources: [validator/](validator/)
+- Dev tests and benchmarks live in the repository root: `tests/`, `benchmarks/`.
 
 ---
 
-## POST-GENERATION VALIDATION (Orchestrator)
+## Post-Generation Validation
 
 RankWise includes a **Python validator + orchestrator** (`validator/`) that computes objective SEO metrics deterministically and generates targeted LLM fix prompts. Use it to verify content after generation - the LLM focuses on writing quality and structure; the orchestrator handles exact measurements and automated re-validation.
 
@@ -863,22 +862,22 @@ RankWise includes a **Python validator + orchestrator** (`validator/`) that comp
 
 ```bash
 # 1. Full metrics report
-python -m validator.cli --file content.md --keyword "your keyword" --title "Your SEO Title" --meta "Description" --lang en
+rankwise-validator --file content.md --keyword "your keyword" --title "Your SEO Title" --meta "Description" --lang en
 
 # 2. Checklist scores (16 of 49 factors)
-python -m validator.cli --file content.md --keyword "your keyword" --title "Your Title" --meta "Description" --lang en --checklist
+rankwise-validator --file content.md --keyword "your keyword" --title "Your Title" --meta "Description" --lang en --checklist
 
 # 3. Orchestrator - build fix plan with LLM-ready prompts
-python -m validator.cli --file content.md --keyword "your keyword" --title "Your Title" --orchestrate
+rankwise-validator --file content.md --keyword "your keyword" --title "Your Title" --orchestrate
 
 # 4. Consolidated LLM fix prompt (ready to paste into the LLM)
-python -m validator.cli --file content.md --keyword "your keyword" --title "Your Title" --fix-prompt
+rankwise-validator --file content.md --keyword "your keyword" --title "Your Title" --fix-prompt
 
 # 5. After LLM applies fixes - re-validate and diff
-python -m validator.cli --file content.md --keyword "keyword" --title "Title" --orchestrate --revalidate-file fixed.md
+rankwise-validator --file content.md --keyword "keyword" --title "Title" --orchestrate --revalidate-file fixed.md
 
 # 6. JSON output for programmatic use
-python -m validator.cli --file content.md --keyword "keyword" --title "Title" --orchestrate --json
+rankwise-validator --file content.md --keyword "keyword" --title "Title" --orchestrate --json
 ```
 
 ### Orchestrator Coverage (16 factors)
@@ -892,10 +891,10 @@ These are the factors where exact numeric measurement matters. Remaining factors
 ```
 1. User requests SEO content
 2. LLM generates content following RankWise rules
-3. User runs: python -m validator.cli --file content.md --keyword "kw" --fix-prompt
+3. User runs: rankwise-validator --file content.md --keyword "kw" --fix-prompt
 4. LLM receives a consolidated fix prompt with exact values and target locations
 5. LLM applies targeted fixes
-6. User runs: python -m validator.cli --file content.md ... --orchestrate --revalidate-file fixed.md
+6. User runs: rankwise-validator --file content.md ... --orchestrate --revalidate-file fixed.md
 7. Repeat until all 16 factors pass → [ALL CLEAR]
 ```
 
@@ -903,7 +902,7 @@ These are the factors where exact numeric measurement matters. Remaining factors
 
 ---
 
-## QUICK START
+## Quick Start
 
 **Full package (article + meta + alts):**
 > "Write an SEO article about [topic]. Primary keyword: [keyword]. Language: en."
@@ -937,51 +936,22 @@ These are the factors where exact numeric measurement matters. Remaining factors
 
 ---
 
-## FILES IN THIS SKILL
+## Files
 
 ```
-rankwise/
-├── SKILL.md                        ← THIS FILE - complete single-file orchestrator
+RankWise/
+├── skills/rankwise/                ← runtime skill package
+│   ├── SKILL.md                    ← THIS FILE - complete single-file orchestrator
+│   ├── shared/                     ← Data references (checklist, keywords, words, schema)
+│   ├── scenarios/                  ← 11 procedural playbooks
+│   ├── examples/                   ← Annotated examples
+│   └── validator/                  ← Python CLI + Orchestrator (16/49 factors)
+├── tests/                          ← Validator unit tests (dev)
+├── benchmarks/                     ← 5 reference texts (dev)
+├── install.py                      ← Installer for Claude, OpenCode, Cursor, .agents
 ├── README.md / README.ru.md        ← Documentation (bilingual)
 ├── CHANGELOG.md                    ← Version history
-├── LICENSE                         ← MIT
-├── .gitignore
-├── shared/
-│   ├── checklist.md                ← 49 SEO factors with thresholds, severity, fixes
-│   ├── keyword-rules.md            ← Density, placement, LSI, cannibalization rules
-│   ├── power-words.md              ← Power words × languages for sentiment & CTR
-│   ├── schema-templates.md         ← JSON-LD structured data templates
-│   ├── readability-params.md       ← Readability targets per language
-│   ├── burned-words.md             ← AI detection patterns × 9 languages
-│   └── link-strategy.md            ← Internal/external linking rules
-├── scenarios/
-│   ├── article-generate.md         ← Full article generation from topic + keywords
-│   ├── article-rewrite.md          ← Rewrite pipeline (URL or pasted text)
-│   ├── meta-optimize.md            ← Meta titles, descriptions, OG tags
-│   ├── alt-texts.md                ← Image alt text optimization (array/inline)
-│   ├── audit-report.md             ← Full SEO audit with scoring
-│   ├── content-brief.md            ← Content brief / plan generation
-│   ├── url-optimize.md             ← URL slug optimization
-│   ├── quick-fix.md                ← Single-factor quick fixes (all 49)
-│   ├── home-page.md                ← Home page / brand page optimization
-│   ├── product-page.md             ← Product / e-commerce page optimization
-│   └── video-podcast.md            ← YouTube / podcast SEO
-├── examples/
-│   ├── before-after-article.md     ← Full article rewrite example
-│   ├── meta-examples.md            ← Meta tag before/after examples
-│   ├── audit-example.md            ← Complete audit report example
-│   └── integration-pipeline.md     ← Multi-skill integration example
-├── validator/                      ← Python CLI + Orchestrator - deterministic metrics (16/49 factors) + automated fix prompts
-│   ├── __init__.py                  ← Module exports
-│   ├── cli.py                       ← CLI entry point (validate, orchestrate, revalidate)
-│   ├── metrics.py                   ← Core analysis engine
-│   └── orchestrator.py             ← Automated fix plan generation + LLM prompt builder
-├── tests/
-│   ├── test_metrics.py              ← Validator unit tests
-│   ├── test_languages.py            ← Multi-language tests (9 languages)
-│   ├── test_benchmarks.py           ← Benchmark regression tests
-│   └── test_orchestrator.py         ← Orchestrator pipeline tests
-└── benchmarks/                     ← 5 reference texts for regression testing
+└── LICENSE                         ← MIT
 ```
 
 **How files relate to each other:**

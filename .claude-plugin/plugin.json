@@ -1,0 +1,22 @@
+{
+  "name": "rankwise",
+  "displayName": "RankWise",
+  "description": "Professional SEO content engine: 49 ranking factors, meta tags, alt texts, and audits.",
+  "version": "1.4.0",
+  "author": {
+    "name": "Yevhen Leonidov",
+    "url": "https://github.com/MADEVAL"
+  },
+  "homepage": "https://github.com/MADEVAL/RankWise",
+  "repository": "https://github.com/MADEVAL/RankWise",
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "content",
+    "meta-tags",
+    "agent-skills"
+  ],
+  "skills": [
+    "./skills/rankwise"
+  ]
+}

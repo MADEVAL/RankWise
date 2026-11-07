@@ -1,0 +1,6 @@
+interface:
+  display_name: "RankWise"
+  short_description: "SEO content engine for articles, meta tags, alt texts, and audits"
+  default_prompt: "Write or audit SEO content. Ask for the focus keyword and language first."
+policy:
+  allow_implicit_invocation: true

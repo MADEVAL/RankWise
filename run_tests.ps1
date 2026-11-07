@@ -32,6 +32,7 @@ Write-Host ""
 
 # Quick smoke test with benchmarks
 Write-Host "[3/3] Running benchmark smoke tests..." -ForegroundColor Yellow
+$env:PYTHONPATH = Join-Path $PSScriptRoot "skills/rankwise"
 python -m validator.cli --file benchmarks/01-well-optimized.txt --keyword "content marketing strategy" --title "7 Proven Content Marketing Strategies That Actually Work in 2026" --meta "Content marketing strategy guide: 7 proven tactics." --checklist 2>$null | Select-Object -First 5
 Write-Host ""
 
