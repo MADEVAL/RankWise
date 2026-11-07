@@ -11,11 +11,34 @@ from dataclasses import dataclass, field
 
 try:
     from readsight import ReadSight
-except ImportError as exc:  # pragma: no cover
-    raise ImportError(
-        "RankWise validator requires ReadSightPy (Python 3.10+). "
-        "Install it with: pip install \"readsight>=1.0.0\""
-    ) from exc
+    _READSIGHT_AVAILABLE = True
+except ImportError:  # pragma: no cover
+    ReadSight = None  # type: ignore[assignment]
+    _READSIGHT_AVAILABLE = False
+
+
+_MATCH_CHARS = "0-9a-zа-яёіїєґäöüßàâçéèêëîïôûùüñáíóú"
+
+
+def _normalize_for_match(text: str) -> str:
+    return re.sub(rf"[^{_MATCH_CHARS}]+", " ", text.lower()).strip()
+
+
+def _kw_word_pattern(word: str) -> str:
+    if word.endswith("y"):
+        return re.escape(word[:-1]) + r"(?:y|ies)"
+    if word.endswith(("s", "x", "z", "ch", "sh")):
+        return re.escape(word) + r"(?:es)?"
+    return re.escape(word) + r"(?:s|es)?"
+
+
+def _count_phrase(text: str, phrase: str) -> int:
+    words = _normalize_for_match(phrase).split()
+    if not words:
+        return 0
+    body = r"\s+".join(_kw_word_pattern(w) for w in words)
+    pattern = rf"(?<![{_MATCH_CHARS}]){body}(?![{_MATCH_CHARS}])"
+    return len(re.findall(pattern, _normalize_for_match(text)))
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -587,7 +610,7 @@ def analyze(
     avg_syllables_per_word = 0.0
 
     # ── Readability via ReadSightPy (deterministic, all 9 languages) ────
-    readability_supported = lang in READABILITY_LANGS
+    readability_supported = lang in READABILITY_LANGS and _READSIGHT_AVAILABLE
     fre = gf = fkg = smog = ari = cli = lix_score = -1.0
     lang_score = -1.0
     lang_name = "N/A"
@@ -700,7 +723,7 @@ def analyze(
 
     if kw:
         text_lower = text.lower()
-        kw_occurrences = len(re.findall(re.escape(kw), text_lower))
+        kw_occurrences = _count_phrase(text, kw)
         if kw_occurrences > 0 and word_count > 0:
             kw_density = (kw_occurrences * 100) / word_count
         else:
@@ -708,8 +731,8 @@ def analyze(
 
         words_list = text_lower.split()[:150]
         first_150 = " ".join(words_list)
-        kw_in_first_150 = kw in first_150
-        kw_in_title = kw in title.lower() if title else False
+        kw_in_first_150 = _count_phrase(first_150, kw) > 0
+        kw_in_title = _count_phrase(title, kw) > 0 if title else False
     else:
         kw_density = 0.0
 
@@ -854,6 +877,12 @@ def score_checklist(m: TextMetrics) -> dict:
     # ── Readability (C8) - language-aware via ReadSightPy ──────────────
     if m.readability_supported:
         result["C8"] = _score_readability(m)
+    elif not _READSIGHT_AVAILABLE:
+        result["C8"] = {
+            "status": "na",
+            "detail": 'Readability [N/A]: readsight is not installed. Run: pip install "readsight>=1.0.0".',
+            "value": "N/A",
+        }
     else:
         result["C8"] = {
             "status": "na",

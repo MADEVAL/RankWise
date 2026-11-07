@@ -2,6 +2,20 @@
 
 All notable changes to RankWise are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.5.0] - 2026-11-07
+
+### Added
+- `install.py --with-deps` installs the validator dependencies; `--check-deps` reports whether readsight is available.
+- `tests/test_keyword_matching.py` covers word boundaries, plurals, hyphens, and first-150 behavior.
+
+### Changed
+- `validator/metrics.py`: `readsight` is optional at import. Without it the CLI still runs and `C8` returns `N/A`.
+- Keyword matching uses word boundaries, punctuation/hyphen normalization, and simple plural forms.
+- `requirements.txt` is runtime-only; `requirements-dev.txt` adds pytest. CI uses the dev file.
+
+### Fixed
+- `SEO` no longer matches `SEOUL`; `content marketing strategy` matches `Strategies`; `content marketing` matches `content-marketing`.
+
 ## [1.4.0] - 2026-11-07
 
 ### Changed

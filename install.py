@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -155,7 +156,26 @@ def main() -> int:
         action="store_true",
         help="Show what would be copied without writing anything.",
     )
+    parser.add_argument(
+        "--with-deps",
+        action="store_true",
+        help="Install validator dependencies from requirements.txt after copying.",
+    )
+    parser.add_argument(
+        "--check-deps",
+        action="store_true",
+        help="Check whether the validator dependencies are importable, then exit.",
+    )
     args = parser.parse_args()
+
+    if args.check_deps:
+        try:
+            import readsight  # noqa: F401
+            print("readsight: installed")
+            return 0
+        except ImportError:
+            print("readsight: missing (run: python install.py --with-deps)")
+            return 1
 
     if not (SOURCE / "SKILL.md").exists():
         print(f"error: {SOURCE / 'SKILL.md'} not found", file=sys.stderr)
@@ -176,6 +196,10 @@ def main() -> int:
 
     for name in selected:
         install(TARGETS[name], dry_run=args.dry_run)
+    if args.with_deps and not args.dry_run:
+        subprocess.check_call(
+            [sys.executable, "-m", "pip", "install", "-r", str(ROOT / "requirements.txt")]
+        )
     if not args.dry_run:
         print("done. start a new agent session or run /reload if the skill does not appear.")
     return 0

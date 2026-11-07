@@ -5,7 +5,7 @@ license: MIT
 compatibility: Plain Markdown. Optional Python 3.10+ for the validator (validator/).
 metadata:
   author: Yevhen Leonidov
-  version: "1.4.0"
+  version: "1.5.0"
   factors: 49
   languages: [en, ru, uk, de, fr, es, pt, it, pl]
   modes: 6
@@ -16,7 +16,7 @@ metadata:
 # RankWise - Professional SEO Content Engine
 
 > **Tagline:** Rank higher by writing for humans first, search engines second.
-> **Version:** 1.4.0
+> **Version:** 1.5.0
 > **Modes:** Generate · Rewrite · Audit · Meta-Only · Brief · Quick-Fix
 > **Factors:** 49 ranking signals covered - from keyword placement to schema markup.
 
@@ -911,7 +911,7 @@ These are the factors where exact numeric measurement matters. Remaining factors
 7. Repeat until all 16 factors pass → [ALL CLEAR]
 ```
 
-> **Requirements:** Python 3.10+ + `pip install readsight`
+> **Requirements:** Python 3.10+ for the validator. Install readability with `pip install readsight` or `python install.py --with-deps`. Without it the CLI still runs; C8 is N/A.
 
 ---
 

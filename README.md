@@ -1,6 +1,6 @@
 # RankWise - Professional SEO Content Engine
 
-[![Version](https://img.shields.io/badge/version-1.4.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.5.0-blue)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Compatibility](https://img.shields.io/badge/compatibility-plain%20markdown-purple)](#requirements)
 [![skills.sh](https://img.shields.io/badge/skills.sh-listed-2ea44f)](https://www.skills.sh/madeval/rankwise)
@@ -190,7 +190,7 @@ See `SKILL.md` → Integration with Other Skills for the full compatibility guid
 - **SKILL.md is self-sufficient** - contains all core rules for standalone use. `skills/rankwise/shared/` and `skills/rankwise/scenarios/` add professional depth (scoring formulas, AI-marker lists, per-language readability, schema templates, content-type blueprints)
 - No API keys, no tools, no dependencies - pure prompt engineering
 - Works in any language; per-language parameters for 9 languages (EN, RU, UK, DE, FR, ES, PT, IT, PL)
-- **Optional:** Python 3.10+ + `readsight` for deterministic metric validation via `skills/rankwise/validator/`
+- **Optional:** Python 3.10+ + `readsight` for deterministic metric validation via `skills/rankwise/validator/`. Without `readsight`, `C8` is `N/A` and the other 15 factors still work.
 
 ---
 
@@ -200,10 +200,14 @@ The installer copies `skills/rankwise/` into the selected agent directory:
 
 ```bash
 python install.py --target all
+python install.py --target all --with-deps   # also installs readsight
+python install.py --check-deps               # verifies the validator dependencies
 python install.py --list
 python install.py --check
 python install.py --target project --dry-run
 ```
+
+Without `readsight` the validator still runs: `C8` readability returns `N/A`, and the other 15 factors are computed.
 
 ### OpenCode
 ```
