@@ -1,0 +1,17 @@
+{
+  "name": "rankwise",
+  "owner": {
+    "name": "Yevhen Leonidov",
+    "url": "https://github.com/MADEVAL"
+  },
+  "plugins": [
+    {
+      "name": "rankwise",
+      "source": "./",
+      "description": "Professional SEO content engine: 49 ranking factors, meta tags, alt texts, and audits.",
+      "version": "1.4.0",
+      "homepage": "https://github.com/MADEVAL/RankWise",
+      "repository": "https://github.com/MADEVAL/RankWise"
+    }
+  ]
+}

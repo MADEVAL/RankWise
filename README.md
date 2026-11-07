@@ -2,14 +2,14 @@
 
 [![Version](https://img.shields.io/badge/version-1.4.0-blue)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Compatibility](https://img.shields.io/badge/compatibility-plain%20markdown-purple)]()
+[![Compatibility](https://img.shields.io/badge/compatibility-plain%20markdown-purple)](#requirements)
 [![skills.sh](https://img.shields.io/badge/skills.sh-listed-2ea44f)](https://www.skills.sh/madeval/rankwise)
 
-\[ **English** | [Русский](#) \]
+\[ **English** | [Русский](README.ru.md) \]
 
 > **Rank higher by writing for humans first, search engines second.**
 
-An AI skill system that generates, rewrites, and audits content against 49 SEO ranking factors - covering everything from keyword placement to schema markup, E-E-A-T signals, and featured snippet optimization.
+An AI skill system that generates, rewrites, and audits content against 49 SEO ranking factors - covering everything from keyword placement to schema markup, E-E-A-T signals, and featured snippet optimization. **Skill class:** orchestrator - self-contained `SKILL.md` plus on-demand references.
 
 ---
 
@@ -85,7 +85,7 @@ RankWise/
 │   └── agents/openai.yaml          ← OpenAI agent manifest
 ├── tests/                          ← Validator unit tests (dev)
 ├── benchmarks/                     ← 5 reference texts (dev)
-├── install.py                      ← Installer for Claude, OpenCode, Cursor, .agents
+├── install.py                      ← Installer for Claude, OpenCode, Codex, .agents
 ├── README.md
 ├── CHANGELOG.md
 └── LICENSE

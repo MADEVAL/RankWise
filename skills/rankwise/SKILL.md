@@ -6,10 +6,10 @@ compatibility: Plain Markdown. Optional Python 3.10+ for the validator (validato
 metadata:
   author: Yevhen Leonidov
   version: "1.4.0"
-  factors: "49"
-  language: "en, ru, uk, de, fr, es, pt, it, pl"
-  modes: "6"
-  scenarios: "11"
+  factors: 49
+  languages: [en, ru, uk, de, fr, es, pt, it, pl]
+  modes: 6
+  scenarios: 11
   repository: "https://github.com/MADEVAL/RankWise"
 ---
 
@@ -182,6 +182,19 @@ The user's request determines the mode. Announce the mode at the top of every ou
 
 > **Full content brief pipeline (9 steps with templates):** fetch `scenarios/content-brief.md`
 
+### Mode 6: QUICK-FIX
+**Trigger:** User asks to fix one specific element - "fix my title length", "add keyword to H2", "reduce passive voice", "shorten this meta description".
+**Action:** Apply a targeted fix to the named element only. Do not rewrite the whole document and do not change unrelated factors.
+
+**Inline pipeline:**
+1. **IDENTIFY:** Detect the factor from the trigger phrase using the 33-phrase map in `scenarios/quick-fix.md`.
+2. **MEASURE:** Compare the current value against the factor target from the 49-factor scorecard.
+3. **FIX:** Rewrite the element so it meets the target while preserving facts and keyword placement.
+4. **VERIFY:** Re-measure the fixed element and show before/after values.
+5. **DELIVER:** `[MODE: quick-fix]` + factor ID + before/after + one-line explanation.
+
+> **Full quick-fix procedure (33 trigger phrases → factor mapping):** fetch `scenarios/quick-fix.md`
+
 ---
 
 ## Output Contract
@@ -329,7 +342,7 @@ Every piece of content is scored against these factors.
 > **Full scoring matrix with fix instructions per factor:** fetch `shared/checklist.md`
 > **Full audit report format:** fetch `scenarios/audit-report.md`
 
-### KEYWORD PLACEMENT (12 factors)
+### Keyword Placement (12 factors)
 
 | # | Factor | Target | Severity |
 |---|--------|--------|----------|
@@ -346,7 +359,7 @@ Every piece of content is scored against these factors.
 | K11 | Keyword cannibalization | No other page targets same primary keyword | HIGH |
 | K12 | Keyword length | 3+ characters, not excessively long (≤7 words) | MEDIUM |
 
-### CONTENT QUALITY (14 factors)
+### Content Quality (14 factors)
 
 | # | Factor | Target | Severity |
 |---|--------|--------|----------|
@@ -365,7 +378,7 @@ Every piece of content is scored against these factors.
 | C13 | Heading hierarchy | H1→H2→H3 proper nesting, no skips | HIGH |
 | C14 | Content-to-ad ratio | Main content dominates above-fold: ≤20% ad/nav in first 300 words | MEDIUM |
 
-### LINKING (9 factors)
+### Linking (9 factors)
 
 | # | Factor | Target | Severity |
 |---|--------|--------|----------|
@@ -379,7 +392,7 @@ Every piece of content is scored against these factors.
 | L8 | Orphan prevention | Page has at least 1 incoming internal link | LOW |
 | L9 | Link title attributes | `title=""` attribute present on key links | LOW |
 
-### URL & TECHNICAL (8 factors)
+### URL & Technical (8 factors)
 
 | # | Factor | Target | Severity |
 |---|--------|--------|----------|
@@ -392,7 +405,7 @@ Every piece of content is scored against these factors.
 | T7 | Canonical URL | Set correctly | MEDIUM |
 | T8 | OG / Twitter Card tags | Open Graph and/or Twitter Card meta tags present | LOW |
 
-### ADVANCED SIGNALS (6 factors)
+### Advanced Signals (6 factors)
 
 | # | Factor | Target | Severity |
 |---|--------|--------|----------|
@@ -405,7 +418,7 @@ Every piece of content is scored against these factors.
 
 Total: **49 factors**. All factors scored: ✅ Pass / ❌ Fail / ⚠️ Warning / ⊘ N/A.
 
-### Scoring weights
+### Scoring Weights
 Factors carry different weights based on severity:
 - **CRITICAL** = ×3 multiplier. Any CRITICAL failure caps maximum grade at B.
 - **HIGH** = ×2 multiplier
@@ -948,7 +961,7 @@ RankWise/
 │   └── validator/                  ← Python CLI + Orchestrator (16/49 factors)
 ├── tests/                          ← Validator unit tests (dev)
 ├── benchmarks/                     ← 5 reference texts (dev)
-├── install.py                      ← Installer for Claude, OpenCode, Cursor, .agents
+├── install.py                      ← Installer for Claude, OpenCode, Codex, .agents
 ├── README.md / README.ru.md        ← Documentation (bilingual)
 ├── CHANGELOG.md                    ← Version history
 └── LICENSE                         ← MIT

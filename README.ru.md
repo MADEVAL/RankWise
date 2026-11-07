@@ -1,12 +1,15 @@
 # RankWise - Профессиональный SEO-движок
 
+[![Version](https://img.shields.io/badge/version-1.4.0-blue)](CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 [skills.sh page](https://www.skills.sh/madeval/rankwise)
 
 \[ [English](README.md) | **Русский** \]
 
 > **Ранжируйтесь выше: пишите для людей в первую очередь, для поисковиков - во вторую.**
 
-AI-скилл для генерации, рерайта и аудита контента по 49 факторам ранжирования. Полное покрытие всех ключевых SEO-сигналов: schema-разметка, E-E-A-T, оптимизация под featured snippet.
+AI-скилл для генерации, рерайта и аудита контента по 49 факторам ранжирования. Полное покрытие всех ключевых SEO-сигналов: schema-разметка, E-E-A-T, оптимизация под featured snippet. **Класс скила:** orchestrator - самодостаточный `SKILL.md` плюс справочники по требованию.
 
 ---
 
@@ -100,7 +103,7 @@ RankWise/
 │   └── agents/openai.yaml          ← Манифест OpenAI-агента
 ├── tests/                          ← Юнит-тесты валидатора (dev)
 ├── benchmarks/                     ← 5 эталонных текстов (dev)
-├── install.py                      ← Установщик для Claude, OpenCode, Cursor, .agents
+├── install.py                      ← Установщик для Claude, OpenCode, Codex, .agents
 ├── README.md / README.ru.md        ← Документация (билингвальная)
 ├── CHANGELOG.md / LICENSE
 ```
