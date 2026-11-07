@@ -51,8 +51,8 @@ Before writing, determine the search intent.
 - **Case study:** "How We [Achieved X] Using [Keyword] in [Timeframe]"
 
 ### Title checklist
-- 50–60 characters (adjust per language: `shared/readability-params.md`)
-- Focus keyword in first 3–5 words
+- 50-60 characters (adjust per language: `shared/readability-params.md`)
+- Focus keyword in first 3-5 words
 - At least 1 number (odd preferred)
 - At least 2 power words from `shared/power-words.md`
 - Clear sentiment polarity (not neutral)
@@ -66,12 +66,12 @@ Before writing, determine the search intent.
 ### Content length decision
 | Competition Level | Target Word Count |
 |-------------------|-------------------|
-| Low (easy keyword) | 600–1000 |
-| Medium | 1000–1800 |
-| High (hard keyword) | 1800–3000+ |
+| Low (easy keyword) | 600-1000 |
+| Medium | 1000-1800 |
+| High (hard keyword) | 1800-3000+ |
 
 ### H2 section blueprint
-Generate 5–9 H2s covering:
+Generate 5-9 H2s covering:
 
 1. **Problem/Pain** - Why this matters, what goes wrong without it
 2. **Definition/Context** - What is [keyword], why it exists
@@ -83,7 +83,7 @@ Generate 5–9 H2s covering:
 8. **Advanced/Evolved** - Next-level applications
 9. **Conclusion/Next Steps** - What to do now
 
-Each H2 gets 2–4 H3 sub-sections as needed.
+Each H2 gets 2-4 H3 sub-sections as needed.
 
 ### Heading keyword placement
 - H1: Primary keyword (the title)
@@ -95,11 +95,11 @@ Each H2 gets 2–4 H3 sub-sections as needed.
 
 ## STEP 3: CONTENT WRITING
 
-### Introduction (first 100–150 words)
+### Introduction (first 100-150 words)
 1. **Hook** - Pattern interrupt. Statistic, question, bold claim, or story.
 2. **Pain point** - Why the reader should care RIGHT NOW.
 3. **Promise** - What they'll get from reading.
-4. **Keyword** - Naturally within first 100–150 words.
+4. **Keyword** - Naturally within first 100-150 words.
 5. **Transition** - Bridge to first H2.
 
 **DO NOT use:**
@@ -119,7 +119,7 @@ Each H2 section:
 - 1 data point/statistic per 500 words
 - 1 concrete example per H2 section
 - 1 "surprising" or "contrarian" insight per article
-- Keyword density: 0.8%–1.5% (see `shared/keyword-rules.md`)
+- Keyword density: 0.8%-1.5% (see `shared/keyword-rules.md`)
 - Passive voice: ≤10% of sentences (`shared/readability-params.md`)
 - Transition words: ≥30% of sentences
 - Sentence length: varied - no 3 consecutive same-length
@@ -135,12 +135,12 @@ Each H2 section:
 ## STEP 4: META LAYER
 
 ### SEO title
-- 50–60 characters
+- 50-60 characters
 - Keyword near beginning
 - Brand at end if space: ` | Brand`
 
 ### Meta description
-- 145–158 characters
+- 145-158 characters
 - Keyword in first 20 words
 - Active voice, value proposition, CTA
 - Template: "[[Keyword]]: [specific benefit]. [Evidence/credibility]. [Action]."
@@ -152,8 +152,8 @@ Each H2 section:
 - Example: "best-email-marketing-tools" not "best_tools_for_email_marketing_2026"
 
 ### OG tags
-- OG title: 40–60 chars, may equal meta title or be slightly more conversational
-- OG description: 100–200 chars, different from meta description, social-media tone
+- OG title: 40-60 chars, may equal meta title or be slightly more conversational
+- OG description: 100-200 chars, different from meta description, social-media tone
 
 ---
 
@@ -167,11 +167,11 @@ Each H2 section:
 - **If no images available:** Mark K9 and C3 as N/A. Include specific image recommendations: type (screenshot/chart/photo/infographic), suggested content, and placement section. Do NOT generate alt texts for non-existent images.
 
 ### Internal links
-- 3–10 contextual in-body links
+- 3-10 contextual in-body links
 - Anchor text variety: `shared/link-strategy.md`
 
 ### External links
-- 2–5 authoritative outbound links
+- 2-5 authoritative outbound links
 - At least 1 DoFollow
 - `shared/link-strategy.md`
 
@@ -184,7 +184,7 @@ Before delivering, verify these 8 critical factors:
 2. ☐ K2: Keyword in SEO title
 3. ☐ K4: Keyword in meta description
 4. ☐ K7: Keyword in body
-5. ☐ K10: Density 0.8–1.5%
+5. ☐ K10: Density 0.8-1.5%
 6. ☐ C1: Word count ≥600
 7. ☐ C13: Heading hierarchy correct
 8. ☐ L1: ≥3 internal links

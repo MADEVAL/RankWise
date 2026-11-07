@@ -10,16 +10,16 @@
 ### Primary Keyword (1 per page)
 - The main topic target
 - Appears in: title, meta description, URL, first 150 words, ≥1 H2, ≥1 image alt, body
-- Density: 0.8%–1.5% of total word count
+- Density: 0.8%-1.5% of total word count
 - Exact match: use 1-2 times. Partial match: 2-4 times. Synonyms: 2-4 times.
 
-### Secondary Keywords (2–4 per page)
+### Secondary Keywords (2-4 per page)
 - Support the primary topic
 - Often: longer-tail variations, related angles, question-form keywords
 - Appear in: ≥1 H2/H3 each, body naturally
-- Density: 0.3%–0.7% each
+- Density: 0.3%-0.7% each
 
-### LSI / Semantic Keywords (5–15 per page)
+### LSI / Semantic Keywords (5-15 per page)
 - Terms search engines associate with the primary topic
 - Source: SERP "Searches related to", "People also ask", Wikipedia sub-topics, competitor content
 - Appear: naturally throughout body - not forced
@@ -44,7 +44,7 @@ Keyword Density (%) = (Keyword Occurrences × 100) / Total Word Count
 
 ### Combined density
 - Exact + partial + stem variations = total effective density
-- Target: 0.8%–1.5% combined
+- Target: 0.8%-1.5% combined
 
 ### Density by content length
 | Content Length | Exact Matches | Partial/Stem | Total Instances |
@@ -74,7 +74,7 @@ Keyword Density (%) = (Keyword Occurrences × 100) / Total Word Count
 - Near the beginning
 - Remove stop words from slug
 
-### Rule 4: First 100–150 Words
+### Rule 4: First 100-150 Words
 - Keyword appears once in the opening paragraph
 - Establishes topic relevance immediately
 - Must read naturally - not "Today we will discuss [keyword]"
@@ -89,7 +89,7 @@ Keyword Density (%) = (Keyword Occurrences × 100) / Total Word Count
 - Descriptive + keyword: "SEO checklist ranking factors table" not just "SEO"
 
 ### Rule 7: Body Distribution
-- Keyword appears every 150–300 words throughout
+- Keyword appears every 150-300 words throughout
 - NOT clustered at start only
 - NOT "keyword stuffing" - every instance must read naturally
 
@@ -153,7 +153,7 @@ Two or more pages on the same site targeting the same primary keyword. Search en
 
 ### Russian / Русский
 - Yandex: morphological analysis is strong. Different word forms (падежи) are recognized.
-- Yandex penalizes over-optimization harder. Density closer to 0.5%–1%.
+- Yandex penalizes over-optimization harder. Density closer to 0.5%-1%.
 - Word order is flexible - keyword can appear anywhere and still match.
 - Question keywords: 40%+ of queries in Yandex are questions.
 
@@ -161,7 +161,7 @@ Two or more pages on the same site targeting the same primary keyword. Search en
 - Google dominates (~95% market share). Ukrainian queries are longer and more conversational.
 - Avoid Russian SEO patterns leaking into Ukrainian content.
 - Morphological analysis works - different cases (відмінки) are recognized as related.
-- Natural conversational density: 0.8%–1.2%. Do not over-optimize.
+- Natural conversational density: 0.8%-1.2%. Do not over-optimize.
 - Question-form keywords are very common (voice search and conversational queries).
 - Watch for Russianisms in keyword lists: use Ukrainian equivalents, not calques.
 

@@ -45,13 +45,13 @@ HIGH PRIORITY - Fix This Week (×2 weight each)
 ❌ K11: Cannibalization - Cannot verify without site access. ⚠️ Verify manually: site:taskpro.com "project management software"
 ⚠️ K12: Keyword length - "project management software" is 3 words (acceptable range)
 ❌ C1: Word count - 520 words (below 600 minimum)
-❌ C8: Readability - Grade 13 (avg sentence ~24 words; target Grade 7–9)
+❌ C8: Readability - Grade 13 (avg sentence ~24 words; target Grade 7-9)
 ⚠️ C9: Passive voice - 18% of sentences (target ≤10%)
 ❌ C13: Heading hierarchy - H1 present, then H3 (skips H2 entirely)
-❌ L1: Internal links - Only 1 link (target 3–10)
-❌ L2: External links - 0 links (target 2–5)
-⚠️ T3: Title length - 7 chars (target 50–60 for EN)
-❌ T4: Description length - Missing entirely (target 145–158 for EN)
+❌ L1: Internal links - Only 1 link (target 3-10)
+❌ L2: External links - 0 links (target 2-5)
+⚠️ T3: Title length - 7 chars (target 50-60 for EN)
+❌ T4: Description length - Missing entirely (target 145-158 for EN)
 ⚠️ A2: E-E-A-T signals - No author bio, no publication date, no citations
 
 ====================================
@@ -66,7 +66,7 @@ MEDIUM PRIORITY - Improve (×1 weight each)
 ⚠️ T1: URL length - 16 chars (under 75, but lacks keyword)
 ⚠️ T6: Schema markup - No JSON-LD found. Add Product schema.
 ⚠️ A1: Featured snippet - No concise answer paragraph
-⚠️ A3: LSI keywords - Only 2 related terms found (need 5–15)
+⚠️ A3: LSI keywords - Only 2 related terms found (need 5-15)
 ⚠️ A5: Mobile readability - Paragraphs render as 7+ lines on mobile (proxy: multiple paragraphs >120 words)
 ⚠️ C12: Consecutive sentence starts - 4 consecutive sentences start with "The" - variety needed
 
@@ -105,7 +105,7 @@ IMPACT SUMMARY
 ====================================
 Critical fixes:       Very High
 Critical + High:      High
-All fixes:            Medium–High
+All fixes:            Medium-High
 
 ====================================
 TOP 5 ACTIONS (Do These First)
@@ -123,5 +123,5 @@ TOP 5 ACTIONS (Do These First)
    Impact: High | Effort: Medium (needs 301 redirect)
 
 5. Expand content from 520 to 800+ words with feature details + proper H2 structure
-   Impact: High | Effort: High (2–3 hrs)
+   Impact: High | Effort: High (2-3 hrs)
 ```

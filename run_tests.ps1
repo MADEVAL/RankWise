@@ -1,26 +1,26 @@
-# RankWise Validator — Test Runner (PowerShell)
+# RankWise Validator - Test Runner (PowerShell)
 # Requires: python -m pip install -r requirements.txt
 
 Write-Host "======================================" -ForegroundColor Cyan
-Write-Host "  RankWise Validator — Test Suite" -ForegroundColor Cyan
+Write-Host "  RankWise Validator - Test Suite" -ForegroundColor Cyan
 Write-Host "======================================" -ForegroundColor Cyan
 Write-Host ""
 
 # Check dependencies
 Write-Host "[1/3] Checking dependencies..." -ForegroundColor Yellow
-python -c "import readsight; print('  readsight — OK')" 2>$null
+python -c "import readsight; print('  readsight - OK')" 2>$null
 if ($LASTEXITCODE -ne 0) {
     Write-Host "  ERROR: readsight not installed. Run: pip install -r requirements.txt" -ForegroundColor Red
     exit 1
 }
-python -c "import pytest; print(f'  pytest v{pytest.__version__} — OK')" 2>$null
+python -c "import pytest; print(f'  pytest v{pytest.__version__} - OK')" 2>$null
 if ($LASTEXITCODE -ne 0) {
     Write-Host "  ERROR: pytest not installed. Run: pip install -r requirements.txt" -ForegroundColor Red
     exit 1
 }
 
 # Verify basic import
-Write-Host "  validator.metrics — OK" -ForegroundColor Green
+Write-Host "  validator.metrics - OK" -ForegroundColor Green
 Write-Host ""
 
 # Run tests

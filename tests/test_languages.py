@@ -29,7 +29,7 @@ class TestReadabilityLanguageSupport:
             assert m.flesch_reading_ease >= 0, f"Expected valid FRE for {lang}, got {m.flesch_reading_ease}"
 
     def test_all_languages_supported(self, multilingual):
-        # ReadSightPy covers every RankWise language — no LLM fallback needed.
+        # ReadSightPy covers every RankWise language - no LLM fallback needed.
         unsupported = set(multilingual.keys()) - READABILITY_LANGS
         assert unsupported == set(), f"Unexpected unsupported langs: {unsupported}"
         for lang in multilingual:

@@ -1,7 +1,7 @@
-# INTEGRATION GUIDE — RankWise for External Skill Maintainers
+# INTEGRATION GUIDE - RankWise for External Skill Maintainers
 > **Version:** 1.3.0
 
-> This guide is for maintainers of HumanAI, MindFluence, and other downstream skills that integrate with RankWise.
+> This guide is for maintainers of human-ai, MindFluence, and other downstream skills that integrate with RankWise.
 
 ---
 
@@ -17,7 +17,7 @@ Your skill may rewrite sentences but MUST preserve keyword positions in:
 - Meta description (within first 20 words)
 - At least one image alt text
 
-**Implementation:** If your skill uses text cleanup/paraphrasing, add a blacklist of sentences that contain the focus keyword — do not modify or remove them.
+**Implementation:** If your skill uses text cleanup/paraphrasing, add a blacklist of sentences that contain the focus keyword - do not modify or remove them.
 
 ### 1.2 Heading Hierarchy Lock
 H1 → H2 → H3 nesting must survive any rewrite. If your skill restructures content:
@@ -27,7 +27,7 @@ H1 → H2 → H3 nesting must survive any rewrite. If your skill restructures co
 
 ### 1.3 Density Caps
 After any text expansion or contraction by your skill:
-- Check keyword density stays within 0.8%–1.5%
+- Check keyword density stays within 0.8%-1.5%
 - If your skill expands text by >20%, recommend a follow-up RankWise audit
 - If your skill shortens text, cap minimum word count at 600 for blog content
 
@@ -67,7 +67,7 @@ Phase 2: MindFluence (persuasion layer)
          → Apply cognitive biases, persuasion frameworks, emotional arcs
          → Constraint: preserve keyword positions and heading hierarchy
 
-Phase 3: HumanAI (humanization layer)
+Phase 3: human-ai (humanization layer)
          → Strip remaining AI markers, add personality, vary cadence
          → Constraint: re-check density after pass, fix if drifted
 

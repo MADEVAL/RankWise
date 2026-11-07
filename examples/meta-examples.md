@@ -53,7 +53,7 @@
 ## KEY TAKEAWAY
 
 Notice what each variant does:
-1. **Length:** Every tag fits the target window (title 50–60, description 145–158)
+1. **Length:** Every tag fits the target window (title 50-60, description 145-158)
 2. **Keyword:** All titles have "SEO checklist" in first 3 words
 3. **Power words:** "Free", "Proven", "Trusted", "Fix", "Download"
 4. **Numbers:** "45+", "3,000+", "30 Min"

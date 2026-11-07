@@ -1,16 +1,16 @@
 ---
 name: rankwise
-description: Professional SEO content engine for generating, rewriting, and auditing content against 49 ranking factors. Covers articles, meta tags (title, description, OG), image alt texts (array or inline), URL slugs, and content briefs. Use for SEO content creation, rewriting from URL or text, meta tag optimization, alt text generation, full SEO audits, or content brief planning.
-license: MIT | Copyright Yevhen Leonidov
-compatibility: any-llm
+description: Professional SEO content engine for generating, rewriting, and auditing content against 49 ranking factors. Covers articles, meta tags (title, description, OG), image alt texts (array or inline), URL slugs, and content briefs. Use for SEO content creation, rewriting from URL or text, meta tag optimization, alt text generation, full SEO audits, or content brief planning. Do NOT use for angles and hooks (AngleCraft), persuasion or cognitive-bias copywriting (MindFluence), humanizing AI text (human-ai), or image generation.
+license: MIT
+compatibility: Plain Markdown. Optional Python 3.10+ for the validator (validator/).
 metadata:
+  author: Yevhen Leonidov
   version: "1.3.0"
   factors: "49+"
   language: "en, ru, uk, de, fr, es, pt, it, pl"
   modes: "6"
   scenarios: "11"
-  base_url: "https://raw.githubusercontent.com/MADEVAL/RankWise/main"
-  pinned_urls: "v1.3.0"
+  repository: "https://github.com/MADEVAL/RankWise"
 ---
 
 # RankWise - Professional SEO Content Engine
@@ -26,11 +26,11 @@ metadata:
 
 ### Single-File Operation
 
-This file is the COMPLETE RankWise orchestrator. It contains all core SEO logic needed to generate, rewrite, audit, and optimize content — in a single file. You DO NOT need to pre-load any other files.
+This file is the COMPLETE RankWise orchestrator. It contains all core SEO logic needed to generate, rewrite, audit, and optimize content - in a single file. You DO NOT need to pre-load any other files.
 
 ### Fetch-As-Needed Strategy
 
-For language-specific word lists and detailed scenario procedures, fetch the corresponding file from the RAW URL INDEX at the bottom of this document. Fetch ONLY what the current task requires:
+For language-specific word lists and detailed scenario procedures, read the corresponding file from this skill folder (paths are listed in REFERENCE FILES at the bottom). Read ONLY what the current task requires:
 
 1. **ALWAYS fetch** `shared/checklist.md` for the full 49-factor scoring matrix with fix instructions
 2. **IF task language ≠ English** → fetch `shared/power-words.md` + `shared/readability-params.md`
@@ -42,10 +42,10 @@ For language-specific word lists and detailed scenario procedures, fetch the cor
 
 ### Offline Mode (No Web Fetch Available)
 
-If you cannot fetch any URLs, proceed with the inline rules only:
-- **English is fully covered** — all word lists (power, transition, stop, passive patterns) are inline in the LANGUAGE RESOURCES section below
-- **For non-English:** use the compact LANGUAGE ADAPTATION table for targets, apply the universal burned words, and flag output with: ⚠️ "No web access — used inline reference data only."
-- All 49 factors are scoreable from the inline scorecard — fetch `shared/checklist.md` only for the detailed fix instructions per factor
+If you cannot read the reference files, proceed with the inline rules only:
+- **English is fully covered** - all word lists (power, transition, stop, passive patterns) are inline in the LANGUAGE RESOURCES section below
+- **For non-English:** use the compact LANGUAGE ADAPTATION table for targets, apply the universal burned words, and flag output with: ⚠️ "No web access - used inline reference data only."
+- All 49 factors are scoreable from the inline scorecard - fetch `shared/checklist.md` only for the detailed fix instructions per factor
 - Scenario summaries in OPERATING MODES are sufficient for basic operation in all 6 modes
 
 ### Fetch Decision Tree (Quick Reference)
@@ -77,6 +77,22 @@ You process content in any of these modes: generating from scratch, rewriting ex
 
 ---
 
+## WHEN NOT TO USE
+
+RankWise handles SEO structure, keywords, links, and meta signals. Hand off when the request is really about something else:
+
+| Request | Use instead |
+|---|---|
+| Angles, hooks, or content ideas before writing | AngleCraft |
+| Persuasion, cognitive-bias, or tone engineering of marketing copy | MindFluence |
+| Rewriting AI text so it sounds human (after SEO structure is locked) | human-ai |
+| Fact-checking, original research, or source verification | A research/browsing tool - RankWise never invents sources |
+| Image generation | An image tool - RankWise writes alt text only |
+
+If the user needs a multi-skill workflow, follow INTEGRATION WITH OTHER SKILLS below.
+
+---
+
 ## OPERATING MODES
 
 The user's request determines the mode. Announce the mode at the top of every output.
@@ -86,7 +102,7 @@ The user's request determines the mode. Announce the mode at the top of every ou
 **Action:** Create a complete SEO-optimized article from scratch.
 
 **Inline pipeline (no fetch needed for English):**
-1. **INTENT:** Determine search intent — informational / commercial / transactional / navigational. With web access: search SERP. Without: infer from keyword type ("how to"=informational, "best"/"vs"=commercial, "buy"/"price"=transactional, brand name=navigational).
+1. **INTENT:** Determine search intent - informational / commercial / transactional / navigational. With web access: search SERP. Without: infer from keyword type ("how to"=informational, "best"/"vs"=commercial, "buy"/"price"=transactional, brand name=navigational).
 2. **KEYWORDS:** Define 1 primary + 2-4 secondary + 5-15 LSI terms. Primary must appear in title, meta, URL, first 150 words, ≥1 H2, ≥1 image alt. Density: 0.8%-1.5%. Fetch `shared/keyword-rules.md` for LSI generation patterns.
 3. **TITLE:** Formula = `[Number] + [Power Word] + [Keyword] + [Promise/Curiosity Gap]`. 50-60 chars (adjust per language), keyword in first 3-5 words, ≥1 odd number, ≥2 power words, clear sentiment polarity.
 4. **OUTLINE:** 5-9 H2s covering: Problem → Definition → Method → Evidence → Steps → Mistakes → Tools → Advanced → Conclusion. Word count: low competition 600-1000, medium 1000-1800, high 1800-3000+.
@@ -106,9 +122,9 @@ The user's request determines the mode. Announce the mode at the top of every ou
 **Inline pipeline (no fetch needed for English):**
 1. **EXTRACT:** If URL: fetch content. If text: parse structure (title, headings, paragraphs, images, links). Identify existing focus keyword (from title/H1, or ask user). Note word count, heading count, image count, link count.
 2. **PRE-AUDIT:** Score existing content against 8-factor quick scan (K1, K2, K4, K7, K10, C1, C13, L1). Document baseline.
-3. **PRESERVE:** Factual claims, proper names, direct quotes, core message, user's unique insights. **NEVER invent facts or statistics.** Flag uncertain data with [VERIFY].
+3. **PRESERVE:** Factual claims, proper names, direct quotes, core message, user's unique insights. **NEVER invent facts or statistics.** Flag uncertain data with `[VERIFY: ...]`. Canonical placeholders: `[VERIFY: ...]` for a claim to check, `[DATA NEEDED: ...]` for missing input, `[N]` for a missing number.
 4. **STRUCTURE:** Single H1. 5-9 H2s. H3 sub-sections where H2 >300 words. Proper H2→H3 hierarchy. Paragraphs ≤150 words (≤120 for non-EN), ≤3 sentences. Visual rhythm: short-short-long-short. Word count: expand if <600, optimize if adequate, condense if >3000 and rambling.
-5. **LINE-BY-LINE:** Remove AI markers — apply burned words, empty intensifiers, throat-clearing openers, fake transitions, hedging, rhetorical question padding, adjective pileups, SEO-specific AI tells (full per-language lists via `shared/burned-words.md`). Replace passive with active (≤10% target). Add transition words (≥30% EN, ≥25% other langs). Vary sentence length and openers. Add power words to subheadings and key sentences. Add concrete examples where generic claims exist.
+5. **LINE-BY-LINE:** Remove AI markers - apply burned words, empty intensifiers, throat-clearing openers, fake transitions, hedging, rhetorical question padding, adjective pileups, SEO-specific AI tells (full per-language lists via `shared/burned-words.md`). Replace passive with active (≤10% target). Add transition words (≥30% EN, ≥25% other langs). Vary sentence length and openers. Add power words to subheadings and key sentences. Add concrete examples where generic claims exist.
 6. **KEYWORDS:** Adjust density to 0.8%-1.5%. If <0.8%: add natural instances. If >3%: replace with synonyms/pronouns/restructure.
 7. **META REWRITE:** New title (50-60 chars, keyword near beginning, number + power words, clear sentiment). New description (145-158 chars, keyword in first 20 words, specific value prop). URL slug suggestion if current is too long or lacks keyword.
 8. **DELIVER:** Rewritten content + BEFORE/AFTER scores + CHANGELOG (structural changes, keyword delta, links added, word count delta, meta before/after) + RECOMMENDATIONS (URL slug, image additions, schema markup).
@@ -140,7 +156,7 @@ The user's request determines the mode. Announce the mode at the top of every ou
 
 **Inline pipeline:**
 1. **INPUT PARSING:** Accept topic description, existing tags to fix, or full context with page type. Alt texts: accept as array `["alt1", "alt2"]` or inline `![alt](src)` or JSON list.
-2. **TITLE:** Per page type — blog: `[Number] [Power Word] [Keyword]: [Benefit]`, how-to: `How to [Outcome] with [Keyword]`, product: `[Product]: [Benefit] - [Brand]`, landing: `[Benefit] with [Keyword] | [Brand]`. 50-60 chars, keyword near beginning, ≥1 number, ≥2 power words, clear sentiment.
+2. **TITLE:** Per page type - blog: `[Number] [Power Word] [Keyword]: [Benefit]`, how-to: `How to [Outcome] with [Keyword]`, product: `[Product]: [Benefit] - [Brand]`, landing: `[Benefit] with [Keyword] | [Brand]`. 50-60 chars, keyword near beginning, ≥1 number, ≥2 power words, clear sentiment.
 3. **DESCRIPTION:** Template: `[Keyword]: [specific benefit]. [Evidence/credibility]. [Action].` 145-158 chars, keyword in first 20 words, active voice.
 4. **OG TAGS:** OG title 40-60 chars (may equal meta or be more conversational). OG description 100-200 chars (different from meta, social-media tone).
 5. **URL SLUG:** ≤75 chars, keyword, hyphens, no stop words, no dates. Fetch `scenarios/url-optimize.md` for per-language stop word lists.
@@ -162,13 +178,13 @@ The user's request determines the mode. Announce the mode at the top of every ou
 5. **LINKING PLAN:** 3-8 internal link targets (URL + suggested anchor + placement section). 2-5 external link targets (URL + why relevant).
 6. **MEDIA PLAN:** Image types + count + placement. ≥1 per 300 words.
 7. **SCHEMA:** Recommend appropriate schema type. Fetch `shared/schema-templates.md` for JSON-LD template.
-8. **DELIVER:** Formatted brief — not full article text.
+8. **DELIVER:** Formatted brief - not full article text.
 
 > **Full content brief pipeline (9 steps with templates):** fetch `scenarios/content-brief.md`
 
 ---
 
-## OUTPUT COMPOSITION - Modular Content Delivery
+## OUTPUT CONTRACT - Modular Content Delivery
 
 RankWise delivers content in **4 independent modules**. You request any combination - the orchestrator activates only what you need. Nothing more, nothing less.
 
@@ -207,19 +223,19 @@ When generating/rewriting, detect content type and route to the correct scenario
 | Content Type | Scenario | Key Difference |
 |-------------|----------|---------------|
 | Blog article, guide, tutorial | `scenarios/article-generate.md` | 600+ words, H2-heavy, external links |
-| Product page, e-commerce | `scenarios/product-page.md` | 600–1200 words, features/specs, Product schema |
-| Home page, brand page | `scenarios/home-page.md` | 300–500 words, brand=primary keyword, Organization schema |
+| Product page, e-commerce | `scenarios/product-page.md` | 600-1200 words, features/specs, Product schema |
+| Home page, brand page | `scenarios/home-page.md` | 300-500 words, brand=primary keyword, Organization schema |
 | Landing page, sales page | `scenarios/article-generate.md` + persuasion psychology layer | Persuasion-heavy, single CTA |
 | Category/archive page | `scenarios/product-page.md` (adapted) | Multiple products, filtering, short descriptions |
 
-> **Full specialized scenario procedures:** fetch `scenarios/home-page.md`, `scenarios/product-page.md`, `scenarios/video-podcast.md` from the RAW URL INDEX
+> **Full specialized scenario procedures:** read `scenarios/home-page.md`, `scenarios/product-page.md`, `scenarios/video-podcast.md` from the references list below
 
 ### Multi-Keyword Pages
 
 Some pages legitimately target multiple keywords (home pages, pillar pages, category pages):
 - Designate ONE primary keyword for the 49-factor scorecard
 - List secondary keywords as "co-targets" - each gets a dedicated H2 section with its own density
-- For audit: score K1–K12 against the primary keyword. Flag secondary coverage as bonus, not requirement.
+- For audit: score K1-K12 against the primary keyword. Flag secondary coverage as bonus, not requirement.
 - Cannibalization check (K11) applies to the primary keyword only.
 
 ### Non-Text Content Handling
@@ -228,7 +244,7 @@ Some pages legitimately target multiple keywords (home pages, pillar pages, cate
 
 **Auto-translated content:** Watch for literal translations, preserved source-language idioms, untranslated cultural references. Flag with: ⚠️ "Possible machine translation detected - verify with native speaker." Burned-word lists apply to target language, but also check for source-language residues.
 
-**Code-heavy technical content:** Readability targets (C8) adjust to Grade 10–12. Passive voice (C9) may be necessary for technical accuracy - flag as ⚠️ rather than ❌ if >10% but contextually justified. Sentence length max extends to 30 words for code explanations.
+**Code-heavy technical content:** Readability targets (C8) adjust to Grade 10-12. Passive voice (C9) may be necessary for technical accuracy - flag as ⚠️ rather than ❌ if >10% but contextually justified. Sentence length max extends to 30 words for code explanations.
 
 **Image generation:** RankWise does NOT generate images, illustrations, or graphics. This skill optimizes text content, meta tags, alt texts, and URLs. For image creation, use a dedicated image-generation tool (DALL-E, Midjourney, Stable Diffusion). RankWise can provide alt text suggestions and image placement recommendations, but actual image generation is out of scope.
 
@@ -326,7 +342,7 @@ Every piece of content is scored against these factors.
 | K7 | Keyword in content body | Naturally distributed | CRITICAL |
 | K8 | Keyword in subheadings | At least 1 H2 | HIGH |
 | K9 | Keyword as image alt text | At least 1 image | MEDIUM |
-| K10 | Keyword density | 0.8%–1.5% (not 0%, not >3%) | HIGH |
+| K10 | Keyword density | 0.8%-1.5% (not 0%, not >3%) | HIGH |
 | K11 | Keyword cannibalization | No other page targets same primary keyword | HIGH |
 | K12 | Keyword length | 3+ characters, not excessively long (≤7 words) | MEDIUM |
 
@@ -341,7 +357,7 @@ Every piece of content is scored against these factors.
 | C5 | Numbers in title | At least 1 (odd numbers preferred) | MEDIUM |
 | C6 | Power words in title | ≥2 emotionally charged words | MEDIUM |
 | C7 | Sentiment signal | Clear positive or negative (not neutral) | LOW |
-| C8 | Readability score | Grade 7-9 (EN), equivalent per language — see LANGUAGE ADAPTATION table below | HIGH |
+| C8 | Readability score | Grade 7-9 (EN), equivalent per language - see LANGUAGE ADAPTATION table below | HIGH |
 | C9 | Passive voice ratio | ≤10% of sentences | MEDIUM |
 | C10 | Transition words | ≥30% of sentences (EN); ≥25% other languages | LOW |
 | C11 | Sentence length variety | No 3 consecutive same-length (±2 words) | MEDIUM |
@@ -353,8 +369,8 @@ Every piece of content is scored against these factors.
 
 | # | Factor | Target | Severity |
 |---|--------|--------|----------|
-| L1 | Internal links | 3–10 per article | HIGH |
-| L2 | External links | 2–5 to authoritative sources | HIGH |
+| L1 | Internal links | 3-10 per article | HIGH |
+| L2 | External links | 2-5 to authoritative sources | HIGH |
 | L3 | DoFollow external links | At least 1 of external links | MEDIUM |
 | L4 | Link anchor text variety | No more than 2 exact-match anchors | MEDIUM |
 | L5 | Outbound link quality | Recognized authority (.edu, .gov, known brands) | MEDIUM |
@@ -369,8 +385,8 @@ Every piece of content is scored against these factors.
 |---|--------|--------|----------|
 | T1 | URL length | ≤75 characters | MEDIUM |
 | T2 | URL structure | Keyword-rich, no stop words, hyphens not underscores | MEDIUM |
-| T3 | SEO title length | Per-language limits — see LANGUAGE ADAPTATION table below | HIGH |
-| T4 | Meta description length | Per-language limits — see LANGUAGE ADAPTATION table below | HIGH |
+| T3 | SEO title length | Per-language limits - see LANGUAGE ADAPTATION table below | HIGH |
+| T4 | Meta description length | Per-language limits - see LANGUAGE ADAPTATION table below | HIGH |
 | T5 | Image file names | Descriptive, keyword-rich, hyphens | LOW |
 | T6 | Schema markup | Appropriate type present (Article, Product, FAQ, etc.) | MEDIUM |
 | T7 | Canonical URL | Set correctly | MEDIUM |
@@ -380,9 +396,9 @@ Every piece of content is scored against these factors.
 
 | # | Factor | Target | Severity |
 |---|--------|--------|----------|
-| A1 | Featured snippet potential | Concise 40–60 word answer for target query | MEDIUM |
+| A1 | Featured snippet potential | Concise 40-60 word answer for target query | MEDIUM |
 | A2 | E-E-A-T signals | ≥3 of 5 signals: author bio, publication date, citation, about page, contact/privacy | HIGH |
-| A3 | LSI / semantic keywords | 5–15 related terms naturally present | MEDIUM |
+| A3 | LSI / semantic keywords | 5-15 related terms naturally present | MEDIUM |
 | A4 | Content freshness | Date visible, updated within reasonable window | LOW |
 | A5 | Mobile readability | Scannable on mobile: short paragraphs, clear headings | MEDIUM |
 | A6 | Breadcrumb structure | Logical breadcrumb path | LOW |
@@ -404,9 +420,9 @@ Factors carry different weights based on severity:
 | Grade | Score % | Meaning | Constraint |
 |-------|---------|---------|------------|
 | A | 90%+ | Excellent. Minor tweaks only. | 0 CRITICAL failures |
-| B | 75–89% | Good. Several improvements available. | ≤1 CRITICAL failure |
-| C | 60–74% | Average. Significant gaps to fix. | ≤3 CRITICAL failures |
-| D | 40–59% | Poor. Major overhaul needed. | - |
+| B | 75-89% | Good. Several improvements available. | ≤1 CRITICAL failure |
+| C | 60-74% | Average. Significant gaps to fix. | ≤3 CRITICAL failures |
+| D | 40-59% | Poor. Major overhaul needed. | - |
 | F | <40% | Failing. Start over or fully restructure. | - |
 
 **Delivery validation rule:** Before delivering any scored output, verify: N/A + CRITICAL + HIGH + MEDIUM + LOW + PASSED = 49. If sum ≠ 49, re-scan.
@@ -416,12 +432,12 @@ Factors carry different weights based on severity:
 2. ☐ K2 - Keyword in SEO title?
 3. ☐ K4 - Keyword in meta description?
 4. ☐ K7 - Keyword in content body?
-5. ☐ K10 - Density 0.8–1.5%?
+5. ☐ K10 - Density 0.8-1.5%?
 6. ☐ C1 - Word count 600+?
 7. ☐ C13 - Heading hierarchy correct?
 8. ☐ L1 - At least 3 internal links?
 
-**Offline mode (no web access):** Mark K11, L5, L6, L7, L8, T6, T7 as ⊘ [NO_WEB] — exclude from denominator (max 42 instead of 49).
+**Offline mode (no web access):** Mark K11, L5, L6, L7, L8, T6, T7 as ⊘ [NO_WEB] - exclude from denominator (max 42 instead of 49).
 
 ---
 
@@ -432,16 +448,16 @@ Factors carry different weights based on severity:
 ### Primary keyword
 - One focus keyword per page/article
 - Must appear in: title, meta description, URL, first 150 words, at least one H2, at least one image alt
-- Density: 0.8%–1.5% (not zero, not stuffed). Calculation: `(exact_matches / total_words) × 100`
+- Density: 0.8%-1.5% (not zero, not stuffed). Calculation: `(exact_matches / total_words) × 100`
 
 ### Secondary keywords
-- 2–4 related terms
+- 2-4 related terms
 - Appear in at least one H2/H3 each
 - Can be variations, synonyms, long-tail versions
 
 ### LSI / semantic keywords
-- 5–15 terms related to primary topic
-- Naturally distributed throughout body — NOT forced
+- 5-15 terms related to primary topic
+- Naturally distributed throughout body - NOT forced
 - Source from: SERP "searches related to", "people also ask", topic vocabulary, competing page analysis, internal site search data, keyword research tools
 
 ### Keyword cannibalization check
@@ -497,13 +513,13 @@ Examples:
 
 > **Full rules (anchor ratios, topic clusters, audit checklist):** fetch `shared/link-strategy.md`
 
-### Internal links (3–10 per article)
-- Link to 3–10 relevant internal pages
+### Internal links (3-10 per article)
+- Link to 3-10 relevant internal pages
 - Anchor text mix: partial match 30-40%, branded 20-25%, generic 20-25%, naked URL 5-10%, exact match ≤2
 - Priority: link to cornerstone content and money pages
 - Contextual (in-body) links > navigation links
 
-### External links (2–5 per article)
+### External links (2-5 per article)
 - Link to authoritative sources: .edu, .gov, recognized publications, known trusted brands
 - At least 1 DoFollow link to an external resource
 - External links open in new tab (target="_blank" with rel="noopener")
@@ -520,7 +536,7 @@ Examples:
 ## TECHNICAL SEO
 
 ### Meta title
-- 50–60 characters (adjust per language — see LANGUAGE ADAPTATION table)
+- 50-60 characters (adjust per language - see LANGUAGE ADAPTATION table)
 - Primary keyword near beginning
 - Brand at end with separator: ` | Brand` or ` - Brand`
 - Unique per page (no duplicates across site)
@@ -528,7 +544,7 @@ Examples:
 - Numbers preferred: "7 Ways..." over "Ways..."
 
 ### Meta description
-- 145–158 characters (adjust per language)
+- 145-158 characters (adjust per language)
 - Primary keyword within first 20 words
 - Active voice, concrete value proposition
 - No "We offer..." or "In this article..."
@@ -578,7 +594,7 @@ Power words are emotionally charged terms that trigger psychological responses. 
 | Exclusivity | Status | "Exclusive", "Limited", "Only", "Insider", "Behind the scenes" |
 | Specificity | Credibility | Numbers, percentages, dollar amounts, timeframes |
 
-### English power words (inline — full list)
+### English power words (inline - full list)
 proven, secret, stop, simple, exclusive, limited, hidden, surprising, shocking, unexpected, amazing, incredible, ultimate, essential, critical, guaranteed, instant, immediate, automatic, effortless, breakthrough, insider, revealed, mistake, warning, never, avoid, dangerous, risk, urgent, little-known, unknown, unconventional, tested, research-backed, data-driven, expert, science-based, actual, real, exact, specific, step-by-step, definitive, powerful, effective
 
 > **For non-English power words:** fetch `shared/power-words.md`
@@ -596,15 +612,15 @@ All rules adapt to the content language. Inline quick reference:
 
 | Lang | Title (chars) | Desc (chars) | Readability Target | Formula | Transition ≥% | Passive ≤% |
 |------|--------------|--------------|--------------------|--------|----------------|------------|
-| EN | 50–60 | 145–158 | Grade 7–9 | FK Grade | 30% | 10% |
-| RU | 55–70 | 140–160 | FRE 50–70 | FRE | 25% | 8% |
-| UK | 55–70 | 140–160 | LIX 30–45 | LIX | 25% | 10% |
-| DE | 50–65 | 145–158 | WSTF 4–10 | WSTF | 25% | 10% |
-| FR | 50–63 | 145–158 | FRE 50–70 | FRE | 25% | 10% |
-| ES | 50–63 | 145–158 | FH 50–70 | FH | 25% | 10% |
-| PT | 50–63 | 145–158 | FRE 50–70 | FRE | 25% | 10% |
-| IT | 50–63 | 145–158 | Gulpease 50–60 | Gulpease | 25% | 10% |
-| PL | 50–65 | 145–158 | FOG-PL 7–12 | FOG-PL | 25% | 10% |
+| EN | 50-60 | 145-158 | Grade 7-9 | FK Grade | 30% | 10% |
+| RU | 55-70 | 140-160 | FRE 50-70 | FRE | 25% | 8% |
+| UK | 55-70 | 140-160 | LIX 30-45 | LIX | 25% | 10% |
+| DE | 50-65 | 145-158 | WSTF 4-10 | WSTF | 25% | 10% |
+| FR | 50-63 | 145-158 | FRE 50-70 | FRE | 25% | 10% |
+| ES | 50-63 | 145-158 | FH 50-70 | FH | 25% | 10% |
+| PT | 50-63 | 145-158 | FRE 50-70 | FRE | 25% | 10% |
+| IT | 50-63 | 145-158 | Gulpease 50-60 | Gulpease | 25% | 10% |
+| PL | 50-65 | 145-158 | FOG-PL 7-12 | FOG-PL | 25% | 10% |
 
 ### Per-language notes
 
@@ -612,7 +628,7 @@ All rules adapt to the content language. Inline quick reference:
 
 **Ukrainian / Українська:** Google dominates (~95% share). Avoid Russianisms in keyword selection and content phrasing.
 
-**German / Deutsch:** Compound nouns common — count characters accordingly. Avoid Nominalstil in content body.
+**German / Deutsch:** Compound nouns common - count characters accordingly. Avoid Nominalstil in content body.
 
 **French / Español / Português / Italiano / Polski:** Character limits as above. Full per-language sentence length limits, readability nuances, and OG tag limits: fetch `shared/readability-params.md`.
 
@@ -626,18 +642,18 @@ When source content language differs from requested output language:
 
 ---
 
-## ── LANGUAGE RESOURCES (English — inline) ──
+## ── LANGUAGE RESOURCES (English - inline) ──
 
 English is the default language. All word lists below are sufficient for offline English operation.
-For non-English word lists, fetch the corresponding file from the RAW URL INDEX.
+For non-English word lists, read the corresponding file from the references list.
 
-### English Power Words (for titles/headings — target ≥2)
+### English Power Words (for titles/headings - target ≥2)
 proven, secret, stop, simple, exclusive, limited, hidden, surprising, shocking, unexpected, amazing, incredible, ultimate, essential, critical, guaranteed, instant, immediate, automatic, effortless, breakthrough, insider, revealed, mistake, warning, never, avoid, dangerous, risk, urgent, little-known, unknown, unconventional, tested, research-backed, data-driven, expert, science-based, actual, real, exact, specific, step-by-step, definitive, powerful, effective
 
-### English Transition Words (for body — target ≥30% of sentences)
+### English Transition Words (for body - target ≥30% of sentences)
 however, therefore, because, although, specifically, for example, for instance, in contrast, similarly, consequently, notably, meanwhile, furthermore, moreover, additionally, nevertheless, nonetheless, otherwise, instead, accordingly, hence, thus, in addition, on the other hand, as a result, in particular, in conclusion, to summarize, first, second, third, finally, next, then, also, besides, indeed, in fact, of course, certainly, surely, undoubtedly, regardless, despite, even though, while, whereas
 
-### English Stop Words (for URL slugs — remove these)
+### English Stop Words (for URL slugs - remove these)
 the, a, an, and, or, but, in, on, at, to, for, of, with, by, from, up, about, into, through, during, before, after, above, below, between, is, are, was, were, be, been, being, have, has, do, does, did, will, would, can, could, may, might, must, shall, should, not, no
 
 ### English Passive Voice Detection Patterns
@@ -645,7 +661,7 @@ the, a, an, and, or, but, in, on, at, to, for, of, with, by, from, up, about, in
 - `(has|have|had|will have) + been + [past participle]`
 - Examples: "was written", "were analyzed", "has been shown", "can be improved"
 
-### English Burned Words (AI markers — delete on sight in Rewrite mode)
+### English Burned Words (AI markers - delete on sight in Rewrite mode)
 **Universal:** leverage, utilize, harness, empower, facilitate, optimize, streamline, revolutionize, transform (generic), robust, seamless, cutting-edge, best-in-class, game-changer, next-level, innovative (unproven), holistic, ecosystem, dynamic, synergy, granular, scalable (without specifics)
 
 **Empty intensifiers:** very, extremely, incredibly, amazingly, truly, really, absolutely, completely, thoroughly, highly, remarkably
@@ -714,7 +730,7 @@ This pattern works with any skill - humanization, persuasion, translation, forma
 
 ## OUTPUT FORMATS - Quick Reference
 
-Full format details: see **OUTPUT COMPOSITION** above (Module Output Format + Cross-Module Header). Brief summary:
+Full format details: see **OUTPUT CONTRACT** above (Module Output Format + Cross-Module Header). Brief summary:
 
 | Mode | Output |
 |------|--------|
@@ -795,56 +811,53 @@ Each scenario has a 5-10 line summary sufficient for basic execution. Fetch the 
 
 ---
 
-## ── RAW URL INDEX ──
+## REFERENCE FILES
 
-Base URL: `https://raw.githubusercontent.com/MADEVAL/RankWise/main/`
-
-> **Stable reference:** Replace `main` with a pinned tag for guaranteed version stability:
-> `https://raw.githubusercontent.com/MADEVAL/RankWise/v1.3.0/shared/checklist.md`
+Paths are relative to this `SKILL.md`. Read a file only when the task needs it. If you are working from a copied single file with no access to the folder, read the same path from the public repository: `https://github.com/MADEVAL/RankWise`.
 
 ### Always-needed references
-- 49-factor checklist + fix instructions: [shared/checklist.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/shared/checklist.md)
-- Keyword rules (density, placement, LSI, cannibalization): [shared/keyword-rules.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/shared/keyword-rules.md)
+- 49-factor checklist + fix instructions: [shared/checklist.md](shared/checklist.md)
+- Keyword rules (density, placement, LSI, cannibalization): [shared/keyword-rules.md](shared/keyword-rules.md)
 
 ### Language-specific references
-- Power words × 9 languages: [shared/power-words.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/shared/power-words.md)
-- Burned words (AI markers) × 9 languages: [shared/burned-words.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/shared/burned-words.md)
-- Readability params per language: [shared/readability-params.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/shared/readability-params.md)
+- Power words × 9 languages: [shared/power-words.md](shared/power-words.md)
+- Burned words (AI markers) × 9 languages: [shared/burned-words.md](shared/burned-words.md)
+- Readability params per language: [shared/readability-params.md](shared/readability-params.md)
 
 ### Strategy references
-- Internal/external linking rules: [shared/link-strategy.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/shared/link-strategy.md)
-- JSON-LD schema templates (13 types): [shared/schema-templates.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/shared/schema-templates.md)
+- Internal/external linking rules: [shared/link-strategy.md](shared/link-strategy.md)
+- JSON-LD schema templates (13 types): [shared/schema-templates.md](shared/schema-templates.md)
 
 ### Scenario procedures (full step-by-step)
-- Article generation: [scenarios/article-generate.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/scenarios/article-generate.md)
-- Article rewrite: [scenarios/article-rewrite.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/scenarios/article-rewrite.md)
-- Audit report format: [scenarios/audit-report.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/scenarios/audit-report.md)
-- Content brief/plan: [scenarios/content-brief.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/scenarios/content-brief.md)
-- Meta tag optimization: [scenarios/meta-optimize.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/scenarios/meta-optimize.md)
-- Alt texts: [scenarios/alt-texts.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/scenarios/alt-texts.md)
-- URL slug optimization: [scenarios/url-optimize.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/scenarios/url-optimize.md)
-- Quick-fix (all 49 factors): [scenarios/quick-fix.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/scenarios/quick-fix.md)
-- Home page / brand SEO: [scenarios/home-page.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/scenarios/home-page.md)
-- Product / e-commerce SEO: [scenarios/product-page.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/scenarios/product-page.md)
-- Video / podcast SEO: [scenarios/video-podcast.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/scenarios/video-podcast.md)
+- Article generation: [scenarios/article-generate.md](scenarios/article-generate.md)
+- Article rewrite: [scenarios/article-rewrite.md](scenarios/article-rewrite.md)
+- Audit report format: [scenarios/audit-report.md](scenarios/audit-report.md)
+- Content brief/plan: [scenarios/content-brief.md](scenarios/content-brief.md)
+- Meta tag optimization: [scenarios/meta-optimize.md](scenarios/meta-optimize.md)
+- Alt texts: [scenarios/alt-texts.md](scenarios/alt-texts.md)
+- URL slug optimization: [scenarios/url-optimize.md](scenarios/url-optimize.md)
+- Quick-fix (all 49 factors): [scenarios/quick-fix.md](scenarios/quick-fix.md)
+- Home page / brand SEO: [scenarios/home-page.md](scenarios/home-page.md)
+- Product / e-commerce SEO: [scenarios/product-page.md](scenarios/product-page.md)
+- Video / podcast SEO: [scenarios/video-podcast.md](scenarios/video-podcast.md)
 
 ### Annotated examples
-- Full rewrite before/after: [examples/before-after-article.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/examples/before-after-article.md)
-- Meta tag examples: [examples/meta-examples.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/examples/meta-examples.md)
-- Audit report example: [examples/audit-example.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/examples/audit-example.md)
-- Integration pipeline example: [examples/integration-pipeline.md](https://raw.githubusercontent.com/MADEVAL/RankWise/main/examples/integration-pipeline.md)
+- Full rewrite before/after: [examples/before-after-article.md](examples/before-after-article.md)
+- Meta tag examples: [examples/meta-examples.md](examples/meta-examples.md)
+- Audit report example: [examples/audit-example.md](examples/audit-example.md)
+- Integration pipeline example: [examples/integration-pipeline.md](examples/integration-pipeline.md)
 
 ### Validator (for CI/CD or programmatic use)
 - CLI entry point: run `pip install rankwise-validator && rankwise-validator --help`
-- All sources: [validator/](https://github.com/MADEVAL/RankWise/tree/main/validator/)
-- Tests: [tests/](https://github.com/MADEVAL/RankWise/tree/main/tests/)
-- Benchmarks: [benchmarks/](https://github.com/MADEVAL/RankWise/tree/main/benchmarks/)
+- All sources: [validator/](validator//)
+- Tests: [tests/](tests//)
+- Benchmarks: [benchmarks/](benchmarks//)
 
 ---
 
 ## POST-GENERATION VALIDATION (Orchestrator)
 
-RankWise includes a **Python validator + orchestrator** (`validator/`) that computes objective SEO metrics deterministically and generates targeted LLM fix prompts. Use it to verify content after generation — the LLM focuses on writing quality and structure; the orchestrator handles exact measurements and automated re-validation.
+RankWise includes a **Python validator + orchestrator** (`validator/`) that computes objective SEO metrics deterministically and generates targeted LLM fix prompts. Use it to verify content after generation - the LLM focuses on writing quality and structure; the orchestrator handles exact measurements and automated re-validation.
 
 ### Validation + Fix Pipeline
 
@@ -855,13 +868,13 @@ python -m validator.cli --file content.md --keyword "your keyword" --title "Your
 # 2. Checklist scores (16 of 49 factors)
 python -m validator.cli --file content.md --keyword "your keyword" --title "Your Title" --meta "Description" --lang en --checklist
 
-# 3. Orchestrator — build fix plan with LLM-ready prompts
+# 3. Orchestrator - build fix plan with LLM-ready prompts
 python -m validator.cli --file content.md --keyword "your keyword" --title "Your Title" --orchestrate
 
 # 4. Consolidated LLM fix prompt (ready to paste into the LLM)
 python -m validator.cli --file content.md --keyword "your keyword" --title "Your Title" --fix-prompt
 
-# 5. After LLM applies fixes — re-validate and diff
+# 5. After LLM applies fixes - re-validate and diff
 python -m validator.cli --file content.md --keyword "keyword" --title "Title" --orchestrate --revalidate-file fixed.md
 
 # 6. JSON output for programmatic use
@@ -928,11 +941,10 @@ These are the factors where exact numeric measurement matters. Remaining factors
 
 ```
 rankwise/
-├── SKILL.md                        ← THIS FILE — complete single-file orchestrator
+├── SKILL.md                        ← THIS FILE - complete single-file orchestrator
 ├── README.md / README.ru.md        ← Documentation (bilingual)
 ├── CHANGELOG.md                    ← Version history
-├── LICENSE                         ← MIT | Copyright Yevhen Leonidov
-├── IMPROVEMENT-PLAN.md             ← v1.3.0 improvement plan (this version)
+├── LICENSE                         ← MIT
 ├── .gitignore
 ├── shared/
 │   ├── checklist.md                ← 49 SEO factors with thresholds, severity, fixes
@@ -959,7 +971,7 @@ rankwise/
 │   ├── meta-examples.md            ← Meta tag before/after examples
 │   ├── audit-example.md            ← Complete audit report example
 │   └── integration-pipeline.md     ← Multi-skill integration example
-├── validator/                      ← Python CLI + Orchestrator — deterministic metrics (16/49 factors) + automated fix prompts
+├── validator/                      ← Python CLI + Orchestrator - deterministic metrics (16/49 factors) + automated fix prompts
 │   ├── __init__.py                  ← Module exports
 │   ├── cli.py                       ← CLI entry point (validate, orchestrate, revalidate)
 │   ├── metrics.py                   ← Core analysis engine
@@ -973,9 +985,9 @@ rankwise/
 ```
 
 **How files relate to each other:**
-- `SKILL.md` is the **single-file orchestrator** — it contains all core rules inline and provides raw GitHub URLs for every reference file
-- `shared/` files are **data references** — fetch them via RAW URL INDEX when the task requires per-language word lists or full scoring matrices
-- `scenarios/` files are **procedural playbooks** — fetch them via RAW URL INDEX when the inline procedure summary is insufficient
-- `examples/` files are **annotated demonstrations** — fetch them for reference on expected output quality
-- `validator/orchestrator.py` is the **automated fix pipeline** — validates content, generates LLM-ready fix prompts, supports iterative re-validation
-- `validator/metrics.py` is the **deterministic computation layer** — computes 16 of 49 factors via ReadSightPy (independent from this skill prompt)
+- `SKILL.md` is the **single-file orchestrator** - it contains all core rules inline and points to the reference folder for depth
+- `shared/` files are **data references** - read them when the task requires per-language word lists or full scoring matrices
+- `scenarios/` files are **procedural playbooks** - read them when the inline procedure summary is insufficient
+- `examples/` files are **annotated demonstrations** - read them for reference on expected output quality
+- `validator/orchestrator.py` is the **automated fix pipeline** - validates content, generates LLM-ready fix prompts, supports iterative re-validation
+- `validator/metrics.py` is the **deterministic computation layer** - computes 16 of 49 factors via ReadSightPy (independent from this skill prompt)

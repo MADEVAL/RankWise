@@ -1,4 +1,4 @@
-"""RankWise Validator — CLI entry point.
+"""RankWise Validator - CLI entry point.
 
 Usage:
     # Validation
@@ -66,7 +66,7 @@ def _cmd_report(args):
 
 
 def _cmd_orchestrate(args):
-    """Orchestrator mode — build fix plan and optionally re-validate."""
+    """Orchestrator mode - build fix plan and optionally re-validate."""
     text = _load_text(args)
 
     # Re-validation mode: compare before/after
@@ -131,7 +131,7 @@ def _cmd_orchestrate(args):
     print(f"Score: {plan.weighted_score_pct:.1f}% ({plan.grade})  |  "
           f"P:{plan.passed} F:{plan.failed} W:{plan.warnings} N/A:{plan.na_count}")
     if plan.critical_count:
-        print(f"CRITICAL failures: {plan.critical_count} — grade cap applies")
+        print(f"CRITICAL failures: {plan.critical_count} - grade cap applies")
     print()
 
     if not plan.instructions:
@@ -149,7 +149,7 @@ def _cmd_orchestrate(args):
         print(f"{'='*60}")
         for instr in grouped[sev]:
             tag = "FAIL" if instr.status == "fail" else "WARN"
-            print(f"\n  [{tag}] {instr.factor_id} — {instr.factor_name}")
+            print(f"\n  [{tag}] {instr.factor_id} - {instr.factor_name}")
             print(f"  Issue: {instr.detail}")
             print(f"  Target: {instr.target}")
             if instr.llm_prompt:
@@ -174,7 +174,7 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
     parser = argparse.ArgumentParser(
-        description="RankWise Validator — deterministic SEO metrics + automated fix orchestration"
+        description="RankWise Validator - deterministic SEO metrics + automated fix orchestration"
     )
     parser.add_argument("--text", type=str, default=None, help="Content text (body)")
     parser.add_argument("--file", type=str, default=None, help="Read content from file")

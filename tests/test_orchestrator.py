@@ -1,4 +1,4 @@
-"""Tests for RankWise Orchestrator — automated fix plan generation."""
+"""Tests for RankWise Orchestrator - automated fix plan generation."""
 
 import json
 import pytest
@@ -96,7 +96,7 @@ class TestFixPlan:
             if st == "warning":
                 seen_warning = True
             elif st == "fail" and seen_warning:
-                pytest.fail("FAIL instruction found after WARNING — ordering violated")
+                pytest.fail("FAIL instruction found after WARNING - ordering violated")
 
     def test_empty_instructions_when_all_pass(self):
         orch = Orchestrator(EN_GOOD_TEXT, keyword="SEO strategy",
@@ -282,7 +282,7 @@ class TestWeightedScore:
                      "C8", "C9", "C10", "C11", "C12", "T3", "T4"]:
             scores[fid] = {"status": "pass", "detail": ""}
         scores["K6"] = {"status": "pass", "detail": ""}
-        # K1 is CRITICAL — make it fail
+        # K1 is CRITICAL - make it fail
         scores["K1"] = {"status": "fail", "detail": ""}
         ws, grade = _compute_weighted_score(scores)
         assert grade != "A"

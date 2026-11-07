@@ -1,17 +1,42 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- Reference files are now read by relative path from the skill folder. The GitHub URL index is kept only as a fallback for a single copied `SKILL.md`.
+- Long dashes replaced with hyphens across all documentation.
+- Frontmatter normalized: `license: MIT`, environment-based `compatibility`, `metadata.author`, repository URL. Removed the non-existent `v1.3.0` pinned URL.
+- Section canon: added `WHEN NOT TO USE`, renamed the output section to `OUTPUT CONTRACT`.
+- Placeholder vocabulary aligned with the rest of the skill set: `[VERIFY: ...]`, `[DATA NEEDED: ...]`, `[N]`.
+- ReadSightPy is now an explicit requirement with an actionable error message (`pip install "readsight>=1.0.0"`, Python 3.10+).
+
+### Fixed
+- The file tree no longer lists the missing `IMPROVEMENT-PLAN.md`.
+
+## [1.3.0] - 2026-07-12
+
+### Added
+- Single-file orchestrator: `SKILL.md` now carries all core SEO rules inline; reference files are read on demand.
+- Inline English resources: power words, transition words, stop words, passive-voice patterns, burned words.
+- VideoObject + SeekToAction schema templates for video and podcast SEO.
+- 8-factor pre-delivery quick scan plus the weighted 49-factor scoring formula with grade caps.
+
+### Changed
+- Version synced to 1.3.0 across `SKILL.md`, README, and `pyproject.toml`.
+- README pair updated to match the current factor list and architecture tree.
+
 ## [1.2.2] - 2026-06-27
 
 ### Changed
 - **Validator readability engine: `textstat` → [ReadSightPy](https://github.com/MADEVAL/ReadSightPy)** (`readsight>=1.0.0`). Syllable counting now uses the Frank M. Liang (TeX) hyphenation algorithm; 17 formulas with published per-language coefficients.
-- **C8 readability is now computed deterministically for all 9 languages** (was EN-only via textstat). UK and PT are no longer `[N/A]` / delegated to the LLM — both are scored from real metrics.
+- **C8 readability is now computed deterministically for all 9 languages** (was EN-only via textstat). UK and PT are no longer `[N/A]` / delegated to the LLM - both are scored from real metrics.
 - Per-language C8 metric: EN → Flesch-Kincaid Grade · DE → Wiener Sachtextformel · ES → Fernández-Huerta · IT → Gulpease · FR/RU/PT → Flesch Reading Ease · UK → LIX · PL → FOG-PL.
 - PL readability moved off the old pyphen-based Flesch workaround onto the proper Polish **FOG-PL** formula.
-- Basic counts (words, sentences, characters) are now library-independent — derived from the validator's own per-language tokenizer and sentence splitter, consistent with keyword/passive/transition analysis.
+- Basic counts (words, sentences, characters) are now library-independent - derived from the validator's own per-language tokenizer and sentence splitter, consistent with keyword/passive/transition analysis.
 - `TEXTSTAT_LANG_MAP` renamed to `READSIGHT_LANG_MAP`; `READABILITY_LANGS` now covers all 9 languages.
 
 ### Added
-- **LIX readability index** in validator output (`TextMetrics.lix`) — closes a previously missing readability signal.
+- **LIX readability index** in validator output (`TextMetrics.lix`) - closes a previously missing readability signal.
 - ReadSightPy engine caching per language code for repeated analyses.
 
 ### Fixed
@@ -20,7 +45,7 @@
 ## [1.2.1] - 2026-06-21
 
 ### Fixed
-- **B1:** Duplicate rule numbering in MODULE ACTIVATION LOGIC - rules now correctly numbered 1–9 (was: two rules #6, two rules #2)
+- **B1:** Duplicate rule numbering in MODULE ACTIVATION LOGIC - rules now correctly numbered 1-9 (was: two rules #6, two rules #2)
 - **B3:** T8 factor sync between `shared/checklist.md` and `scenarios/audit-report.md` - both now consistently require OG title+description OR twitter:card (audit-report no longer incorrectly requires OG image)
 - **B5:** Removed duplicate Specificity/Numbers and Emotional/Human categories from `shared/power-words.md` (were listed twice - once with translations, once without)
 - **B6:** Quick Readability Checklist in `shared/readability-params.md` now reflects per-language max sentence lengths (was: generic "30 (25 for EN)", now: language-specific)

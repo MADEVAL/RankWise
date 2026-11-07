@@ -6,26 +6,26 @@
 
 ---
 
-## KEYWORD PLACEMENT (K1–K12)
+## KEYWORD PLACEMENT (K1-K12)
 
 | # | Factor | Target | Severity | Fix If Failing |
 |---|--------|--------|----------|----------------|
 | K1 | Focus keyword set | Must be present | CRITICAL | Define one primary keyword for the page. One page = one keyword. |
 | K2 | Keyword in SEO title | Must appear | CRITICAL | Edit the SEO title to include the keyword. Keep it near the beginning. |
-| K3 | Keyword near title beginning | First 3–5 words | HIGH | Move keyword closer to start. Swap with filler words. |
+| K3 | Keyword near title beginning | First 3-5 words | HIGH | Move keyword closer to start. Swap with filler words. |
 | K4 | Keyword in meta description | Within first 20 words | CRITICAL | Rewrite description, placing keyword in the opening clause. |
 | K5 | Keyword in URL slug | Present, near front | HIGH | Edit slug: remove stop words, place keyword at or near the beginning. |
-| K6 | Keyword at content start | First 100–150 words | HIGH | Rewrite opening paragraph to naturally include keyword. |
+| K6 | Keyword at content start | First 100-150 words | HIGH | Rewrite opening paragraph to naturally include keyword. |
 | K7 | Keyword in content body | Naturally distributed (4-8 times per 1000 words) | CRITICAL | Add keyword instances where they fit naturally. Vary with synonyms. |
 | K8 | Keyword in subheadings | At least 1 H2 or H3 | HIGH | Find the most relevant H2 - add keyword if it fits the section topic. |
 | K9 | Keyword as image alt text | At least 1 image | MEDIUM | Choose the most relevant image - add keyword to its alt text naturally. |
-| K10 | Keyword density | 0.8%–1.5%, not 0%, not >3% | HIGH | Below 0.8%: add keyword instances. Above 3%: replace some with synonyms/pronouns. |
+| K10 | Keyword density | 0.8%-1.5%, not 0%, not >3% | HIGH | Below 0.8%: add keyword instances. Above 3%: replace some with synonyms/pronouns. |
 | K11 | Keyword cannibalization | No other page targets same primary keyword | HIGH | Check `site:yoursite.com "keyword"`. If multiple pages: merge, differentiate, or canonicalize. See `shared/keyword-rules.md` Cannibalization section. |
-| K12 | Keyword length | 3+ characters, ≤7 words | MEDIUM | Too short (<3 chars): too generic. Too long (>7 words): unnatural. Pick a 2–5 word keyword phrase. |
+| K12 | Keyword length | 3+ characters, ≤7 words | MEDIUM | Too short (<3 chars): too generic. Too long (>7 words): unnatural. Pick a 2-5 word keyword phrase. |
 
 ---
 
-## CONTENT QUALITY (C1–C14)
+## CONTENT QUALITY (C1-C14)
 
 | # | Factor | Target | Severity | Fix If Failing |
 |---|--------|--------|----------|----------------|
@@ -36,7 +36,7 @@
 | C5 | Numbers in title | At least 1 number (odd preferred) | MEDIUM | Add a specific number: "7 Ways...", "How I Increased X by 40%", "3 Mistakes..." |
 | C6 | Power words in title | ≥2 emotionally charged words | MEDIUM | Add power words from `shared/power-words.md`. Example: "Proven", "Stop", "Secret", "Simple". |
 | C7 | Sentiment signal | Clear positive or negative polarity | LOW | Ensure title conveys emotion. Neutral = missed CTR opportunity. |
-| C8 | Readability score | Grade 7–9 (EN) / equivalent per language | HIGH | Shorten long sentences. Replace complex words. Break dense paragraphs. |
+| C8 | Readability score | Grade 7-9 (EN) / equivalent per language | HIGH | Shorten long sentences. Replace complex words. Break dense paragraphs. |
 | C9 | Passive voice ratio | ≤10% of sentences | MEDIUM | Convert passive to active: "was written by" → "wrote". |
 | C10 | Transition words | ≥30% of sentences (EN); ≥25% other languages - see `shared/readability-params.md` | LOW | Add: "however", "because", "therefore", "for example", "specifically", "in contrast". |
 | C11 | Sentence length variety | No 3 consecutive same-length (±2 words) | MEDIUM | Vary sentence length. Mix: short (2-5 words), medium (10-15), long (18-25). |
@@ -46,12 +46,12 @@
 
 ---
 
-## LINKING (L1–L9)
+## LINKING (L1-L9)
 
 | # | Factor | Target | Severity | Fix If Failing |
 |---|--------|--------|----------|----------------|
-| L1 | Internal links | 3–10 links to own site | HIGH | Add contextual links to relevant pages. Aim for in-body links, not just nav. |
-| L2 | External links | 2–5 links to authoritative sources | HIGH | Link to sources: studies, data, tools, recognized publications. Cite specific pages. |
+| L1 | Internal links | 3-10 links to own site | HIGH | Add contextual links to relevant pages. Aim for in-body links, not just nav. |
+| L2 | External links | 2-5 links to authoritative sources | HIGH | Link to sources: studies, data, tools, recognized publications. Cite specific pages. |
 | L3 | DoFollow external links | At least 1 of external links | MEDIUM | Ensure at least one external link has no `rel="nofollow"`. |
 | L4 | Link anchor text variety | ≤2 exact-match anchors | MEDIUM | Vary anchor text. Mix: branded, partial match, generic ("read more"), naked URL. |
 | L5 | Outbound link quality | Recognized authority: .edu, .gov, Wikipedia, HBR, major industry publications, or known trusted brands. If domain is unknown → score ⚠️ Warning (not ❌ Fail) unless it's a known spam/low-quality domain. Do not use arbitrary DA scores - verify by domain reputation instead. | MEDIUM | Check domain for .edu/.gov or known authority brands. If unknown → ⚠️ flag for manual verification. |
@@ -62,7 +62,7 @@
 
 ---
 
-## URL & TECHNICAL (T1–T8)
+## URL & TECHNICAL (T1-T8)
 
 | # | Factor | Target | Severity | Fix If Failing |
 |---|--------|--------|----------|----------------|
@@ -77,13 +77,13 @@
 
 ---
 
-## ADVANCED SIGNALS (A1–A6)
+## ADVANCED SIGNALS (A1-A6)
 
 | # | Factor | Target | Severity | Fix If Failing |
 |---|--------|--------|----------|----------------|
-| A1 | Featured snippet potential | 40–60 word concise answer to target query | MEDIUM | Add a clear, direct answer paragraph. Use definition format or list format. |
-| A2 | E-E-A-T signals | Experience, Expertise, Authoritativeness, Trustworthiness: ≥3 of 5 must be present - (1) author name + bio with credentials, (2) publication/modified date visible, (3) at least 1 credible external citation/source, (4) about/site-info page reference, (5) contact info or privacy policy link. 3+ = ✅ Pass, 2 = ⚠️ Warning, 0–1 = ❌ Fail. See also HCU notes below. | HIGH | Add: author bio with credentials, publication date, citations, about page link, privacy policy. |
-| A3 | LSI / semantic keywords | 5–15 related terms naturally present | MEDIUM | Add: related terms, synonyms, category words. Use SERP "Searches related to" for ideas. |
+| A1 | Featured snippet potential | 40-60 word concise answer to target query | MEDIUM | Add a clear, direct answer paragraph. Use definition format or list format. |
+| A2 | E-E-A-T signals | Experience, Expertise, Authoritativeness, Trustworthiness: ≥3 of 5 must be present - (1) author name + bio with credentials, (2) publication/modified date visible, (3) at least 1 credible external citation/source, (4) about/site-info page reference, (5) contact info or privacy policy link. 3+ = ✅ Pass, 2 = ⚠️ Warning, 0-1 = ❌ Fail. See also HCU notes below. | HIGH | Add: author bio with credentials, publication date, citations, about page link, privacy policy. |
+| A3 | LSI / semantic keywords | 5-15 related terms naturally present | MEDIUM | Add: related terms, synonyms, category words. Use SERP "Searches related to" for ideas. |
 | A4 | Content freshness | Date visible, updated within reasonable period | LOW | Add "Last updated" date. Update annually for evergreen, within weeks for news-sensitive. |
 | A5 | Mobile readability | Short paragraphs, clear headings, adequate font size equivalent | MEDIUM | Test: can you scan the page on a phone? Break long sections. Ensure heading contrast. |
 | A6 | Breadcrumb structure | Logical breadcrumb path: Home > Category > Page | LOW | Add breadcrumb markup: see `shared/schema-templates.md` → BreadcrumbList. |
@@ -114,9 +114,9 @@ Where PASS_WEIGHTS sums the multipliers of all ✅ factors, and ALL_WEIGHTS sums
 | Grade | Score % | Meaning | Constraint |
 |-------|---------|---------|------------|
 | A | 90%+ | Excellent. Minor tweaks only. | 0 CRITICAL failures |
-| B | 75–89% | Good. Several improvements available. | ≤1 CRITICAL failure |
-| C | 60–74% | Average. Significant gaps to fix. | ≤3 CRITICAL failures |
-| D | 40–59% | Poor. Major overhaul needed. | - |
+| B | 75-89% | Good. Several improvements available. | ≤1 CRITICAL failure |
+| C | 60-74% | Average. Significant gaps to fix. | ≤3 CRITICAL failures |
+| D | 40-59% | Poor. Major overhaul needed. | - |
 | F | <40% | Failing. Start over or fully restructure. | - |
 
 **Constraint enforcement:** A page with 95% raw score but 1 CRITICAL failure → capped at B. A page with 80% and 4 CRITICAL failures → capped at C. ⚠️ Warning on a CRITICAL factor counts as 0.5 CRITICAL failures for cap purposes (e.g., K1⚠️ = probably defined but not explicit → 0.5 toward the cap).
@@ -166,7 +166,7 @@ Before delivering ANY output, scan these 8 highest-impact factors:
 2. ☐ K2 - Keyword in SEO title?
 3. ☐ K4 - Keyword in meta description?
 4. ☐ K7 - Keyword in content body?
-5. ☐ K10 - Density 0.8–1.5%?
+5. ☐ K10 - Density 0.8-1.5%?
 6. ☐ C1 - Word count 600+?
 7. ☐ C13 - Heading hierarchy correct?
 8. ☐ L1 - At least 3 internal links?
@@ -177,30 +177,30 @@ If any of these 8 fail, fix before delivery.
 
 ## HCU / HELPFUL CONTENT COMPLIANCE
 
-Google's Helpful Content Update (HCU) rewards **people-first** content — original, satisfying, and demonstrating first-hand experience. RankWise aligns via:
+Google's Helpful Content Update (HCU) rewards **people-first** content - original, satisfying, and demonstrating first-hand experience. RankWise aligns via:
 
 - **Burned words** (`shared/burned-words.md`): removes AI-marker vocabulary that signals low-effort content
-- **E-E-A-T signals** (A2): author expertise, citations, transparency — all core HCU signals
+- **E-E-A-T signals** (A2): author expertise, citations, transparency - all core HCU signals
 - **Originality gate** (article-generate.md Step 3): 1 data point per 500 words, 1 concrete example per H2, 1 contrarian insight per article
-- **Ruthless editor** persona: default stance is DELETE — content must earn its place
+- **Ruthless editor** persona: default stance is DELETE - content must earn its place
 
-> **HCU risk note:** AI-generated content that lacks original examples, unique data, or first-hand experience is at risk of HCU classifier demotion. RankWise's content quality rules are designed to surface these gaps — but the final responsibility for originality rests with the human author/editor.
+> **HCU risk note:** AI-generated content that lacks original examples, unique data, or first-hand experience is at risk of HCU classifier demotion. RankWise's content quality rules are designed to surface these gaps - but the final responsibility for originality rests with the human author/editor.
 
 ---
 
-## OFFLINE MODE — WEB-ACCESS FACTORS
+## OFFLINE MODE - WEB-ACCESS FACTORS
 
 When operating **without web access** (no fetch/crawl capability), the following factors cannot be reliably scored. Instead of penalizing with ⚠️ marks, mark them as `⊘ [NO_WEB]` and **exclude from denominator**:
 
 | Factor | Offline handling |
 |--------|-----------------|
-| K11 | ⊘ [NO_WEB] — Cannibalization check requires `site:` search |
-| L5 | ⊘ [NO_WEB] — Outbound link quality requires domain lookup |
-| L6 | ⊘ [NO_WEB] — Broken link check requires HTTP verification |
-| L7 | ⊘ [NO_WEB] — Internal link relevance requires cross-page analysis |
-| L8 | ⊘ [NO_WEB] — Orphan check requires full-site crawl |
-| T6 | ⊘ [NO_WEB] — Schema validation requires source access |
-| T7 | ⊘ [NO_WEB] — Canonical URL check requires source access |
-| A3 | Scored offline — Use topic vocabulary diversity as proxy for LSI |
+| K11 | ⊘ [NO_WEB] - Cannibalization check requires `site:` search |
+| L5 | ⊘ [NO_WEB] - Outbound link quality requires domain lookup |
+| L6 | ⊘ [NO_WEB] - Broken link check requires HTTP verification |
+| L7 | ⊘ [NO_WEB] - Internal link relevance requires cross-page analysis |
+| L8 | ⊘ [NO_WEB] - Orphan check requires full-site crawl |
+| T6 | ⊘ [NO_WEB] - Schema validation requires source access |
+| T7 | ⊘ [NO_WEB] - Canonical URL check requires source access |
+| A3 | Scored offline - Use topic vocabulary diversity as proxy for LSI |
 
-**With web access:** score all factors normally. **Without web access:** exclude these 7 from denominator (denominator becomes 42 max, not 49). Mark clearly in report: `⊘ K11 [NO_WEB]: Requires site search — skipped.`
+**With web access:** score all factors normally. **Without web access:** exclude these 7 from denominator (denominator becomes 42 max, not 49). Mark clearly in report: `⊘ K11 [NO_WEB]: Requires site search - skipped.`

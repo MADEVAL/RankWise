@@ -1,4 +1,4 @@
-"""Unit tests for RankWise Validator — metrics.py."""
+"""Unit tests for RankWise Validator - metrics.py."""
 
 import re
 import pytest
@@ -85,7 +85,7 @@ class TestWordTokenization:
 
 
 class TestBasicAnalyze:
-    """Core analyze() function — basic metrics."""
+    """Core analyze() function - basic metrics."""
 
     def test_word_count(self, en_text):
         m = analyze(en_text)

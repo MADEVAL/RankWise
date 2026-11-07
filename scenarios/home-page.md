@@ -16,10 +16,10 @@ Unlike articles, home pages have:
 - Minimal body text - every word counts double
 
 ### Multi-keyword strategy
-A home page typically targets 3–5 keywords:
+A home page typically targets 3-5 keywords:
 - Primary: brand name
-- Secondary: main service/category (1–2)
-- Tertiary: location or sub-service (1–2)
+- Secondary: main service/category (1-2)
+- Tertiary: location or sub-service (1-2)
 
 **Example:** Brand "TaskFlow" → Primary: TaskFlow | Secondary: "project management software", "team collaboration tool" | Tertiary: "for remote teams"
 
@@ -36,7 +36,7 @@ A home page typically targets 3–5 keywords:
 - Trust signals: numbers (customers, countries, uptime) in hero area
 - CTA: specific action verb, not "Learn More"
 
-### Body sections (3–5 H2s)
+### Body sections (3-5 H2s)
 1. **What we do** - 2-3 sentence value prop. Primary service keyword naturally.
 2. **How it works / Features** - 3 key features. Bullet points, not paragraphs. Secondary keywords.
 3. **Social proof** - Numbers, logos, testimonials. Not "trusted by thousands" - "Used by 3,400 teams in 42 countries."
@@ -57,7 +57,7 @@ A home page typically targets 3–5 keywords:
 ```
 [Brand Name] - [Primary Service Keyword] | [Unique Selling Point]
 ```
-- 50–60 characters
+- 50-60 characters
 - Brand first (navigational intent)
 - Service keyword second
 
@@ -75,7 +75,7 @@ A home page typically targets 3–5 keywords:
 
 - Schema: Organization + WebSite + SearchAction
 - OG tags: brand name, tagline, logo image
-- Internal links: to key service/product pages (3–5 links)
+- Internal links: to key service/product pages (3-5 links)
 - External links: minimal (home pages rarely link out)
 - No TOC (not applicable)
 - Images: logo + hero image (max 2-3). Alt texts: descriptive + brand name.
@@ -89,13 +89,13 @@ Factors that work differently for home pages:
 | Factor | Adaptation |
 |--------|-----------|
 | K1 | Brand name IS the primary keyword |
-| K10 | Density 0.3–0.5% (brand appears sparsely - logo + footer suffice) |
-| C1 | 300–500 words acceptable (home pages are lean by design) |
+| K10 | Density 0.3-0.5% (brand appears sparsely - logo + footer suffice) |
+| C1 | 300-500 words acceptable (home pages are lean by design) |
 | C3 | ⊘ N/A - images are design elements, not content |
 | C4 | ⊘ N/A - no TOC on home pages |
 | C5 | Number in H1/tagline (trust signal) |
 | L1 | Link to service pages, not blog posts |
-| L2 | 0–2 external links acceptable |
+| L2 | 0-2 external links acceptable |
 | T1 | URL is root (/) - perfect by default |
 
 ---

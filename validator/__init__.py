@@ -1,4 +1,4 @@
-"""RankWise Validator — Deterministic SEO metrics + automated fix orchestration."""
+"""RankWise Validator - Deterministic SEO metrics + automated fix orchestration."""
 
 from .metrics import (
     analyze,

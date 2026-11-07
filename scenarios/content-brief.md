@@ -45,12 +45,12 @@
 - Search volume (if known, or flag "[VOLUME UNKNOWN]")
 - Difficulty estimation: Low / Medium / High (based on SERP competitors)
 
-### Secondary keywords (3–5)
+### Secondary keywords (3-5)
 - Longer-tail variations
 - Question-form keywords
 - Related intent keywords
 
-### LSI / semantic keywords (8–15)
+### LSI / semantic keywords (8-15)
 Source from:
 - SERP "Searches related to"
 - SERP "People also ask"
@@ -72,16 +72,16 @@ LSI terms: [term1, term2, ...]   → body, H3s, alt texts
 
 ### H1 (Title)
 Suggest 3 title variants meeting all criteria:
-- 50–60 characters
+- 50-60 characters
 - Primary keyword near beginning
 - Number + power words
 - Clear sentiment
 
-### H2 Sections (5–9 suggested)
+### H2 Sections (5-9 suggested)
 For each H2:
 - Section title (SEO-optimized, includes keyword where appropriate)
 - Target word count for this section
-- Key points to cover (3–5 bullet points)
+- Key points to cover (3-5 bullet points)
 - Which secondary keyword or LSI term to target
 
 ### H3 Sub-sections
@@ -115,14 +115,14 @@ Based on SERP competition:
 
 ## STEP 3: META DRAFTS
 
-### SEO Title (2–3 variants)
+### SEO Title (2-3 variants)
 ```
 1. [Variant 1]
 2. [Variant 2]
 3. [Variant 3]
 ```
 
-### Meta Description (2–3 variants)
+### Meta Description (2-3 variants)
 ```
 1. [Variant 1]
 2. [Variant 2]
@@ -137,7 +137,7 @@ Based on SERP competition:
 
 ## STEP 4: LINKING PLAN
 
-### Internal links (suggest 3–8)
+### Internal links (suggest 3-8)
 ```
 Target URL | Suggested anchor text | Placement (which section)
 ---------|----------------------|----------
@@ -146,7 +146,7 @@ Target URL | Suggested anchor text | Placement (which section)
 ...
 ```
 
-### External links (suggest 2–5)
+### External links (suggest 2-5)
 ```
 Target URL | Authority | Why link | Placement
 ---------|-----------|----------|----------

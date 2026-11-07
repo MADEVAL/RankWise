@@ -1,6 +1,6 @@
 """
-RankWise Validator — computable SEO metrics for text content.
-Uses ReadSightPy (readsight) for readability — TeX/Liang syllable counting,
+RankWise Validator - computable SEO metrics for text content.
+Uses ReadSightPy (readsight) for readability - TeX/Liang syllable counting,
 17 formulas, all 9 RankWise languages supported (incl. UK and PT).
 Supports all 9 RankWise languages: EN, RU, UK, DE, FR, ES, PT, IT, PL.
 """
@@ -9,7 +9,13 @@ import re
 import statistics
 from dataclasses import dataclass, field
 
-from readsight import ReadSight
+try:
+    from readsight import ReadSight
+except ImportError as exc:  # pragma: no cover
+    raise ImportError(
+        "RankWise validator requires ReadSightPy (Python 3.10+). "
+        "Install it with: pip install \"readsight>=1.0.0\""
+    ) from exc
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -45,7 +51,7 @@ READSIGHT_LANG_MAP = {
 # All 9 languages now carry computable readability via ReadSightPy
 READABILITY_LANGS = set(READSIGHT_LANG_MAP.keys())
 
-# ── ReadSightPy engine cache (engine init parses .tex patterns — cache per code) ──
+# ── ReadSightPy engine cache (engine init parses .tex patterns - cache per code) ──
 _ENGINE_CACHE: dict = {}
 
 
@@ -91,7 +97,7 @@ def _nz(value) -> float:
     return value if value is not None else -1.0
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# LANGUAGE RESOURCES — all 9 languages
+# LANGUAGE RESOURCES - all 9 languages
 # ═══════════════════════════════════════════════════════════════════════════════
 
 # ── Word tokenization patterns ──────────────────────────────────────────────
@@ -335,8 +341,8 @@ STOP_WORDS = {
 #   fh    → Fernández-Huerta (ES, 0-100, higher=easier)
 #   gulpease → Gulpease (IT, higher=easier)
 #   fre   → Flesch Reading Ease (0-100, higher=easier)
-#   lix   → LIX (lower=easier)           — UK (no Flesch available)
-#   fogpl → FOG-PL grade (lower=easier)  — PL (no Flesch available)
+#   lix   → LIX (lower=easier)           - UK (no Flesch available)
+#   fogpl → FOG-PL grade (lower=easier)  - PL (no Flesch available)
 READABILITY_TARGETS = {
     "en": {"mode": "fkgl",     "range": (7.0, 9.0)},
     "de": {"mode": "wstf",     "range": (4.0, 10.0)},
@@ -372,7 +378,7 @@ _NON_SENTENCE_END_ABBREV = {
     "approx", "est", "dept", "univ", "vol", "ed", "no",
 }
 
-# Abbreviations that can end sentences — period IS a boundary when uppercase follows
+# Abbreviations that can end sentences - period IS a boundary when uppercase follows
 _MID_OR_END_ABBREV = {
     "etc", "vs", "e.g", "i.e",
     "st", "ave", "blvd",  # Can be sentence-final in addresses
@@ -471,7 +477,7 @@ class TextMetrics:
     avg_syllables_per_word: float
     avg_words_per_sentence: float
 
-    # Readability — supported languages
+    # Readability - supported languages
     readability_supported: bool
 
     # Common readability scores. -1.0 = not available for this language.
@@ -812,16 +818,16 @@ def score_checklist(m: TextMetrics) -> dict:
     if density == 0:
         result["K10"] = {"status": "fail", "detail": "Keyword density: 0%", "value": "0%"}
     elif density < 0.8:
-        result["K10"] = {"status": "warning", "detail": f"Keyword density too low: {density:.2f}% (target 0.8–1.5%)",
+        result["K10"] = {"status": "warning", "detail": f"Keyword density too low: {density:.2f}% (target 0.8-1.5%)",
                          "value": f"{density:.2f}%"}
     elif 0.8 <= density <= 1.5:
-        result["K10"] = {"status": "pass", "detail": f"Keyword density: {density:.2f}% (target 0.8–1.5%)",
+        result["K10"] = {"status": "pass", "detail": f"Keyword density: {density:.2f}% (target 0.8-1.5%)",
                          "value": f"{density:.2f}%"}
     elif density <= 3.0:
-        result["K10"] = {"status": "warning", "detail": f"Keyword density elevated: {density:.2f}% (target 0.8–1.5%)",
+        result["K10"] = {"status": "warning", "detail": f"Keyword density elevated: {density:.2f}% (target 0.8-1.5%)",
                          "value": f"{density:.2f}%"}
     else:
-        result["K10"] = {"status": "fail", "detail": f"Keyword stuffing: {density:.2f}% (target 0.8–1.5%)",
+        result["K10"] = {"status": "fail", "detail": f"Keyword stuffing: {density:.2f}% (target 0.8-1.5%)",
                          "value": f"{density:.2f}%"}
 
     # ── C: Content Quality ──────────────────────────────────────────────
@@ -845,7 +851,7 @@ def score_checklist(m: TextMetrics) -> dict:
                     "detail": f"Power words in title: {m.title_power_word_count} (target >=2, lang={m.lang})",
                     "value": str(m.title_power_word_count)}
 
-    # ── Readability (C8) — language-aware via ReadSightPy ──────────────
+    # ── Readability (C8) - language-aware via ReadSightPy ──────────────
     if m.readability_supported:
         result["C8"] = _score_readability(m)
     else:
@@ -958,7 +964,7 @@ def _score_readability(m: TextMetrics) -> dict:
 def report(m: TextMetrics) -> str:
     lines = [
         "=" * 60,
-        f"  RankWise Validator — Text Metrics Report ({m.lang.upper()})",
+        f"  RankWise Validator - Text Metrics Report ({m.lang.upper()})",
         "=" * 60,
         "",
         f"  Language:            {m.lang} {'(readability: supported)' if m.readability_supported else '(readability: N/A)'}",

@@ -5,8 +5,8 @@
 
 This file is a placeholder. The integration pipeline examples and protocols are maintained in:
 
-- **SKILL.md → INTEGRATION WITH OTHER SKILLS** — general integration protocol, conflict awareness matrix, and joint prompt pattern
-- **INTEGRATION-GUIDE.md** — integration specification for external skill maintainers
+- **SKILL.md → INTEGRATION WITH OTHER SKILLS** - general integration protocol, conflict awareness matrix, and joint prompt pattern
+- **INTEGRATION-GUIDE.md** - integration specification for external skill maintainers
 
 ### Quick Reference Pattern
 
@@ -16,11 +16,11 @@ This file is a placeholder. The integration pipeline examples and protocols are 
  3) RankWise audit the final result. [LANG: xx]."
 ```
 
-### Triple Pipeline (RankWise → MindFluence → HumanAI → Audit)
+### Triple Pipeline (RankWise → MindFluence → human-ai → Audit)
 
 1. **RankWise Generate/Brief** → establish SEO structure (keywords, headings, meta drafts)
 2. **MindFluence** → apply persuasion/bias optimization within the SEO framework
-3. **HumanAI** → humanize tone, remove remaining AI markers, add personality
+3. **human-ai** → humanize tone, remove remaining AI markers, add personality
 4. **RankWise Audit** → verify all 49 factors survived the downstream transformations
 
 ### Guardrails for downstream skills

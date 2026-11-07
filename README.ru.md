@@ -1,5 +1,7 @@
 # RankWise - Профессиональный SEO-движок
 
+[skills.sh page](https://www.skills.sh/madeval/rankwise)
+
 \[ [English](README.md) | **Русский** \]
 
 > **Ранжируйтесь выше: пишите для людей в первую очередь, для поисковиков - во вторую.**
@@ -10,7 +12,7 @@ AI-скилл для генерации, рерайта и аудита конт
 
 ## Область применения
 
-RankWise — это **контентный SEO-движок**: оптимизирует текст, мета-теги, alt-тексты, URL и структуру контента. Он **не** измеряет скорость страниц, Core Web Vitals, серверные конфигурации, SSL и cookie compliance. Для этого используйте Lighthouse, PageSpeed Insights или Screaming Frog.
+RankWise - это **контентный SEO-движок**: оптимизирует текст, мета-теги, alt-тексты, URL и структуру контента. Он **не** измеряет скорость страниц, Core Web Vitals, серверные конфигурации, SSL и cookie compliance. Для этого используйте Lighthouse, PageSpeed Insights или Screaming Frog.
 
 ---
 
@@ -66,19 +68,19 @@ RankWise — это **контентный SEO-движок**: оптимизи�
 | K7 | Ключ в теле контента | Естественно распределён |
 | K8 | Ключ в подзаголовках | Минимум 1 H2 |
 | K9 | Ключ в alt тексте | Минимум 1 изображение |
-| K10 | Плотность ключа | 0.8%–1.5% |
+| K10 | Плотность ключа | 0.8%-1.5% |
 | K11 | Проверка каннибализации | Нет дублей |
-| K12 | Длина ключевого слова | 3–X символов |
+| K12 | Длина ключевого слова | 3-X символов |
 | C1 | Количество слов | 600+ |
 | C2 | Короткие абзацы | ≤3 предложения |
 | C3 | Изображения/видео | ≥1 на 300 слов |
 | C5 | Число в заголовке | ≥1 |
 | C6 | Power words в заголовке | ≥2 |
-| C8 | Читаемость | Grade 7–9 |
+| C8 | Читаемость | Grade 7-9 |
 | C9 | Пассивный залог | ≤10% |
 | C13 | Иерархия заголовков | Правильная H1→H2→H3 |
-| L1 | Внутренние ссылки | 3–10 |
-| L2 | Внешние ссылки | 2–5 |
+| L1 | Внутренние ссылки | 3-10 |
+| L2 | Внешние ссылки | 2-5 |
 | L9 | Title-атрибуты ссылок | Присутствуют |
 
 *...полный чек-лист из 49 факторов в `shared/checklist.md`*
@@ -133,7 +135,7 @@ rankwise/
 
 ## Валидатор (Python)
 
-`validator/` — Python-инструмент для детерминированного вычисления SEO-метрик из текста. Дополняет LLM-скоринг точными расчётами:
+`validator/` - Python-инструмент для детерминированного вычисления SEO-метрик из текста. Дополняет LLM-скоринг точными расчётами:
 
 ```bash
 pip install readsight
@@ -148,9 +150,9 @@ python -m validator.cli --file статья.txt --keyword "seo стратеги�
 python -m validator.cli --file статья.txt --keyword "seo" --title "Заголовок" --checklist --json
 ```
 
-**Что считает:** количество слов (C1), метрики абзацев (C2), читаемость — Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau только для EN (C8), доля пассивного залога по языкам (C9), доля переходных слов по языкам (C10), разнообразие длины предложений (C11), повтор начала предложений (C12), плотность ключевых слов (K10), размещение ключей (K2, K6, K7), длина title/meta с языковыми диапазонами (T3, T4), power words на всех 9 языках (C6).
+**Что считает:** количество слов (C1), метрики абзацев (C2), читаемость - Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau только для EN (C8), доля пассивного залога по языкам (C9), доля переходных слов по языкам (C10), разнообразие длины предложений (C11), повтор начала предложений (C12), плотность ключевых слов (K10), размещение ключей (K2, K6, K7), длина title/meta с языковыми диапазонами (T3, T4), power words на всех 9 языках (C6).
 
-**Мультиязычность:** `--lang en|ru|uk|de|fr|es|pt|it|pl`. Пассивный залог, переходные слова и power words используют языковые паттерны. Читаемость (C8) считается детерминированно через [ReadSightPy](https://github.com/MADEVAL/ReadSightPy) (слоги по TeX/Liang) для всех 9 языков: EN — Flesch-Kincaid Grade, DE — Wiener Sachtextformel, ES — Fernández-Huerta, IT — Gulpease, FR/RU/PT — Flesch Reading Ease, UK — LIX, PL — FOG-PL. Диапазоны title/meta адаптируются под язык.
+**Мультиязычность:** `--lang en|ru|uk|de|fr|es|pt|it|pl`. Пассивный залог, переходные слова и power words используют языковые паттерны. Читаемость (C8) считается детерминированно через [ReadSightPy](https://github.com/MADEVAL/ReadSightPy) (слоги по TeX/Liang) для всех 9 языков: EN - Flesch-Kincaid Grade, DE - Wiener Sachtextformel, ES - Fernández-Huerta, IT - Gulpease, FR/RU/PT - Flesch Reading Ease, UK - LIX, PL - FOG-PL. Диапазоны title/meta адаптируются под язык.
 
 ---
 
@@ -160,8 +162,8 @@ python -m validator.cli --file статья.txt --keyword "seo" --title "Заг�
 
 | # | Файл | Ожидаемый результат |
 |---|------|--------------------|
-| 1 | `01-well-optimized.txt` | Mixed — ключ в тексте, расхождение в title (plural) |
-| 2 | `02-keyword-stuffed.txt` | D–F: плотность 23%, переспам |
+| 1 | `01-well-optimized.txt` | Mixed - ключ в тексте, расхождение в title (plural) |
+| 2 | `02-keyword-stuffed.txt` | D-F: плотность 23%, переспам |
 | 3 | `03-too-short.txt` | D: 69 слов, нет meta |
 | 4 | `04-no-meta.txt` | D: нет title/meta, короткий |
 | 5 | `05-product-page.txt` | C+: лучшая плотность и размещение ключей |
@@ -201,21 +203,21 @@ python -m validator.cli --file benchmarks/01-well-optimized.txt --keyword "conte
 **Рерайт из URL:**
 > «Перепиши эту статью для SEO: [URL]. Ключ: SEO чек-лист.»
 
-**Совместно с HumanAI:**
-> «SEO-рерайт через RankWise, затем очеловечь через [HumanAI](https://github.com/MADEVAL/HumanAI). RU. Ключ: SEO-аудит.»
+**Совместно с human-ai:**
+> «SEO-рерайт через RankWise, затем очеловечь через [human-ai](https://github.com/MADEVAL/Natural-skill). RU. Ключ: SEO-аудит.»
 
 **Совместно с MindFluence:**
 > «RankWise SEO-бриф для лендинга, затем [MindFluence](https://github.com/MADEVAL/MindFluence) из этого брифа. Тон: expert-calm.»
 
 ---
 
-## Интеграция с HumanAI и MindFluence
+## Интеграция с human-ai и MindFluence
 
 RankWise спроектирован для совместной работы:
 
-- **[HumanAI](https://github.com/MADEVAL/HumanAI)** - Text Humanization Engine. RankWise → структура SEO → HumanAI → человеческий голос. Следите за плотностью ключей после очеловечивания.
+- **[human-ai](https://github.com/MADEVAL/Natural-skill)** - Text Humanization Engine. RankWise → структура SEO → human-ai → человеческий голос. Следите за плотностью ключей после очеловечивания.
 - **[MindFluence](https://github.com/MADEVAL/MindFluence)** - Cognitive Bias Marketing Engine. RankWise → SEO-структура → MindFluence → когнитивное убеждение. Следите за переспамом ключей в `bold-sell` тоне.
-- **Тройная интеграция:** RankWise (структура) → MindFluence (убеждение) → HumanAI (голос) → RankWise Audit (финальная проверка).
+- **Тройная интеграция:** RankWise (структура) → MindFluence (убеждение) → human-ai (голос) → RankWise Audit (финальная проверка).
 
 Подробнее в `SKILL.md` → INTEGRATION WITH OTHER SKILLS.
 

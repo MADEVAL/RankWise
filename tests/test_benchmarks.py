@@ -1,4 +1,4 @@
-"""Benchmark regression tests — validate scoring consistency against reference texts."""
+"""Benchmark regression tests - validate scoring consistency against reference texts."""
 
 import pytest
 from validator.metrics import analyze, score_checklist

@@ -72,7 +72,7 @@ Document the baseline score. This becomes the "before" in your deliverable.
 
 ### Heading restructure
 1. Ensure single H1 (the article title)
-2. Break content into logical H2 sections (5–9 total)
+2. Break content into logical H2 sections (5-9 total)
 3. Add H3 sub-sections where H2 content exceeds 300 words
 4. Ensure H2→H3 hierarchy (no H2→H4 skip)
 5. Inject keywords into headings:
@@ -82,7 +82,7 @@ Document the baseline score. This becomes the "before" in your deliverable.
 ### Paragraph restructure
 1. Break paragraphs >150 words (120 for non-English)
 2. Break paragraphs >3 sentences
-3. Create visual rhythm: short–short–long–short
+3. Create visual rhythm: short-short-long-short
 4. Each paragraph: one core idea
 
 ### Word count
@@ -97,7 +97,7 @@ Document the baseline score. This becomes the "before" in your deliverable.
 ### Introduction rewrite
 - DELETE throat-clearing opener
 - ADD pattern-interrupt hook (statistic, question, bold claim, story snippet)
-- ENSURE focus keyword in first 100–150 words
+- ENSURE focus keyword in first 100-150 words
 - REMOVE: "In this article...", "Today we will...", "Welcome to..."
 
 ### Body rewrite
@@ -116,7 +116,7 @@ Document the baseline score. This becomes the "before" in your deliverable.
 - ADD specific CTA: link to next article, tool, or resource
 
 ### Keyword optimization
-- Adjust keyword density to 0.8%–1.5%
+- Adjust keyword density to 0.8%-1.5%
 - If <0.8%: add natural keyword instances in thin sections
 - If >3%: replace excess with synonyms, pronouns, or restructure
 - Ensure keyword appears in: title, meta, URL slug, first 150 words, ≥1 H2, ≥1 image alt
@@ -127,13 +127,13 @@ Document the baseline score. This becomes the "before" in your deliverable.
 
 ### SEO title
 - Write new title meeting all criteria from `scenarios/article-generate.md` Step 1
-- 50–60 characters (adjust per language)
+- 50-60 characters (adjust per language)
 - Keyword near beginning
 - Number + power words
 - Clear sentiment
 
 ### Meta description
-- Write new description: 145–158 characters
+- Write new description: 145-158 characters
 - Keyword in first 20 words
 - Specific value proposition (not generic "Learn more about...")
 - Active voice

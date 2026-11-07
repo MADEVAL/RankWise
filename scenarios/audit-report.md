@@ -44,8 +44,8 @@ Where PASS_WEIGHTS sum the multipliers (CRITICAL=×3, HIGH=×2, MEDIUM=×1, LOW=
 
 **Grade constraints:**
 - A (90%+) requires 0 CRITICAL failures
-- B (75–89%) requires ≤1 CRITICAL failure
-- C (60–74%) requires ≤3 CRITICAL failures
+- B (75-89%) requires ≤1 CRITICAL failure
+- C (60-74%) requires ≤3 CRITICAL failures
 - D/F: no constraint beyond raw score
 
 ### Scoring reference
@@ -61,7 +61,7 @@ Where PASS_WEIGHTS sum the multipliers (CRITICAL=×3, HIGH=×2, MEDIUM=×1, LOW=
 | K7 | Keyword in body | Any match in body content |
 | K8 | Keyword in subheading | Match in any H2 or H3 |
 | K9 | Keyword as alt text | Match in any image alt attribute |
-| K10 | Keyword density | Count occurrences / total words × 100. 0.8%–1.5% = pass |
+| K10 | Keyword density | Count occurrences / total words × 100. 0.8%-1.5% = pass |
 | K11 | Cannibalization check | If site access: search site for keyword. If no access: flag ⚠️ "Verify manually: site:domain.com keyword" |
 | K12 | Keyword length | 3+ chars AND ≤7 words |
 | C1 | Word count | Total words ≥600 |
@@ -71,7 +71,7 @@ Where PASS_WEIGHTS sum the multipliers (CRITICAL=×3, HIGH=×2, MEDIUM=×1, LOW=
 | C5 | Number in title | Regex digit found in title |
 | C6 | Power words in title | ≥2 from `shared/power-words.md` found |
 | C7 | Sentiment | Title has positive or negative polarity (not neutral) |
-| C8 | Readability | Approximate: avg sentence length 12–20 words = Grade 7–9. >22 words avg = Grade 12+. See `shared/readability-params.md`. |
+| C8 | Readability | Approximate: avg sentence length 12-20 words = Grade 7-9. >22 words avg = Grade 12+. See `shared/readability-params.md`. |
 | C9 | Passive voice | Count passive / total sentences × 100 ≤10% |
 | C10 | Transition words | Count sentences with transitions / total × 100. EN: ≥30%, non-EN: ≥25% (see `shared/readability-params.md`) |
 | C11 | Sentence variety | Check 3-consecutive rule violation |
@@ -89,17 +89,17 @@ Where PASS_WEIGHTS sum the multipliers (CRITICAL=×3, HIGH=×2, MEDIUM=×1, LOW=
 | L9 | Link title attributes | Check for `title=""` attribute on ≥2 in-body links |
 | T1 | URL length | Characters ≤75 |
 | T2 | URL structure | Hyphens, keyword present, no stop words |
-| T3 | Title length | Characters within per-language range (see `shared/readability-params.md` Meta Length table). Default EN: 50–60. |
-| T4 | Description length | Characters within per-language range. Default EN: 145–158. |
+| T3 | Title length | Characters within per-language range (see `shared/readability-params.md` Meta Length table). Default EN: 50-60. |
+| T4 | Description length | Characters within per-language range. Default EN: 145-158. |
 | T5 | Image file names | Descriptive, hyphenated (if visible in content) |
 | T6 | Schema markup | Appropriate schema present (if visible in source). If no source access: flag ⚠️ "Verify schema with search engine rich results testing tools" |
 | T7 | Canonical URL | Set (if visible in source). If no source access: ⊘ N/A |
 | T8 | OG / Twitter Card tags | OG title + description present, and/or twitter:card present. Pass if either OG tags (title+desc) OR twitter:card meta tags are present. |
-| A1 | Featured snippet | 40–60 word concise answer paragraph present |
-| A2 | E-E-A-T signals | ≥3 of 5 present: (1) author name + bio with credentials, (2) publication/modified date visible, (3) at least 1 credible external citation/source, (4) about/site-info page reference, (5) contact info or privacy policy link. 3+ = ✅ Pass, 2 = ⚠️ Warning, 0–1 = ❌ Fail. |
-| A3 | LSI keywords | 5–15 related terms present. If web access: cross-reference "Searches related to". If no access: check for natural topic vocabulary diversity. |
+| A1 | Featured snippet | 40-60 word concise answer paragraph present |
+| A2 | E-E-A-T signals | ≥3 of 5 present: (1) author name + bio with credentials, (2) publication/modified date visible, (3) at least 1 credible external citation/source, (4) about/site-info page reference, (5) contact info or privacy policy link. 3+ = ✅ Pass, 2 = ⚠️ Warning, 0-1 = ❌ Fail. |
+| A3 | LSI keywords | 5-15 related terms present. If web access: cross-reference "Searches related to". If no access: check for natural topic vocabulary diversity. |
 | A4 | Freshness | Date visible |
-| A5 | Mobile readability | Proxy: all paragraphs ≤150 words AND headings spaced every 200–350 words |
+| A5 | Mobile readability | Proxy: all paragraphs ≤150 words AND headings spaced every 200-350 words |
 | A6 | Breadcrumb | Breadcrumb markup or visible breadcrumb navigation (if visible)
 
 ---
@@ -210,7 +210,7 @@ IMPACT SUMMARY
 ====================================
 Critical fixes:       Very High
 Critical + High:      High
-All fixes:            Medium–High
+All fixes:            Medium-High
 
 ====================================
 TOP 5 ACTIONS (Do These First)

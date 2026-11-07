@@ -5,7 +5,7 @@
 
 ---
 
-## INTERNAL LINKS (3–10 per article)
+## INTERNAL LINKS (3-10 per article)
 
 ### Why internal links matter
 - Pass PageRank/link equity between pages
@@ -17,10 +17,10 @@
 
 | Type | Mix % | Example |
 |------|-------|---------|
-| **Partial match** | 30–40% | "SEO checklist for beginners" |
-| **Branded** | 20–25% | "RankWise SEO tool" |
-| **Generic / natural** | 20–25% | "as we covered earlier", "read more about" |
-| **Naked URL** | 5–10% | "example.com/seo-guide" |
+| **Partial match** | 30-40% | "SEO checklist for beginners" |
+| **Branded** | 20-25% | "RankWise SEO tool" |
+| **Generic / natural** | 20-25% | "as we covered earlier", "read more about" |
+| **Naked URL** | 5-10% | "example.com/seo-guide" |
 | **Exact match** | ≤2 total | "SEO checklist" (limit: 2 max per article) |
 
 ### Link placement rules
@@ -56,7 +56,7 @@ Conclusion → link to next-step content (funnel)
 
 ---
 
-## EXTERNAL LINKS (2–5 per article)
+## EXTERNAL LINKS (2-5 per article)
 
 ### Why external links matter
 - Signal to search engines: you cite sources, you're thorough
@@ -68,7 +68,7 @@ Conclusion → link to next-step content (funnel)
 Link to sources that are:
 - **Domain Authority 40+** (or recognized authority in niche)
 - **Original source** - not a blog that reposted a study
-- **Recent** - studies from last 2–3 years (unless citing seminal work)
+- **Recent** - studies from last 2-3 years (unless citing seminal work)
 - **Non-competitor** - informational sources, tools, data, not direct business competitors
 
 ### External link types
@@ -101,20 +101,20 @@ Link to sources that are:
 ## OUTBOUND LINK STRATEGY BY CONTENT TYPE
 
 ### Informational article
-- 3–5 external: 2 data sources, 1 tool/resource, 1 expert reference
-- 5–8 internal: cornerstone, 2 related articles, money page, case study
+- 3-5 external: 2 data sources, 1 tool/resource, 1 expert reference
+- 5-8 internal: cornerstone, 2 related articles, money page, case study
 
 ### Commercial/product page
-- 1–2 external: 1 industry report, 1 tool comparison (if relevant)
-- 3–5 internal: case studies, testimonials page, pricing, FAQ, blog posts
+- 1-2 external: 1 industry report, 1 tool comparison (if relevant)
+- 3-5 internal: case studies, testimonials page, pricing, FAQ, blog posts
 
 ### Review/comparison
-- 2–4 external: subject of review, alternative options, industry standard
-- 3–6 internal: related reviews, buying guide, product page, blog
+- 2-4 external: subject of review, alternative options, industry standard
+- 3-6 internal: related reviews, buying guide, product page, blog
 
 ### How-to/tutorial
-- 2–4 external: official docs, tools mentioned, reference material
-- 4–8 internal: related tutorials, prerequisite guides, advanced guides, product
+- 2-4 external: official docs, tools mentioned, reference material
+- 4-8 internal: related tutorials, prerequisite guides, advanced guides, product
 
 ---
 

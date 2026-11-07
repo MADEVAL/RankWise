@@ -27,14 +27,14 @@
 
 **Examples:**
 - "7 SEO Mistakes Killing Your Rankings (Fix Them in 5 Minutes)"
-- "How We 3× Our Organic Traffic in 90 Days — Exact Workflow"
+- "How We 3× Our Organic Traffic in 90 Days - Exact Workflow"
 - "I Audited 100 SaaS Landing Pages. Here's What Crushes Conversions"
 
 ### Podcast episode titles
 ```
-[Pattern]: [Guest Name on Topic] or [#Episode — Keyword: Hook]
+[Pattern]: [Guest Name on Topic] or [#Episode - Keyword: Hook]
 ```
-- 50–70 characters
+- 50-70 characters
 - Guest name (if applicable) + topic keyword
 - Avoid: "Episode 47" as primary title element (bury number at end)
 
@@ -53,13 +53,13 @@
 ### YouTube description structure
 
 ```
-[FIRST 2-3 LINES — ABOVE THE FOLD]
+[FIRST 2-3 LINES - ABOVE THE FOLD]
 Hook line + what viewer learns + keyword.
-These 3 lines appear before "SHOW MORE" — 157 chars max.
+These 3 lines appear before "SHOW MORE" - 157 chars max.
 
 ────────────────────────────
 
-[BODY — EXPANDED]
+[BODY - EXPANDED]
 What this video covers:
 - Point 1 (keyword-rich)
 - Point 2
@@ -67,13 +67,13 @@ What this video covers:
 
 [LINKS & RESOURCES]
 - Tool/resource name: URL
-- Related video: Title — URL
+- Related video: Title - URL
 - Article version: URL
 
 [TIMESTAMPS / CHAPTERS]
-0:00 — Intro
-0:45 — Section 1 Title
-3:20 — Section 2 Title
+0:00 - Intro
+0:45 - Section 1 Title
+3:20 - Section 2 Title
 ...
 
 [HASHTAGS]
@@ -83,7 +83,7 @@ What this video covers:
 ### Podcast show notes structure
 
 ```
-[EPISODE SUMMARY — 3-4 sentences]
+[EPISODE SUMMARY - 3-4 sentences]
 Episode topic + guest name + credentials + what listener gains.
 Keyword in first 2 sentences.
 
@@ -96,10 +96,10 @@ Keyword in first 2 sentences.
 Name, role, company, 1-line credibility highlight.
 
 [TIMESTAMPS / CHAPTERS]
-00:00 — Intro & guest background
-05:30 — Topic deep dive
-22:00 — Practical steps
-38:00 — Key takeaways
+00:00 - Intro & guest background
+05:30 - Topic deep dive
+22:00 - Practical steps
+38:00 - Key takeaways
 
 [RESOURCES MENTIONED]
 - Resource: URL (context why mentioned)
@@ -115,7 +115,7 @@ Name, role, company, 1-line credibility highlight.
 - 2-4 secondary keywords naturally placed in body
 - External links: DO follow, authoritative sources
 - Internal links: to related videos/episodes (YouTube cards/end screens)
-- Hashtags: 3-5 relevant, no more — over-hashtagging hurts
+- Hashtags: 3-5 relevant, no more - over-hashtagging hurts
 
 ---
 
@@ -123,26 +123,26 @@ Name, role, company, 1-line credibility highlight.
 
 ### Format
 ```
-HH:MM:SS — Chapter Title
-0:00 — Introduction
-1:30 — Why [Topic] Matters in 2026
-5:45 — The [Number] Biggest Mistakes
-12:00 — Step-by-Step: How to [Action]
-22:30 — Real Examples & Results
-35:00 — Your Next Steps
+HH:MM:SS - Chapter Title
+0:00 - Introduction
+1:30 - Why [Topic] Matters in 2026
+5:45 - The [Number] Biggest Mistakes
+12:00 - Step-by-Step: How to [Action]
+22:30 - Real Examples & Results
+35:00 - Your Next Steps
 ```
 
 ### Chapter SEO
 - Each chapter title = mini-headline with keyword potential
 - 5-12 chapters total
-- First chapter = introduction (NOT "Intro" — use descriptive title)
+- First chapter = introduction (NOT "Intro" - use descriptive title)
 - Middle chapters = core value (place keywords here)
 - Final chapter = CTA / next steps
 
 ### YouTube chapters
 - First timestamp MUST be 0:00
 - Min 3 chapters, each ≥10 seconds
-- Chapter titles appear in SERP as rich snippets — write them for click-through
+- Chapter titles appear in SERP as rich snippets - write them for click-through
 
 ---
 
@@ -161,7 +161,7 @@ Primary keyword, secondary keyword 1, secondary keyword 2, broad category, speci
 5. 3-4 long-tail question-form keywords
 
 ### Hashtags (for description top/bottom)
-- YouTube displays top 3 above title — make them count
+- YouTube displays top 3 above title - make them count
 - Max 15, but 3-5 recommended
 - Format: `#KeywordPhrase` (PascalCase or lowercase)
 
@@ -213,7 +213,7 @@ When using VideoObject on web: include `potentialAction` → `SeekToAction` with
 | K1-K8 | Keyword placement applies to title, description, timestamps |
 | K10 | Density 0.5-1.0% in description (shorter content) |
 | C1 | Description word count: 150-300 words minimum |
-| C4 | ⊘ N/A — TOC not applicable (use timestamps instead) |
+| C4 | ⊘ N/A - TOC not applicable (use timestamps instead) |
 | C5 | Number in title: mandatory for list-style videos |
 | C6 | Power words in title: ≥2 (critical for CTR) |
 | L1 | Internal links: to other videos/episodes (YouTube cards/end screens) |
@@ -229,7 +229,7 @@ When using VideoObject on web: include `potentialAction` → `SeekToAction` with
 ## STEP 8: DELIVERY FORMAT
 
 ```
-[MODE: meta-only / generate — video/podcast]
+[MODE: meta-only / generate - video/podcast]
 [LANG: xx]
 [KEYWORD: xxx]
 [PLATFORM: youtube / podcast / web]

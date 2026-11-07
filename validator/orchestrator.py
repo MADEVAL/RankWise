@@ -1,5 +1,5 @@
 """
-RankWise Orchestrator — automated pipeline bridging LLM generation and
+RankWise Orchestrator - automated pipeline bridging LLM generation and
 deterministic validation.  Generates targeted fix prompts for the LLM
 based on validator results, supports iterative re-validation.
 """
@@ -190,7 +190,7 @@ class Orchestrator:
         """Human-readable before→after comparison."""
         lines = [
             "=" * 60,
-            "  RankWise Orchestrator — Iteration Diff",
+            "  RankWise Orchestrator - Iteration Diff",
             "=" * 60,
             "",
             f"  Before: {before.weighted_score_pct:.1f}% ({before.grade})  |  "
@@ -223,7 +223,7 @@ class Orchestrator:
             return "[ALL CLEAR] All 16 computable factors pass. No fixes needed."
 
         parts = [
-            f"[SEO FIX BATCH — {plan.lang.upper()} | keyword: '{plan.keyword}']",
+            f"[SEO FIX BATCH - {plan.lang.upper()} | keyword: '{plan.keyword}']",
             f"Score: {plan.weighted_score_pct:.1f}% ({plan.grade}) | "
             f"Pass:{plan.passed} Fail:{plan.failed} Warn:{plan.warnings} N/A:{plan.na_count}",
             "",
@@ -231,7 +231,7 @@ class Orchestrator:
             "",
         ]
         for instr in plan.instructions:
-            parts.append(f"### {instr.factor_id} — {instr.factor_name} "
+            parts.append(f"### {instr.factor_id} - {instr.factor_name} "
                          f"[{instr.severity}] [{instr.status.upper()}]")
             parts.append(f"Issue: {instr.detail}")
             parts.append(f"Target: {instr.target}")
@@ -326,7 +326,7 @@ class Orchestrator:
                 f"The keyword **'{kw}'** does not appear in the first 150 words "
                 f"of the body text. Rewrite the opening paragraph to naturally "
                 f"include '{kw}' once. Do NOT use a forced construction like "
-                f"'In this article about {kw}...' — weave it into a real sentence."
+                f"'In this article about {kw}...' - weave it into a real sentence."
             ),
         )
 
@@ -340,7 +340,7 @@ class Orchestrator:
             llm_prompt=(
                 f"The keyword **'{kw}'** was not found anywhere in the body text. "
                 f"Add 1-2 natural instances of '{kw}' where it fits the topic. "
-                f"Spread them across different sections — do not cluster."
+                f"Spread them across different sections - do not cluster."
             ),
         )
 
@@ -354,7 +354,7 @@ class Orchestrator:
 
         if density == 0:
             prompt = (
-                f"Keyword '{kw}' density is 0% — the keyword does not appear "
+                f"Keyword '{kw}' density is 0% - the keyword does not appear "
                 f"in the body. Add 2-4 instances distributed naturally."
             )
         elif density < 0.8:
@@ -385,7 +385,7 @@ class Orchestrator:
         return FixInstruction(
             factor_id=fid, factor_name="Keyword Density", severity="HIGH",
             status=info["status"], detail=info["detail"],
-            target="0.8%–1.5% keyword density",
+            target="0.8%-1.5% keyword density",
             llm_prompt=prompt,
         )
 
@@ -398,7 +398,7 @@ class Orchestrator:
             status=info["status"], detail=info["detail"],
             target="600+ words minimum (1500+ competitive)",
             llm_prompt=(
-                f"Word count is {wc} — {short} words below the 600-word minimum.\n"
+                f"Word count is {wc} - {short} words below the 600-word minimum.\n"
                 f"Expand the thinnest sections. For each, add:\n"
                 f"  - 1 concrete example or case study\n"
                 f"  - 1 data point / statistic\n"
@@ -552,7 +552,7 @@ class Orchestrator:
             status=info["status"], detail=info["detail"],
             target="No 3 consecutive sentences of similar length (±2 words)",
             llm_prompt=(
-                f"Found {m.monotony_violations} monotony violation(s) — "
+                f"Found {m.monotony_violations} monotony violation(s) - "
                 f"3+ consecutive sentences with nearly identical length:\n" +
                 "\n".join(f"  • {v}" for v in violations[:5]) +
                 "\n\nRewrite to vary sentence length. Mix short (2-5w), "
@@ -666,7 +666,7 @@ _FACTOR_NAMES = {
 _FACTOR_TARGETS = {
     "K1": "Define one primary keyword", "K2": "Keyword must appear in title",
     "K6": "Keyword within first 100-150 words", "K7": "Keyword in body text",
-    "K10": "Density 0.8%–1.5%", "C1": "600+ words (1500+ competitive)",
+    "K10": "Density 0.8%-1.5%", "C1": "600+ words (1500+ competitive)",
     "C2": "≤3 sentences, ≤150 words per paragraph",
     "C5": "At least 1 number in title", "C6": "≥2 power words in title",
     "C8": "Readability within target range per language",

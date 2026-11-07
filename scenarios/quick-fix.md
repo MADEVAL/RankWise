@@ -70,7 +70,7 @@
 ### Deliver
 ```
 Original (XX chars): [title]
-Issue: Too long/short - target 50–60 chars
+Issue: Too long/short - target 50-60 chars
 Fixed (XX chars): [new title]
 ```
 
@@ -92,7 +92,7 @@ Fixed (XX chars): [new title]
 ### Deliver
 ```
 Original (XX chars): [description]
-Issue: Too long/short - target 145–158 chars
+Issue: Too long/short - target 145-158 chars
 Fixed (XX chars): [new description]
 ```
 
@@ -101,7 +101,7 @@ Fixed (XX chars): [new description]
 ## FIX: K2 / K4 - KEYWORD MISSING FROM TITLE / DESCRIPTION
 
 1. Identify where to insert keyword naturally
-2. Title: place in first 3–5 words
+2. Title: place in first 3-5 words
 3. Description: place in first 20 words
 4. If insertion breaks grammar, restructure the sentence
 
@@ -118,7 +118,7 @@ Fixed: [new title/description]
 
 ### Too low (<0.8%)
 1. Find sections that discuss the keyword topic without using the term
-2. Add 1–2 natural instances where the keyword fits
+2. Add 1-2 natural instances where the keyword fits
 3. Check: does it still read naturally?
 
 ### Too high (>3%)
@@ -131,7 +131,7 @@ Fixed: [new title/description]
 ### Deliver
 ```
 Original density: X.X% (X instances in Y words)
-Issue: Too low/high - target 0.8%–1.5%
+Issue: Too low/high - target 0.8%-1.5%
 New density: X.X% (X instances in Y words)
 Changed: [list specific changes: "line X - changed '...' to '...'"]
 ```
@@ -160,14 +160,14 @@ Suggested H2 change:
 
 ## FIX: L1 - INTERNAL LINKS
 
-1. Suggest 3–8 internal pages to link to
+1. Suggest 3-8 internal pages to link to
 2. Provide: target URL, suggested anchor text, placement (which section)
 3. Anchor text must be varied (≤2 exact-match)
 
 ### Deliver
 ```
 Current internal links: X
-Need: 3–10 (suggested: Y)
+Need: 3-10 (suggested: Y)
 
 Suggested additions:
 1. /page-url - anchor: "[natural text]" - place in: [section name]
@@ -179,13 +179,13 @@ Suggested additions:
 
 ## FIX: L2 - EXTERNAL LINKS
 
-1. Suggest 2–5 authoritative external sources
+1. Suggest 2-5 authoritative external sources
 2. Provide: target URL, domain authority (if known), why relevant, suggested anchor text
 
 ### Deliver
 ```
 Current external links: X
-Need: 2–5 (suggested: Y)
+Need: 2-5 (suggested: Y)
 
 Suggested additions:
 1. https://source.com/page - (DA: XX) - relevance: [reason] - anchor: "[text]"
@@ -238,7 +238,7 @@ Break suggestions:
 
 ---
 
-## FIX: ALL REMAINING FACTORS (K1–A6)
+## FIX: ALL REMAINING FACTORS (K1-A6)
 
 ### K1 - Focus Keyword Missing
 - Best guess from title/H1. Example: title "How to Grow Your Email List" → keyword "grow email list"

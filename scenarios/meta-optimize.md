@@ -38,8 +38,8 @@ Target audience: [who]. Key value: [what they get].
 ## STEP 1: SEO TITLE GENERATION
 
 ### Rules (all languages)
-- **Length:** 50–60 characters (EN). Adjust per language in `shared/readability-params.md`.
-- **Keyword:** In first 3–5 words
+- **Length:** 50-60 characters (EN). Adjust per language in `shared/readability-params.md`.
+- **Keyword:** In first 3-5 words
 - **Power words:** ≥2 from `shared/power-words.md`
 - **Number:** At least 1 (odd preferred)
 - **Sentiment:** Clear polarity (not neutral)
@@ -69,7 +69,7 @@ Target audience: [who]. Key value: [what they get].
 ## STEP 2: META DESCRIPTION GENERATION
 
 ### Rules (all languages)
-- **Length:** 145–158 characters (EN)
+- **Length:** 145-158 characters (EN)
 - **Keyword:** In first 20 words
 - **Active voice:** Concrete verbs, not passive
 - **Value proposition:** Specific - what reader gets
@@ -105,13 +105,13 @@ Target audience: [who]. Key value: [what they get].
 ## STEP 3: OG TAG GENERATION
 
 ### OG title
-- 40–60 characters
+- 40-60 characters
 - May equal meta title OR be slightly more conversational
 - Must still contain keyword
 - Social-friendly tone (less formal than meta title acceptable)
 
 ### OG description
-- 100–200 characters
+- 100-200 characters
 - Must NOT copy meta description verbatim
 - Social media tone: human, intriguing, scroll-stopping
 - Can be more emotional/curious than SEO meta description

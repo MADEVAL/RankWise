@@ -1,8 +1,9 @@
-# RankWise — Professional SEO Content Engine
+# RankWise - Professional SEO Content Engine
 
 [![Version](https://img.shields.io/badge/version-1.3.0-blue)]()
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Compatibility](https://img.shields.io/badge/compatibility-any%20LLM-purple)]()
+[![Compatibility](https://img.shields.io/badge/compatibility-plain%20markdown-purple)]()
+[![skills.sh](https://img.shields.io/badge/skills.sh-listed-2ea44f)](https://www.skills.sh/madeval/rankwise)
 
 \[ **English** | [Русский](#) \]
 
@@ -14,7 +15,7 @@ An AI skill system that generates, rewrites, and audits content against 49 SEO r
 
 ## Scope
 
-RankWise is a **content-level SEO engine** — it optimizes text, meta tags, alt texts, URLs, and content structure. It does **not** measure page speed, Core Web Vitals, server configuration, SSL, or cookie compliance. For those, use Lighthouse, PageSpeed Insights, or Screaming Frog.
+RankWise is a **content-level SEO engine** - it optimizes text, meta tags, alt texts, URLs, and content structure. It does **not** measure page speed, Core Web Vitals, server configuration, SSL, or cookie compliance. For those, use Lighthouse, PageSpeed Insights, or Screaming Frog.
 
 ---
 
@@ -61,11 +62,11 @@ Every piece of content is scored against 49 factors across 5 categories with wei
 
 | Category | Factors | Highlights |
 |----------|---------|------------|
-| **Keyword Placement** (K1–K12) | 12 | Focus keyword, title, meta, URL, headings, density, cannibalization |
-| **Content Quality** (C1–C14) | 14 | Word count, readability, heading hierarchy, passive voice, paragraph structure |
-| **Linking** (L1–L9) | 9 | Internal links, external links, DoFollow, anchor variety, orphan prevention |
-| **URL & Technical** (T1–T8) | 8 | URL length/structure, title/description length, schema, canonical, OG tags |
-| **Advanced Signals** (A1–A6) | 6 | Featured snippet, E-E-A-T, LSI keywords, freshness, mobile readability, breadcrumbs |
+| **Keyword Placement** (K1-K12) | 12 | Focus keyword, title, meta, URL, headings, density, cannibalization |
+| **Content Quality** (C1-C14) | 14 | Word count, readability, heading hierarchy, passive voice, paragraph structure |
+| **Linking** (L1-L9) | 9 | Internal links, external links, DoFollow, anchor variety, orphan prevention |
+| **URL & Technical** (T1-T8) | 8 | URL length/structure, title/description length, schema, canonical, OG tags |
+| **Advanced Signals** (A1-A6) | 6 | Featured snippet, E-E-A-T, LSI keywords, freshness, mobile readability, breadcrumbs |
 
 **Weighted scoring:** CRITICAL factors carry ×3 weight (any CRITICAL failure caps maximum grade at B). N/A factors excluded from denominator. Full methodology in `shared/checklist.md`.
 
@@ -120,7 +121,7 @@ rankwise/
 
 ## Validator (Python)
 
-The `validator/` directory contains a Python tool that computes measurable SEO metrics from text — complementing the LLM-based scoring with deterministic calculations:
+The `validator/` directory contains a Python tool that computes measurable SEO metrics from text - complementing the LLM-based scoring with deterministic calculations:
 
 ```bash
 pip install readsight
@@ -135,9 +136,9 @@ python -m validator.cli --file article.txt --keyword "seo strategy" --title "SEO
 python -m validator.cli --file article.txt --keyword "seo" --title "Title" --checklist --json
 ```
 
-**What it computes:** word count (C1), paragraph metrics (C2), readability — Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau for EN only (C8), passive voice ratio per language (C9), transition word ratio per language (C10), sentence length variety (C11), consecutive sentence starts (C12), keyword density (K10), keyword placement (K2, K6, K7), title/meta length with per-language ranges (T3, T4), power words in all 9 languages (C6).
+**What it computes:** word count (C1), paragraph metrics (C2), readability - Flesch-Kincaid, Gunning Fog, SMOG, ARI, Coleman-Liau for EN only (C8), passive voice ratio per language (C9), transition word ratio per language (C10), sentence length variety (C11), consecutive sentence starts (C12), keyword density (K10), keyword placement (K2, K6, K7), title/meta length with per-language ranges (T3, T4), power words in all 9 languages (C6).
 
-**Multi-language support:** `--lang en|ru|uk|de|fr|es|pt|it|pl`. Passive voice, transition words, and power words use language-specific patterns for all 9 languages. Readability (C8) is computed deterministically via [ReadSightPy](https://github.com/MADEVAL/ReadSightPy) (TeX/Liang syllable counting) for all 9 languages — EN uses Flesch-Kincaid Grade, DE Wiener Sachtextformel, ES Fernández-Huerta, IT Gulpease, FR/RU/PT Flesch Reading Ease, UK LIX, PL FOG-PL. Title/meta length targets adjust per language.
+**Multi-language support:** `--lang en|ru|uk|de|fr|es|pt|it|pl`. Passive voice, transition words, and power words use language-specific patterns for all 9 languages. Readability (C8) is computed deterministically via [ReadSightPy](https://github.com/MADEVAL/ReadSightPy) (TeX/Liang syllable counting) for all 9 languages - EN uses Flesch-Kincaid Grade, DE Wiener Sachtextformel, ES Fernández-Huerta, IT Gulpease, FR/RU/PT Flesch Reading Ease, UK LIX, PL FOG-PL. Title/meta length targets adjust per language.
 
 ---
 
@@ -147,8 +148,8 @@ python -m validator.cli --file article.txt --keyword "seo" --title "Title" --che
 
 | # | File | Expected Result |
 |---|------|----------------|
-| 1 | `01-well-optimized.txt` | Mixed — keyword in body, title mismatch (plural) |
-| 2 | `02-keyword-stuffed.txt` | D–F: 23% density, word count fail |
+| 1 | `01-well-optimized.txt` | Mixed - keyword in body, title mismatch (plural) |
+| 2 | `02-keyword-stuffed.txt` | D-F: 23% density, word count fail |
 | 3 | `03-too-short.txt` | D: 69 words, missing meta |
 | 4 | `04-no-meta.txt` | D: no title/meta, short content |
 | 5 | `05-product-page.txt` | C+: best density & keyword placement |
@@ -188,21 +189,21 @@ python -m validator.cli --file benchmarks/01-well-optimized.txt --keyword "conte
 **Rewrite from URL:**
 > "Rewrite this article for SEO: [URL]. Focus keyword: SEO checklist."
 
-**Joint with HumanAI:**
-> "SEO-rewrite this article using RankWise, then humanize it with [HumanAI](https://github.com/MADEVAL/HumanAI). EN. Keyword: seo audit."
+**Joint with human-ai:**
+> "SEO-rewrite this article using RankWise, then humanize it with [human-ai](https://github.com/MADEVAL/Natural-skill). EN. Keyword: seo audit."
 
 **Joint with MindFluence:**
 > "RankWise SEO brief for SaaS landing page, then [MindFluence](https://github.com/MADEVAL/MindFluence) from that brief. Expert-calm tone."
 
 ---
 
-## Integration with HumanAI and MindFluence
+## Integration with human-ai and MindFluence
 
 RankWise is designed to work with, not against, these skills:
 
-- **[HumanAI](https://github.com/MADEVAL/HumanAI)** - Text Humanization Engine. RankWise handles SEO structure → HumanAI humanizes the voice. Monitor keyword density and heading keywords after humanization.
+- **[human-ai](https://github.com/MADEVAL/Natural-skill)** - Text Humanization Engine. RankWise handles SEO structure → human-ai humanizes the voice. Monitor keyword density and heading keywords after humanization.
 - **[MindFluence](https://github.com/MADEVAL/MindFluence)** - Cognitive Bias Marketing Engine. RankWise provides SEO structure → MindFluence applies cognitive bias persuasion. Monitor for keyword over-stuffing in `bold-sell` tone.
-- **Triple pipeline:** RankWise (structure) → MindFluence (persuasion) → HumanAI (voice) → RankWise Audit (final check).
+- **Triple pipeline:** RankWise (structure) → MindFluence (persuasion) → human-ai (voice) → RankWise Audit (final check).
 
 See `SKILL.md` → INTEGRATION WITH OTHER SKILLS for full compatibility guide.
 
@@ -213,7 +214,7 @@ See `SKILL.md` → INTEGRATION WITH OTHER SKILLS for full compatibility guide.
 - Any capable LLM with a system prompt / custom instructions field
 - For full skill functionality: a skill system that loads files from a folder (OpenCode, Claude Code)
 - **SKILL.md is self-sufficient** - contains all core rules for standalone use. `shared/` and `scenarios/` files add professional depth (scoring formulas, AI-marker lists, per-language readability, schema templates, content-type blueprints)
-- No API keys, no tools, no dependencies — pure prompt engineering
+- No API keys, no tools, no dependencies - pure prompt engineering
 - Works in any language; per-language parameters for 9 languages (EN, RU, UK, DE, FR, ES, PT, IT, PL)
 - **Optional:** Python 3.10+ + `readsight` for deterministic metric validation via `validator/`
 
