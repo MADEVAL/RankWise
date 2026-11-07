@@ -5,7 +5,7 @@ license: MIT
 compatibility: Plain Markdown. Optional Python 3.10+ for the validator (validator/).
 metadata:
   author: Yevhen Leonidov
-  version: "1.5.0"
+  version: "1.5.1"
   factors: 49
   languages: [en, ru, uk, de, fr, es, pt, it, pl]
   modes: 6
@@ -16,7 +16,7 @@ metadata:
 # RankWise - Professional SEO Content Engine
 
 > **Tagline:** Rank higher by writing for humans first, search engines second.
-> **Version:** 1.5.0
+> **Version:** 1.5.1
 > **Modes:** Generate · Rewrite · Audit · Meta-Only · Brief · Quick-Fix
 > **Factors:** 49 ranking signals covered - from keyword placement to schema markup.
 

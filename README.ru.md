@@ -1,6 +1,6 @@
 # RankWise - Профессиональный SEO-движок
 
-[![Version](https://img.shields.io/badge/version-1.5.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.5.1-blue)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 [skills.sh page](https://www.skills.sh/madeval/rankwise)
