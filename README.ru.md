@@ -244,9 +244,11 @@ MIT | Copyright Yevhen Leonidov
 ## Описание для GitHub
 
 ```
-SEO Content Engine for LLMs - движок промпт-инжиниринга, который превращает любую capable LLM в SEO-стратега: генерация, рерайт и аудит контента по 49 факторам ранжирования с мультиязычной поддержкой. Skills.sh: https://www.skills.sh/madeval/rankwise
+SEO Content Engine for LLMs - генерация, рерайт и аудит контента по 49 факторам ранжирования с мультиязычной поддержкой.
 ```
 
 ## Теги для GitHub
 
 `ai` `ai-agents` `content` `content-marketing` `content-strategy` `content-strategy-optimization` `llm` `llm-agent` `multilingual` `prompt-engineering` `seo` `seo-audit` `seo-optimization` `seo-tools`
+
+Skills.sh: https://www.skills.sh/madeval/rankwise

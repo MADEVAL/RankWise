@@ -230,9 +230,11 @@ MIT | Copyright Yevhen Leonidov
 ## GitHub Description
 
 ```
-SEO Content Engine for LLMs - a prompt-engineering system that turns any capable AI into a world-class SEO strategist: generate, rewrite, and audit content against 49 ranking factors with multilingual support. Skills.sh: https://www.skills.sh/madeval/rankwise
+SEO Content Engine for LLMs - generate, rewrite, and audit content against 49 ranking factors with multilingual support.
 ```
 
 ## GitHub Tags
 
 `ai` `ai-agents` `content` `content-marketing` `content-strategy` `content-strategy-optimization` `llm` `llm-agent` `multilingual` `prompt-engineering` `seo` `seo-audit` `seo-optimization` `seo-tools`
+
+Skills.sh: https://www.skills.sh/madeval/rankwise
