@@ -100,7 +100,7 @@ Where PASS_WEIGHTS sum the multipliers (CRITICAL=×3, HIGH=×2, MEDIUM=×1, LOW=
 | A3 | LSI keywords | 5-15 related terms present. If web access: cross-reference "Searches related to". If no access: check for natural topic vocabulary diversity. |
 | A4 | Freshness | Date visible |
 | A5 | Mobile readability | Proxy: all paragraphs ≤150 words AND headings spaced every 200-350 words |
-| A6 | Breadcrumb | Breadcrumb markup or visible breadcrumb navigation (if visible)
+| A6 | Breadcrumb | Breadcrumb markup or visible breadcrumb navigation (if visible) |
 
 ---
 

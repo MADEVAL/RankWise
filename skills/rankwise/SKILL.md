@@ -949,7 +949,7 @@ These are the factors where exact numeric measurement matters. Remaining factors
 
 ---
 
-## Files
+## Project Layout
 
 ```
 RankWise/

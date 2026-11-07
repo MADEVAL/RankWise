@@ -43,7 +43,7 @@ REQUIRED_SECTIONS = [
     "Reference Files",
     "Post-Generation Validation",
     "Quick Start",
-    "Files",
+    "Project Layout",
 ]
 
 errors: list[str] = []

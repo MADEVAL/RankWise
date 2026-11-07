@@ -1,5 +1,5 @@
 # RankWise Benchmark Dataset
-> **Version:** 1.3.0
+> **Version:** 1.4.0
 
 Five reference texts with manually verified SEO properties. Used to validate scoring consistency across versions.
 

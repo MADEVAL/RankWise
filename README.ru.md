@@ -181,7 +181,7 @@ rankwise-validator --file benchmarks/01-well-optimized.txt --keyword "content ma
 > «Перепиши эту статью для SEO: [URL]. Ключ: SEO чек-лист.»
 
 **Совместно с human-ai:**
-> «SEO-рерайт через RankWise, затем очеловечь через [human-ai](https://github.com/MADEVAL/Natural-skill). RU. Ключ: SEO-аудит.»
+> «SEO-рерайт через RankWise, затем очеловечь через [human-ai](https://github.com/MADEVAL/HumanAI). RU. Ключ: SEO-аудит.»
 
 **Совместно с MindFluence:**
 > «RankWise SEO-бриф для лендинга, затем [MindFluence](https://github.com/MADEVAL/MindFluence) из этого брифа. Тон: expert-calm.»
@@ -192,7 +192,7 @@ rankwise-validator --file benchmarks/01-well-optimized.txt --keyword "content ma
 
 RankWise спроектирован для совместной работы:
 
-- **[human-ai](https://github.com/MADEVAL/Natural-skill)** - Text Humanization Engine. RankWise → структура SEO → human-ai → человеческий голос. Следите за плотностью ключей после очеловечивания.
+- **[human-ai](https://github.com/MADEVAL/HumanAI)** - Text Humanization Engine. RankWise → структура SEO → human-ai → человеческий голос. Следите за плотностью ключей после очеловечивания.
 - **[MindFluence](https://github.com/MADEVAL/MindFluence)** - Cognitive Bias Marketing Engine. RankWise → SEO-структура → MindFluence → когнитивное убеждение. Следите за переспамом ключей в `bold-sell` тоне.
 - **Тройная интеграция:** RankWise (структура) → MindFluence (убеждение) → human-ai (голос) → RankWise Audit (финальная проверка).
 

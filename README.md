@@ -164,7 +164,7 @@ rankwise-validator --file benchmarks/01-well-optimized.txt --keyword "content ma
 > "Rewrite this article for SEO: [URL]. Focus keyword: SEO checklist."
 
 **Joint with human-ai:**
-> "SEO-rewrite this article using RankWise, then humanize it with [human-ai](https://github.com/MADEVAL/Natural-skill). EN. Keyword: seo audit."
+> "SEO-rewrite this article using RankWise, then humanize it with [human-ai](https://github.com/MADEVAL/HumanAI). EN. Keyword: seo audit."
 
 **Joint with MindFluence:**
 > "RankWise SEO brief for SaaS landing page, then [MindFluence](https://github.com/MADEVAL/MindFluence) from that brief. Expert-calm tone."
@@ -175,7 +175,7 @@ rankwise-validator --file benchmarks/01-well-optimized.txt --keyword "content ma
 
 RankWise is designed to work with, not against, these skills:
 
-- **[human-ai](https://github.com/MADEVAL/Natural-skill)** - Text Humanization Engine. RankWise handles SEO structure → human-ai humanizes the voice. Monitor keyword density and heading keywords after humanization.
+- **[human-ai](https://github.com/MADEVAL/HumanAI)** - Text Humanization Engine. RankWise handles SEO structure → human-ai humanizes the voice. Monitor keyword density and heading keywords after humanization.
 - **[MindFluence](https://github.com/MADEVAL/MindFluence)** - Cognitive Bias Marketing Engine. RankWise provides SEO structure → MindFluence applies cognitive bias persuasion. Monitor for keyword over-stuffing in `bold-sell` tone.
 - **Triple pipeline:** RankWise (structure) → MindFluence (persuasion) → human-ai (voice) → RankWise Audit (final check).
 
